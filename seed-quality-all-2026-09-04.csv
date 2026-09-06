@@ -1,0 +1,611 @@
+image_id,file_name,label,split,seed_type,variety,width,height,uploaded_by,uploaded_at,labelled_by,labelled_at,uploader_label
+CF-2026-10325,images/CF-2026-10325.jpg,normal,train,Sugarcane,Co-0238,2048,1536,Fatima Zahra,2026-09-02T19:22:17.599Z,Daniel Osei,2026-09-02T21:22:17.599Z,good
+CF-2026-10326,images/CF-2026-10326.jpg,normal,train,Cucumber,Poinsette,1600,1200,Kwame Mensah,2026-09-02T20:22:49.289Z,Rafael Duarte,2026-09-02T22:22:49.289Z,good
+CF-2026-10327,images/CF-2026-10327.jpg,good,train,Chickpea,JG-11,3024,4032,Ibrahim Al-Sayed,2026-09-03T07:12:15.956Z,Mei Ling Chen,2026-09-03T08:12:15.956Z,good
+CF-2026-10328,images/CF-2026-10328.jpg,good,train,Soybean,JS-335,1920,1280,Grace Wanjiru,2026-09-03T07:39:21.082Z,Daniel Osei,2026-09-03T11:39:21.082Z,good
+CF-2026-10329,images/CF-2026-10329.jpg,good,train,Lentil,IPL-316,4000,3000,Yuki Tanaka,2026-09-02T21:09:50.301Z,Priya Nair,2026-09-02T22:09:50.301Z,good
+CF-2026-10330,images/CF-2026-10330.jpg,good,val,Onion,Bhima Super,3024,4032,Nadia Kovac,2026-09-03T03:49:28.589Z,Mei Ling Chen,2026-09-03T04:49:28.589Z,good
+CF-2026-10331,images/CF-2026-10331.jpg,good,test,Sesame,GT-10,2048,1536,Ana Beatriz Souza,2026-09-02T16:50:23.976Z,Mei Ling Chen,2026-09-02T20:50:23.976Z,good
+CF-2026-10332,images/CF-2026-10332.jpg,good,train,Sorghum,CSH-16,4000,3000,Kwame Mensah,2026-09-02T22:23:21.500Z,Daniel Osei,2026-09-03T03:23:21.500Z,good
+CF-2026-10333,images/CF-2026-10333.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Lucia Fernandez,2026-09-03T09:23:31.436Z,Sofia Marchetti,2026-09-03T10:23:31.436Z,good
+CF-2026-10334,images/CF-2026-10334.jpg,good,train,Cabbage,Golden Acre,1920,1280,Oliver Bennett,2026-09-02T18:58:57.237Z,Mei Ling Chen,2026-09-03T00:58:57.237Z,good
+CF-2026-10335,images/CF-2026-10335.jpg,good,train,Cauliflower,Pusa Snowball,1920,1280,Zara Hussain,2026-09-02T16:50:44.697Z,Priya Nair,2026-09-02T19:50:44.697Z,good
+CF-2026-10336,images/CF-2026-10336.jpg,bad,train,Wheat,HD-2967,3024,4032,Anika Sharma,2026-09-03T04:27:26.240Z,Sofia Marchetti,2026-09-03T07:27:26.240Z,bad
+CF-2026-10337,images/CF-2026-10337.jpg,good,val,Peas,Arkel,3024,4032,Ana Beatriz Souza,2026-09-03T02:17:36.241Z,Mei Ling Chen,2026-09-03T07:17:36.241Z,good
+CF-2026-10338,images/CF-2026-10338.jpg,good,test,Millet,HHB-67,2560,1440,Elena Rostova,2026-09-02T23:26:45.122Z,Priya Nair,2026-09-03T02:26:45.122Z,good
+CF-2026-10339,images/CF-2026-10339.jpg,good,train,Black Gram,T-9,4000,3000,Ana Beatriz Souza,2026-09-03T09:48:24.896Z,Mei Ling Chen,2026-09-03T11:48:24.896Z,good
+CF-2026-10340,images/CF-2026-10340.jpg,good,train,Maize,Pioneer 3396,2560,1440,Ana Beatriz Souza,2026-09-02T13:57:05.186Z,Daniel Osei,2026-09-02T18:57:05.186Z,normal
+CF-2026-10341,images/CF-2026-10341.jpg,good,train,Maize,Pioneer 3396,3024,4032,Anika Sharma,2026-09-02T22:26:14.050Z,Priya Nair,2026-09-03T03:26:14.050Z,good
+CF-2026-10342,images/CF-2026-10342.jpg,normal,train,Mustard,Pusa Bold,2560,1440,Kwame Mensah,2026-09-02T23:51:04.348Z,Mei Ling Chen,2026-09-03T03:51:04.348Z,good
+CF-2026-10343,images/CF-2026-10343.jpg,normal,train,Millet,HHB-67,4000,3000,Oliver Bennett,2026-09-03T03:17:38.429Z,Daniel Osei,2026-09-03T09:17:38.429Z,good
+CF-2026-10344,images/CF-2026-10344.jpg,good,val,Cucumber,Poinsette,2048,1536,Kwame Mensah,2026-09-02T19:12:02.920Z,Daniel Osei,2026-09-02T23:12:02.920Z,good
+CF-2026-10345,images/CF-2026-10345.jpg,bad,test,Sugarcane,Co-0238,2048,1536,Yuki Tanaka,2026-09-03T01:05:07.843Z,Mei Ling Chen,2026-09-03T06:05:07.843Z,good
+CF-2026-10346,images/CF-2026-10346.jpg,normal,train,Cauliflower,Pusa Snowball,2048,1536,Hugo Lindqvist,2026-09-02T21:48:08.305Z,Mei Ling Chen,2026-09-02T23:48:08.305Z,normal
+CF-2026-10347,images/CF-2026-10347.jpg,good,train,Sunflower,KBSH-44,1600,1200,Kwame Mensah,2026-09-02T15:41:19.859Z,Daniel Osei,2026-09-02T18:41:19.859Z,bad
+CF-2026-10348,images/CF-2026-10348.jpg,good,train,Sesame,GT-10,1920,1280,Marcus Aurelius,2026-09-02T18:33:48.409Z,Sofia Marchetti,2026-09-02T23:33:48.409Z,normal
+CF-2026-10349,images/CF-2026-10349.jpg,good,train,Maize,Pioneer 3396,2048,1536,Elena Rostova,2026-09-02T21:55:58.160Z,Daniel Osei,2026-09-02T22:55:58.160Z,good
+CF-2026-10350,images/CF-2026-10350.jpg,good,train,Sugarcane,Co-0238,1920,1280,Sanjay Patel,2026-09-02T19:15:08.386Z,Rafael Duarte,2026-09-02T22:15:08.386Z,good
+CF-2026-10351,images/CF-2026-10351.jpg,good,val,Watermelon,Sugar Baby,3024,4032,Takahiro Sato,2026-09-03T02:36:32.325Z,Daniel Osei,2026-09-03T05:36:32.325Z,bad
+CF-2026-10352,images/CF-2026-10352.jpg,good,test,Onion,Bhima Super,1600,1200,Amara Okafor,2026-09-02T19:32:11.983Z,Mei Ling Chen,2026-09-02T20:32:11.983Z,good
+CF-2026-10353,images/CF-2026-10353.jpg,good,train,Okra,Arka Anamika,3024,4032,Amara Okafor,2026-09-03T06:30:50.566Z,Mei Ling Chen,2026-09-03T07:30:50.566Z,good
+CF-2026-10354,images/CF-2026-10354.jpg,bad,train,Green Gram,IPM-02-3,3024,4032,Sanjay Patel,2026-09-03T06:27:50.332Z,Sofia Marchetti,2026-09-03T10:27:50.332Z,good
+CF-2026-10355,images/CF-2026-10355.jpg,bad,train,Rice,IR-64,2560,1440,Marcus Aurelius,2026-09-02T14:53:22.311Z,Priya Nair,2026-09-02T20:53:22.311Z,good
+CF-2026-10356,images/CF-2026-10356.jpg,normal,train,Watermelon,Sugar Baby,4000,3000,Ana Beatriz Souza,2026-09-02T16:01:11.444Z,Mei Ling Chen,2026-09-02T21:01:11.444Z,good
+CF-2026-10357,images/CF-2026-10357.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2560,1440,Oliver Bennett,2026-09-03T03:04:41.008Z,Sofia Marchetti,2026-09-03T05:04:41.008Z,good
+CF-2026-10358,images/CF-2026-10358.jpg,good,val,Watermelon,Sugar Baby,2048,1536,Takahiro Sato,2026-09-03T08:20:17.065Z,Daniel Osei,2026-09-03T10:20:17.065Z,bad
+CF-2026-10359,images/CF-2026-10359.jpg,good,test,Potato,Kufri Jyoti,2048,1536,Hugo Lindqvist,2026-09-02T17:57:39.576Z,Mei Ling Chen,2026-09-02T22:57:39.576Z,good
+CF-2026-10360,images/CF-2026-10360.jpg,good,train,Cauliflower,Pusa Snowball,1920,1280,Fatima Zahra,2026-09-02T23:22:51.361Z,Daniel Osei,2026-09-03T01:22:51.361Z,good
+CF-2026-10361,images/CF-2026-10361.jpg,good,train,Black Gram,T-9,2560,1440,Anika Sharma,2026-09-02T22:32:58.465Z,Priya Nair,2026-09-03T04:32:58.465Z,good
+CF-2026-10362,images/CF-2026-10362.jpg,good,train,Sorghum,CSH-16,3024,4032,Oliver Bennett,2026-09-02T17:17:53.457Z,Sofia Marchetti,2026-09-02T19:17:53.457Z,good
+CF-2026-10363,images/CF-2026-10363.jpg,bad,train,Okra,Arka Anamika,1600,1200,Yuki Tanaka,2026-09-03T08:06:33.356Z,Rafael Duarte,2026-09-03T10:06:33.356Z,normal
+CF-2026-10364,images/CF-2026-10364.jpg,good,train,Sugarcane,Co-0238,2048,1536,Anika Sharma,2026-09-03T07:31:20.954Z,Daniel Osei,2026-09-03T08:31:20.954Z,good
+CF-2026-10365,images/CF-2026-10365.jpg,good,val,Potato,Kufri Jyoti,2048,1536,Oliver Bennett,2026-09-03T04:49:24.428Z,Rafael Duarte,2026-09-03T10:49:24.428Z,normal
+CF-2026-10366,images/CF-2026-10366.jpg,normal,test,Wheat,HD-2967,2560,1440,Marcus Aurelius,2026-09-02T19:29:45.772Z,Priya Nair,2026-09-02T21:29:45.772Z,good
+CF-2026-10367,images/CF-2026-10367.jpg,good,train,Peas,Arkel,2560,1440,Oliver Bennett,2026-09-03T07:46:07.484Z,Priya Nair,2026-09-03T10:46:07.484Z,bad
+CF-2026-10368,images/CF-2026-10368.jpg,good,train,Groundnut,TAG-24,4000,3000,Yuki Tanaka,2026-09-03T01:26:58.784Z,Daniel Osei,2026-09-03T04:26:58.784Z,good
+CF-2026-10369,images/CF-2026-10369.jpg,good,train,Brinjal,Pusa Purple Long,2560,1440,Kwame Mensah,2026-09-03T10:07:34.965Z,Priya Nair,2026-09-03T12:07:34.965Z,good
+CF-2026-10370,images/CF-2026-10370.jpg,good,train,Potato,Kufri Jyoti,2048,1536,Takahiro Sato,2026-09-02T15:05:50.370Z,Rafael Duarte,2026-09-02T20:05:50.370Z,good
+CF-2026-10371,images/CF-2026-10371.jpg,good,train,Maize,Pioneer 3396,4000,3000,Kwame Mensah,2026-09-03T05:52:08.324Z,Priya Nair,2026-09-03T09:52:08.324Z,bad
+CF-2026-10372,images/CF-2026-10372.jpg,good,val,Cabbage,Golden Acre,4000,3000,Oliver Bennett,2026-09-02T20:06:48.799Z,Priya Nair,2026-09-03T00:06:48.799Z,good
+CF-2026-10373,images/CF-2026-10373.jpg,good,test,Cauliflower,Pusa Snowball,1920,1280,Ibrahim Al-Sayed,2026-09-03T03:38:49.094Z,Daniel Osei,2026-09-03T08:38:49.094Z,good
+CF-2026-10374,images/CF-2026-10374.jpg,good,train,Soybean,JS-335,4000,3000,Nadia Kovac,2026-09-03T03:05:43.501Z,Daniel Osei,2026-09-03T07:05:43.501Z,good
+CF-2026-10375,images/CF-2026-10375.jpg,good,train,Soybean,JS-335,2560,1440,Oliver Bennett,2026-09-02T18:54:57.446Z,Priya Nair,2026-09-02T22:54:57.446Z,good
+CF-2026-10376,images/CF-2026-10376.jpg,good,train,Green Gram,IPM-02-3,4000,3000,Elena Rostova,2026-09-02T22:27:42.647Z,Mei Ling Chen,2026-09-03T04:27:42.647Z,good
+CF-2026-10377,images/CF-2026-10377.jpg,good,train,Pigeon Pea,BSMR-736,3024,4032,Oliver Bennett,2026-09-03T02:41:33.886Z,Priya Nair,2026-09-03T08:41:33.886Z,bad
+CF-2026-10378,images/CF-2026-10378.jpg,good,train,Chickpea,JG-11,3024,4032,Elena Rostova,2026-09-03T03:24:53.295Z,Rafael Duarte,2026-09-03T09:24:53.295Z,good
+CF-2026-10379,images/CF-2026-10379.jpg,good,val,Watermelon,Sugar Baby,2048,1536,Amara Okafor,2026-09-02T13:33:47.657Z,Sofia Marchetti,2026-09-02T18:33:47.657Z,good
+CF-2026-10380,images/CF-2026-10380.jpg,good,test,Lentil,IPL-316,3024,4032,Takahiro Sato,2026-09-02T14:19:38.541Z,Rafael Duarte,2026-09-02T20:19:38.541Z,good
+CF-2026-10381,images/CF-2026-10381.jpg,good,train,Mustard,Pusa Bold,2048,1536,Kwame Mensah,2026-09-03T05:14:36.102Z,Daniel Osei,2026-09-03T08:14:36.102Z,good
+CF-2026-10382,images/CF-2026-10382.jpg,good,train,Soybean,JS-335,2048,1536,Lucia Fernandez,2026-09-02T23:00:24.378Z,Daniel Osei,2026-09-03T02:00:24.378Z,good
+CF-2026-10383,images/CF-2026-10383.jpg,good,train,Sunflower,KBSH-44,3024,4032,Grace Wanjiru,2026-09-02T21:14:06.344Z,Mei Ling Chen,2026-09-03T03:14:06.344Z,good
+CF-2026-10384,images/CF-2026-10384.jpg,good,train,Cabbage,Golden Acre,2560,1440,Fatima Zahra,2026-09-03T04:08:27.866Z,Rafael Duarte,2026-09-03T09:08:27.866Z,good
+CF-2026-10385,images/CF-2026-10385.jpg,good,train,Bitter Gourd,Pusa Do Mausami,1920,1280,Hugo Lindqvist,2026-09-03T06:12:57.996Z,Mei Ling Chen,2026-09-03T11:12:57.996Z,good
+CF-2026-10386,images/CF-2026-10386.jpg,good,val,Sunflower,KBSH-44,2560,1440,Ibrahim Al-Sayed,2026-09-02T21:06:47.317Z,Daniel Osei,2026-09-03T00:06:47.317Z,normal
+CF-2026-10387,images/CF-2026-10387.jpg,good,test,Pigeon Pea,BSMR-736,3024,4032,Marcus Aurelius,2026-09-02T22:15:14.688Z,Mei Ling Chen,2026-09-03T00:15:14.688Z,good
+CF-2026-10388,images/CF-2026-10388.jpg,good,train,Pigeon Pea,BSMR-736,1920,1280,Elena Rostova,2026-09-02T23:37:27.494Z,Mei Ling Chen,2026-09-03T02:37:27.494Z,good
+CF-2026-10389,images/CF-2026-10389.jpg,good,train,Brinjal,Pusa Purple Long,2560,1440,Amara Okafor,2026-09-02T21:47:05.829Z,Rafael Duarte,2026-09-02T23:47:05.829Z,normal
+CF-2026-10390,images/CF-2026-10390.jpg,bad,train,Groundnut,TAG-24,2048,1536,Oliver Bennett,2026-09-03T05:52:02.084Z,Sofia Marchetti,2026-09-03T07:52:02.084Z,good
+CF-2026-10391,images/CF-2026-10391.jpg,normal,train,Pigeon Pea,BSMR-736,1920,1280,Hugo Lindqvist,2026-09-02T22:16:41.414Z,Mei Ling Chen,2026-09-03T02:16:41.414Z,normal
+CF-2026-10392,images/CF-2026-10392.jpg,good,train,Millet,HHB-67,4000,3000,Yuki Tanaka,2026-09-02T21:04:16.787Z,Priya Nair,2026-09-03T03:04:16.787Z,normal
+CF-2026-10393,images/CF-2026-10393.jpg,good,val,Maize,Pioneer 3396,1600,1200,Anika Sharma,2026-09-03T06:18:23.418Z,Daniel Osei,2026-09-03T10:18:23.418Z,normal
+CF-2026-10394,images/CF-2026-10394.jpg,good,test,Sugarcane,Co-0238,2048,1536,Amara Okafor,2026-09-02T21:31:59.565Z,Mei Ling Chen,2026-09-02T22:31:59.565Z,normal
+CF-2026-10395,images/CF-2026-10395.jpg,good,train,Chilli,LCA-334,1600,1200,Tomas Novak,2026-09-03T07:41:19.266Z,Sofia Marchetti,2026-09-03T10:41:19.266Z,good
+CF-2026-10396,images/CF-2026-10396.jpg,good,train,Sugarcane,Co-0238,2560,1440,Zara Hussain,2026-09-03T05:58:10.312Z,Daniel Osei,2026-09-03T10:58:10.312Z,normal
+CF-2026-10397,images/CF-2026-10397.jpg,good,train,Groundnut,TAG-24,4000,3000,Takahiro Sato,2026-09-02T19:26:53.502Z,Sofia Marchetti,2026-09-02T20:26:53.502Z,good
+CF-2026-10398,images/CF-2026-10398.jpg,good,train,Tomato,Arka Rakshak,3024,4032,Grace Wanjiru,2026-09-02T17:36:37.239Z,Daniel Osei,2026-09-02T20:36:37.239Z,good
+CF-2026-10399,images/CF-2026-10399.jpg,normal,train,Lentil,IPL-316,4000,3000,Yuki Tanaka,2026-09-03T05:10:47.871Z,Rafael Duarte,2026-09-03T10:10:47.871Z,good
+CF-2026-10400,images/CF-2026-10400.jpg,good,val,Bitter Gourd,Pusa Do Mausami,3024,4032,Diego Morales,2026-09-03T03:30:20.771Z,Priya Nair,2026-09-03T06:30:20.771Z,good
+CF-2026-10401,images/CF-2026-10401.jpg,normal,test,Millet,HHB-67,4000,3000,Fatima Zahra,2026-09-02T19:55:29.943Z,Sofia Marchetti,2026-09-02T20:55:29.943Z,good
+CF-2026-10402,images/CF-2026-10402.jpg,good,train,Black Gram,T-9,4000,3000,Fatima Zahra,2026-09-02T22:48:18.615Z,Priya Nair,2026-09-03T03:48:18.615Z,good
+CF-2026-10403,images/CF-2026-10403.jpg,good,train,Sugarcane,Co-0238,2048,1536,Zara Hussain,2026-09-02T21:20:33.576Z,Sofia Marchetti,2026-09-03T02:20:33.576Z,bad
+CF-2026-10404,images/CF-2026-10404.jpg,good,train,Cucumber,Poinsette,2560,1440,Kwame Mensah,2026-09-02T22:06:24.738Z,Daniel Osei,2026-09-02T23:06:24.738Z,normal
+CF-2026-10405,images/CF-2026-10405.jpg,good,train,Sesame,GT-10,2048,1536,Yuki Tanaka,2026-09-02T20:22:25.215Z,Daniel Osei,2026-09-02T21:22:25.215Z,good
+CF-2026-10406,images/CF-2026-10406.jpg,good,train,Onion,Bhima Super,3024,4032,Ana Beatriz Souza,2026-09-02T20:08:27.391Z,Priya Nair,2026-09-02T22:08:27.391Z,good
+CF-2026-10407,images/CF-2026-10407.jpg,good,val,Cabbage,Golden Acre,1920,1280,Ibrahim Al-Sayed,2026-09-03T06:41:15.622Z,Sofia Marchetti,2026-09-03T07:41:15.622Z,good
+CF-2026-10408,images/CF-2026-10408.jpg,good,test,Lentil,IPL-316,4000,3000,Hugo Lindqvist,2026-09-03T05:50:28.324Z,Sofia Marchetti,2026-09-03T08:50:28.324Z,normal
+CF-2026-10409,images/CF-2026-10409.jpg,good,train,Pigeon Pea,BSMR-736,2560,1440,Nadia Kovac,2026-09-03T04:36:04.671Z,Daniel Osei,2026-09-03T10:36:04.671Z,good
+CF-2026-10410,images/CF-2026-10410.jpg,good,train,Chickpea,JG-11,2048,1536,Nadia Kovac,2026-09-03T08:08:13.523Z,Priya Nair,2026-09-03T09:08:13.523Z,good
+CF-2026-10411,images/CF-2026-10411.jpg,good,train,Chickpea,JG-11,4000,3000,Lucia Fernandez,2026-09-03T04:32:05.091Z,Mei Ling Chen,2026-09-03T10:32:05.091Z,good
+CF-2026-10412,images/CF-2026-10412.jpg,good,train,Sunflower,KBSH-44,4000,3000,Kwame Mensah,2026-09-03T00:52:54.203Z,Sofia Marchetti,2026-09-03T06:52:54.203Z,good
+CF-2026-10413,images/CF-2026-10413.jpg,good,train,Maize,Pioneer 3396,1920,1280,Marcus Aurelius,2026-09-02T19:12:07.370Z,Priya Nair,2026-09-02T23:12:07.370Z,normal
+CF-2026-10426,images/CF-2026-10426.jpg,good,train,Mustard,Pusa Bold,1600,1200,Anika Sharma,2026-08-13T22:41:11.558Z,Mei Ling Chen,2026-08-14T07:41:11.558Z,good
+CF-2026-10427,images/CF-2026-10427.jpg,good,train,Onion,Bhima Super,1920,1280,Diego Morales,2026-06-25T02:11:16.203Z,Priya Nair,2026-06-25T19:11:16.203Z,good
+CF-2026-10428,images/CF-2026-10428.jpg,good,val,Peas,Arkel,4000,3000,Ana Beatriz Souza,2026-08-08T10:18:54.968Z,Priya Nair,2026-08-09T05:18:54.968Z,normal
+CF-2026-10429,images/CF-2026-10429.jpg,normal,test,Pigeon Pea,BSMR-736,2048,1536,Marcus Aurelius,2026-07-17T07:33:46.598Z,Sofia Marchetti,2026-07-17T22:33:46.598Z,good
+CF-2026-10430,images/CF-2026-10430.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Marcus Aurelius,2026-07-18T11:20:02.573Z,Sofia Marchetti,2026-07-21T01:20:02.573Z,good
+CF-2026-10431,images/CF-2026-10431.jpg,good,train,Rice,IR-64,2560,1440,Sanjay Patel,2026-07-30T11:24:53.190Z,Sofia Marchetti,2026-08-01T19:24:53.190Z,good
+CF-2026-10432,images/CF-2026-10432.jpg,good,train,Sorghum,CSH-16,1920,1280,Nadia Kovac,2026-08-04T10:54:00.198Z,Priya Nair,2026-08-05T17:54:00.198Z,good
+CF-2026-10433,images/CF-2026-10433.jpg,good,train,Sunflower,KBSH-44,4000,3000,Ana Beatriz Souza,2026-06-15T19:31:39.678Z,Sofia Marchetti,2026-06-17T12:31:39.678Z,good
+CF-2026-10434,images/CF-2026-10434.jpg,normal,train,Chickpea,JG-11,2560,1440,Ibrahim Al-Sayed,2026-06-24T01:17:05.824Z,Mei Ling Chen,2026-06-24T18:17:05.824Z,good
+CF-2026-10435,images/CF-2026-10435.jpg,good,val,Green Gram,IPM-02-3,2560,1440,Anika Sharma,2026-07-26T13:05:25.974Z,Sofia Marchetti,2026-07-27T16:05:25.974Z,good
+CF-2026-10436,images/CF-2026-10436.jpg,good,test,Cauliflower,Pusa Snowball,3024,4032,Amara Okafor,2026-07-10T15:31:03.077Z,Sofia Marchetti,2026-07-11T21:31:03.077Z,bad
+CF-2026-10437,images/CF-2026-10437.jpg,good,train,Sunflower,KBSH-44,2560,1440,Marcus Aurelius,2026-06-06T07:23:19.460Z,Rafael Duarte,2026-06-08T05:23:19.460Z,good
+CF-2026-10438,images/CF-2026-10438.jpg,good,train,Cauliflower,Pusa Snowball,2048,1536,Kwame Mensah,2026-08-15T16:21:33.524Z,Rafael Duarte,2026-08-15T19:21:33.524Z,good
+CF-2026-10439,images/CF-2026-10439.jpg,good,train,Groundnut,TAG-24,2048,1536,Oliver Bennett,2026-08-21T00:53:42.150Z,Rafael Duarte,2026-08-22T18:53:42.150Z,bad
+CF-2026-10440,images/CF-2026-10440.jpg,good,train,Wheat,HD-2967,4000,3000,Sanjay Patel,2026-06-23T02:33:23.698Z,Priya Nair,2026-06-25T00:33:23.698Z,good
+CF-2026-10441,images/CF-2026-10441.jpg,bad,train,Chilli,LCA-334,2048,1536,Ravi Deshmukh,2026-08-10T10:41:24.735Z,Mei Ling Chen,2026-08-12T01:41:24.735Z,good
+CF-2026-10442,images/CF-2026-10442.jpg,good,val,Maize,Pioneer 3396,4000,3000,Nadia Kovac,2026-08-09T23:15:53.362Z,Sofia Marchetti,2026-08-10T08:15:53.362Z,good
+CF-2026-10443,images/CF-2026-10443.jpg,good,test,Chilli,LCA-334,2048,1536,Fatima Zahra,2026-08-12T09:59:10.736Z,Sofia Marchetti,2026-08-15T06:59:10.736Z,bad
+CF-2026-10444,images/CF-2026-10444.jpg,good,train,Cucumber,Poinsette,2048,1536,Ana Beatriz Souza,2026-06-29T21:20:55.797Z,Sofia Marchetti,2026-06-30T00:20:55.797Z,good
+CF-2026-10445,images/CF-2026-10445.jpg,good,train,Sorghum,CSH-16,2048,1536,Sanjay Patel,2026-08-17T20:09:29.168Z,Rafael Duarte,2026-08-20T07:09:29.168Z,good
+CF-2026-10446,images/CF-2026-10446.jpg,bad,train,Groundnut,TAG-24,1600,1200,Ravi Deshmukh,2026-08-05T11:24:16.907Z,Rafael Duarte,2026-08-05T21:24:16.907Z,normal
+CF-2026-10447,images/CF-2026-10447.jpg,good,train,Maize,Pioneer 3396,2560,1440,Yuki Tanaka,2026-07-23T19:38:08.192Z,Priya Nair,2026-07-24T11:38:08.192Z,good
+CF-2026-10448,images/CF-2026-10448.jpg,good,train,Soybean,JS-335,2048,1536,Ravi Deshmukh,2026-08-01T08:38:12.244Z,Priya Nair,2026-08-04T02:38:12.244Z,good
+CF-2026-10449,images/CF-2026-10449.jpg,bad,val,Black Gram,T-9,4000,3000,Anika Sharma,2026-07-29T11:33:28.051Z,Priya Nair,2026-07-31T07:33:28.051Z,good
+CF-2026-10451,images/CF-2026-10451.jpg,good,train,Green Gram,IPM-02-3,2560,1440,Hugo Lindqvist,2026-08-17T11:30:43.399Z,Mei Ling Chen,2026-08-18T07:30:43.399Z,good
+CF-2026-10452,images/CF-2026-10452.jpg,good,train,Lentil,IPL-316,2560,1440,Oliver Bennett,2026-07-17T19:31:59.221Z,Sofia Marchetti,2026-07-19T21:31:59.221Z,good
+CF-2026-10453,images/CF-2026-10453.jpg,good,train,Lentil,IPL-316,2560,1440,Nadia Kovac,2026-08-11T21:51:03.691Z,Mei Ling Chen,2026-08-12T00:51:03.691Z,normal
+CF-2026-10454,images/CF-2026-10454.jpg,good,train,Peas,Arkel,4000,3000,Takahiro Sato,2026-07-15T15:24:14.001Z,Mei Ling Chen,2026-07-16T19:24:14.001Z,good
+CF-2026-10455,images/CF-2026-10455.jpg,good,train,Okra,Arka Anamika,2560,1440,Amara Okafor,2026-08-25T01:15:15.094Z,Priya Nair,2026-08-25T14:15:15.094Z,good
+CF-2026-10456,images/CF-2026-10456.jpg,good,val,Sugarcane,Co-0238,3024,4032,Amara Okafor,2026-07-08T23:54:53.798Z,Priya Nair,2026-07-11T11:54:53.798Z,good
+CF-2026-10457,images/CF-2026-10457.jpg,good,test,Sesame,GT-10,1920,1280,Zara Hussain,2026-06-08T03:09:48.046Z,Priya Nair,2026-06-09T10:09:48.046Z,good
+CF-2026-10458,images/CF-2026-10458.jpg,good,train,Barley,DWRB-123,1600,1200,Amara Okafor,2026-08-06T00:45:12.184Z,Priya Nair,2026-08-06T07:45:12.184Z,good
+CF-2026-10459,images/CF-2026-10459.jpg,good,train,Lentil,IPL-316,2560,1440,Yuki Tanaka,2026-08-07T18:40:11.251Z,Rafael Duarte,2026-08-07T20:40:11.251Z,good
+CF-2026-10460,images/CF-2026-10460.jpg,good,train,Onion,Bhima Super,1920,1280,Marcus Aurelius,2026-08-11T10:02:55.567Z,Sofia Marchetti,2026-08-13T08:02:55.567Z,good
+CF-2026-10461,images/CF-2026-10461.jpg,good,train,Millet,HHB-67,2560,1440,Tomas Novak,2026-07-20T14:14:55.338Z,Sofia Marchetti,2026-07-20T23:14:55.338Z,good
+CF-2026-10462,images/CF-2026-10462.jpg,good,train,Tomato,Arka Rakshak,2560,1440,Zara Hussain,2026-06-10T17:39:15.289Z,Rafael Duarte,2026-06-11T10:39:15.289Z,good
+CF-2026-10463,images/CF-2026-10463.jpg,normal,val,Tomato,Arka Rakshak,3024,4032,Ana Beatriz Souza,2026-06-10T15:19:24.084Z,Priya Nair,2026-06-11T08:19:24.084Z,good
+CF-2026-10464,images/CF-2026-10464.jpg,good,test,Sunflower,KBSH-44,1920,1280,Lucia Fernandez,2026-08-14T05:46:58.636Z,Daniel Osei,2026-08-14T13:46:58.636Z,good
+CF-2026-10465,images/CF-2026-10465.jpg,good,train,Brinjal,Pusa Purple Long,1600,1200,Ravi Deshmukh,2026-09-01T18:47:45.834Z,Mei Ling Chen,2026-09-02T17:30:00.000Z,good
+CF-2026-10467,images/CF-2026-10467.jpg,good,train,Sorghum,CSH-16,3024,4032,Elena Rostova,2026-08-30T14:27:58.300Z,Daniel Osei,2026-09-02T04:27:58.300Z,good
+CF-2026-10468,images/CF-2026-10468.jpg,good,train,Pigeon Pea,BSMR-736,3024,4032,Takahiro Sato,2026-06-24T23:31:17.929Z,Priya Nair,2026-06-27T11:31:17.929Z,good
+CF-2026-10469,images/CF-2026-10469.jpg,good,train,Okra,Arka Anamika,4000,3000,Elena Rostova,2026-07-24T21:00:25.745Z,Rafael Duarte,2026-07-26T05:00:25.745Z,good
+CF-2026-10470,images/CF-2026-10470.jpg,good,val,Watermelon,Sugar Baby,3024,4032,Sanjay Patel,2026-06-17T18:44:34.195Z,Rafael Duarte,2026-06-19T19:44:34.195Z,good
+CF-2026-10471,images/CF-2026-10471.jpg,good,test,Peas,Arkel,2048,1536,Fatima Zahra,2026-08-15T00:39:22.453Z,Sofia Marchetti,2026-08-16T22:39:22.453Z,good
+CF-2026-10472,images/CF-2026-10472.jpg,good,train,Pigeon Pea,BSMR-736,1600,1200,Grace Wanjiru,2026-07-10T17:04:35.620Z,Sofia Marchetti,2026-07-12T01:04:35.620Z,normal
+CF-2026-10474,images/CF-2026-10474.jpg,good,train,Mustard,Pusa Bold,1600,1200,Marcus Aurelius,2026-07-29T01:46:52.064Z,Daniel Osei,2026-07-29T15:46:52.064Z,good
+CF-2026-10475,images/CF-2026-10475.jpg,bad,train,Maize,Pioneer 3396,1920,1280,Anika Sharma,2026-07-24T23:19:11.537Z,Rafael Duarte,2026-07-25T19:19:11.537Z,good
+CF-2026-10476,images/CF-2026-10476.jpg,normal,train,Watermelon,Sugar Baby,1920,1280,Ibrahim Al-Sayed,2026-07-25T17:11:05.691Z,Sofia Marchetti,2026-07-25T20:11:05.691Z,good
+CF-2026-10477,images/CF-2026-10477.jpg,good,val,Groundnut,TAG-24,4000,3000,Ravi Deshmukh,2026-07-10T21:05:07.440Z,Sofia Marchetti,2026-07-12T16:05:07.440Z,good
+CF-2026-10478,images/CF-2026-10478.jpg,normal,test,Black Gram,T-9,1600,1200,Oliver Bennett,2026-07-16T23:57:11.072Z,Sofia Marchetti,2026-07-19T15:57:11.072Z,good
+CF-2026-10479,images/CF-2026-10479.jpg,good,train,Potato,Kufri Jyoti,1600,1200,Yuki Tanaka,2026-06-06T12:45:13.085Z,Rafael Duarte,2026-06-08T02:45:13.085Z,normal
+CF-2026-10480,images/CF-2026-10480.jpg,good,train,Soybean,JS-335,2048,1536,Ibrahim Al-Sayed,2026-06-20T16:10:01.894Z,Daniel Osei,2026-06-21T14:10:01.894Z,good
+CF-2026-10482,images/CF-2026-10482.jpg,bad,train,Rice,IR-64,4000,3000,Amara Okafor,2026-06-23T20:10:06.404Z,Rafael Duarte,2026-06-26T08:10:06.404Z,good
+CF-2026-10483,images/CF-2026-10483.jpg,good,train,Onion,Bhima Super,1600,1200,Tomas Novak,2026-07-03T08:44:10.725Z,Mei Ling Chen,2026-07-03T22:44:10.725Z,good
+CF-2026-10484,images/CF-2026-10484.jpg,good,val,Sorghum,CSH-16,3024,4032,Oliver Bennett,2026-09-01T20:28:51.822Z,Daniel Osei,2026-09-02T17:30:00.000Z,good
+CF-2026-10485,images/CF-2026-10485.jpg,normal,test,Sesame,GT-10,4000,3000,Kwame Mensah,2026-08-23T18:04:41.591Z,Rafael Duarte,2026-08-24T06:04:41.591Z,good
+CF-2026-10486,images/CF-2026-10486.jpg,good,train,Mustard,Pusa Bold,3024,4032,Ravi Deshmukh,2026-07-05T09:05:23.089Z,Mei Ling Chen,2026-07-06T11:05:23.089Z,good
+CF-2026-10487,images/CF-2026-10487.jpg,good,train,Maize,Pioneer 3396,2560,1440,Elena Rostova,2026-06-20T21:56:17.055Z,Sofia Marchetti,2026-06-21T11:56:17.055Z,good
+CF-2026-10488,images/CF-2026-10488.jpg,good,train,Sugarcane,Co-0238,4000,3000,Anika Sharma,2026-06-29T11:06:56.825Z,Sofia Marchetti,2026-07-01T18:06:56.825Z,good
+CF-2026-10489,images/CF-2026-10489.jpg,good,train,Mustard,Pusa Bold,4000,3000,Kwame Mensah,2026-08-04T17:08:57.854Z,Priya Nair,2026-08-06T11:08:57.854Z,good
+CF-2026-10490,images/CF-2026-10490.jpg,normal,train,Potato,Kufri Jyoti,1920,1280,Amara Okafor,2026-07-31T17:35:24.991Z,Sofia Marchetti,2026-08-01T02:35:24.991Z,good
+CF-2026-10491,images/CF-2026-10491.jpg,normal,val,Chickpea,JG-11,3024,4032,Oliver Bennett,2026-07-06T06:44:51.744Z,Sofia Marchetti,2026-07-06T20:44:51.744Z,good
+CF-2026-10492,images/CF-2026-10492.jpg,normal,test,Pigeon Pea,BSMR-736,3024,4032,Elena Rostova,2026-07-28T16:32:55.934Z,Sofia Marchetti,2026-07-30T19:32:55.934Z,good
+CF-2026-10493,images/CF-2026-10493.jpg,good,train,Pigeon Pea,BSMR-736,1600,1200,Fatima Zahra,2026-07-23T23:55:30.129Z,Sofia Marchetti,2026-07-26T17:55:30.129Z,good
+CF-2026-10494,images/CF-2026-10494.jpg,good,train,Sunflower,KBSH-44,3024,4032,Lucia Fernandez,2026-06-10T04:02:37.890Z,Mei Ling Chen,2026-06-11T09:02:37.890Z,good
+CF-2026-10495,images/CF-2026-10495.jpg,good,train,Chickpea,JG-11,2560,1440,Nadia Kovac,2026-07-20T10:14:25.068Z,Daniel Osei,2026-07-20T13:14:25.068Z,good
+CF-2026-10496,images/CF-2026-10496.jpg,good,train,Lentil,IPL-316,1920,1280,Oliver Bennett,2026-06-24T06:28:08.616Z,Priya Nair,2026-06-26T14:28:08.616Z,normal
+CF-2026-10497,images/CF-2026-10497.jpg,good,train,Brinjal,Pusa Purple Long,2048,1536,Lucia Fernandez,2026-07-02T19:17:01.224Z,Mei Ling Chen,2026-07-04T05:17:01.224Z,good
+CF-2026-10499,images/CF-2026-10499.jpg,good,test,Peas,Arkel,2560,1440,Takahiro Sato,2026-06-12T08:56:05.098Z,Priya Nair,2026-06-12T16:56:05.098Z,good
+CF-2026-10500,images/CF-2026-10500.jpg,good,train,Black Gram,T-9,1920,1280,Diego Morales,2026-07-10T13:07:50.738Z,Sofia Marchetti,2026-07-12T16:07:50.738Z,good
+CF-2026-10501,images/CF-2026-10501.jpg,normal,train,Sorghum,CSH-16,2048,1536,Lucia Fernandez,2026-06-30T03:17:31.999Z,Priya Nair,2026-06-30T21:17:31.999Z,good
+CF-2026-10502,images/CF-2026-10502.jpg,good,train,Rice,IR-64,1600,1200,Tomas Novak,2026-08-26T11:56:51.780Z,Rafael Duarte,2026-08-27T22:56:51.780Z,good
+CF-2026-10503,images/CF-2026-10503.jpg,good,train,Groundnut,TAG-24,2560,1440,Hugo Lindqvist,2026-07-29T20:11:19.297Z,Daniel Osei,2026-07-30T22:11:19.297Z,good
+CF-2026-10504,images/CF-2026-10504.jpg,bad,train,Watermelon,Sugar Baby,1600,1200,Kwame Mensah,2026-07-09T19:47:29.115Z,Priya Nair,2026-07-10T04:47:29.115Z,good
+CF-2026-10505,images/CF-2026-10505.jpg,good,val,Cauliflower,Pusa Snowball,2560,1440,Lucia Fernandez,2026-08-29T06:27:18.594Z,Priya Nair,2026-08-30T12:27:18.594Z,good
+CF-2026-10506,images/CF-2026-10506.jpg,good,test,Green Gram,IPM-02-3,2048,1536,Nadia Kovac,2026-07-31T20:26:50.441Z,Rafael Duarte,2026-08-01T19:26:50.441Z,good
+CF-2026-10507,images/CF-2026-10507.jpg,good,train,Peas,Arkel,2560,1440,Diego Morales,2026-07-08T05:03:06.959Z,Mei Ling Chen,2026-07-10T09:03:06.959Z,good
+CF-2026-10508,images/CF-2026-10508.jpg,good,train,Chilli,LCA-334,1600,1200,Ibrahim Al-Sayed,2026-06-20T03:02:42.048Z,Mei Ling Chen,2026-06-21T20:02:42.048Z,good
+CF-2026-10509,images/CF-2026-10509.jpg,bad,train,Groundnut,TAG-24,1920,1280,Elena Rostova,2026-06-26T21:40:57.653Z,Mei Ling Chen,2026-06-27T07:40:57.653Z,good
+CF-2026-10510,images/CF-2026-10510.jpg,good,train,Sorghum,CSH-16,2048,1536,Kwame Mensah,2026-07-14T23:34:27.165Z,Daniel Osei,2026-07-16T16:34:27.165Z,good
+CF-2026-10511,images/CF-2026-10511.jpg,normal,train,Chilli,LCA-334,3024,4032,Lucia Fernandez,2026-07-07T11:22:35.766Z,Sofia Marchetti,2026-07-10T03:22:35.766Z,good
+CF-2026-10512,images/CF-2026-10512.jpg,good,val,Tomato,Arka Rakshak,2560,1440,Hugo Lindqvist,2026-07-14T02:47:18.090Z,Rafael Duarte,2026-07-15T12:47:18.090Z,good
+CF-2026-10513,images/CF-2026-10513.jpg,normal,test,Cabbage,Golden Acre,4000,3000,Takahiro Sato,2026-07-01T07:10:47.627Z,Sofia Marchetti,2026-07-03T19:10:47.627Z,good
+CF-2026-10514,images/CF-2026-10514.jpg,good,train,Sunflower,KBSH-44,2560,1440,Hugo Lindqvist,2026-07-27T02:21:11.963Z,Sofia Marchetti,2026-07-28T02:21:11.963Z,good
+CF-2026-10515,images/CF-2026-10515.jpg,good,train,Chickpea,JG-11,4000,3000,Zara Hussain,2026-08-14T08:54:17.639Z,Daniel Osei,2026-08-16T09:54:17.639Z,normal
+CF-2026-10516,images/CF-2026-10516.jpg,normal,train,Chilli,LCA-334,1920,1280,Zara Hussain,2026-08-14T13:45:00.656Z,Sofia Marchetti,2026-08-17T03:45:00.656Z,good
+CF-2026-10517,images/CF-2026-10517.jpg,good,train,Watermelon,Sugar Baby,1600,1200,Anika Sharma,2026-08-13T07:49:33.978Z,Sofia Marchetti,2026-08-15T12:49:33.978Z,bad
+CF-2026-10518,images/CF-2026-10518.jpg,good,train,Bitter Gourd,Pusa Do Mausami,4000,3000,Ana Beatriz Souza,2026-08-21T20:26:15.973Z,Rafael Duarte,2026-08-23T05:26:15.973Z,good
+CF-2026-10519,images/CF-2026-10519.jpg,good,val,Maize,Pioneer 3396,1600,1200,Zara Hussain,2026-07-25T01:55:31.619Z,Sofia Marchetti,2026-07-27T14:55:31.619Z,normal
+CF-2026-10521,images/CF-2026-10521.jpg,good,train,Tomato,Arka Rakshak,2560,1440,Marcus Aurelius,2026-07-14T21:20:19.576Z,Mei Ling Chen,2026-07-16T07:20:19.576Z,normal
+CF-2026-10522,images/CF-2026-10522.jpg,good,train,Millet,HHB-67,2048,1536,Kwame Mensah,2026-06-14T10:46:10.701Z,Daniel Osei,2026-06-14T15:46:10.701Z,good
+CF-2026-10523,images/CF-2026-10523.jpg,good,train,Chickpea,JG-11,4000,3000,Zara Hussain,2026-08-21T23:49:08.363Z,Priya Nair,2026-08-23T16:49:08.363Z,good
+CF-2026-10524,images/CF-2026-10524.jpg,good,train,Sesame,GT-10,3024,4032,Yuki Tanaka,2026-08-24T05:09:53.708Z,Rafael Duarte,2026-08-26T14:09:53.708Z,good
+CF-2026-10525,images/CF-2026-10525.jpg,good,train,Cauliflower,Pusa Snowball,1600,1200,Elena Rostova,2026-07-07T01:02:57.620Z,Sofia Marchetti,2026-07-08T14:02:57.620Z,good
+CF-2026-10526,images/CF-2026-10526.jpg,good,val,Lentil,IPL-316,1600,1200,Ana Beatriz Souza,2026-07-05T00:21:43.147Z,Priya Nair,2026-07-06T14:21:43.147Z,normal
+CF-2026-10527,images/CF-2026-10527.jpg,good,test,Wheat,HD-2967,2048,1536,Fatima Zahra,2026-07-30T07:11:52.897Z,Daniel Osei,2026-08-01T02:11:52.897Z,good
+CF-2026-10528,images/CF-2026-10528.jpg,good,train,Soybean,JS-335,2048,1536,Ibrahim Al-Sayed,2026-07-28T14:57:08.268Z,Rafael Duarte,2026-07-31T06:57:08.268Z,good
+CF-2026-10529,images/CF-2026-10529.jpg,good,train,Barley,DWRB-123,1600,1200,Oliver Bennett,2026-06-08T20:13:19.300Z,Priya Nair,2026-06-10T11:13:19.300Z,good
+CF-2026-10530,images/CF-2026-10530.jpg,good,train,Barley,DWRB-123,2560,1440,Nadia Kovac,2026-07-04T21:35:17.620Z,Mei Ling Chen,2026-07-05T03:35:17.620Z,good
+CF-2026-10532,images/CF-2026-10532.jpg,good,train,Cauliflower,Pusa Snowball,2560,1440,Anika Sharma,2026-06-08T07:51:48.825Z,Priya Nair,2026-06-10T21:51:48.825Z,bad
+CF-2026-10533,images/CF-2026-10533.jpg,normal,val,Cauliflower,Pusa Snowball,2048,1536,Kwame Mensah,2026-06-10T10:25:25.462Z,Daniel Osei,2026-06-11T06:25:25.462Z,good
+CF-2026-10534,images/CF-2026-10534.jpg,good,test,Potato,Kufri Jyoti,2048,1536,Ravi Deshmukh,2026-07-30T18:07:25.580Z,Mei Ling Chen,2026-08-01T12:07:25.580Z,good
+CF-2026-10535,images/CF-2026-10535.jpg,normal,train,Millet,HHB-67,2560,1440,Zara Hussain,2026-07-18T21:01:11.066Z,Rafael Duarte,2026-07-21T05:01:11.066Z,good
+CF-2026-10536,images/CF-2026-10536.jpg,good,train,Okra,Arka Anamika,3024,4032,Takahiro Sato,2026-08-01T07:20:04.495Z,Daniel Osei,2026-08-02T03:20:04.495Z,good
+CF-2026-10537,images/CF-2026-10537.jpg,normal,train,Mustard,Pusa Bold,3024,4032,Zara Hussain,2026-08-13T03:20:13.144Z,Mei Ling Chen,2026-08-14T14:20:13.144Z,good
+CF-2026-10539,images/CF-2026-10539.jpg,good,train,Chickpea,JG-11,1920,1280,Anika Sharma,2026-06-07T18:03:33.986Z,Sofia Marchetti,2026-06-08T18:03:33.986Z,good
+CF-2026-10540,images/CF-2026-10540.jpg,normal,val,Groundnut,TAG-24,1600,1200,Lucia Fernandez,2026-07-26T20:39:32.177Z,Sofia Marchetti,2026-07-27T02:39:32.177Z,good
+CF-2026-10541,images/CF-2026-10541.jpg,normal,test,Cucumber,Poinsette,3024,4032,Hugo Lindqvist,2026-06-12T21:07:09.028Z,Daniel Osei,2026-06-13T15:07:09.028Z,normal
+CF-2026-10542,images/CF-2026-10542.jpg,good,train,Watermelon,Sugar Baby,2560,1440,Hugo Lindqvist,2026-07-25T09:39:17.046Z,Priya Nair,2026-07-25T13:39:17.046Z,normal
+CF-2026-10543,images/CF-2026-10543.jpg,good,train,Bitter Gourd,Pusa Do Mausami,1600,1200,Elena Rostova,2026-07-30T11:50:52.929Z,Sofia Marchetti,2026-08-02T07:50:52.929Z,good
+CF-2026-10544,images/CF-2026-10544.jpg,good,train,Sugarcane,Co-0238,2560,1440,Hugo Lindqvist,2026-08-18T22:25:02.655Z,Daniel Osei,2026-08-20T03:25:02.655Z,good
+CF-2026-10545,images/CF-2026-10545.jpg,good,train,Okra,Arka Anamika,2048,1536,Nadia Kovac,2026-07-01T12:18:03.910Z,Mei Ling Chen,2026-07-02T03:18:03.910Z,good
+CF-2026-10546,images/CF-2026-10546.jpg,normal,train,Barley,DWRB-123,2560,1440,Marcus Aurelius,2026-08-02T16:24:28.421Z,Mei Ling Chen,2026-08-04T09:24:28.421Z,bad
+CF-2026-10547,images/CF-2026-10547.jpg,good,val,Tomato,Arka Rakshak,2048,1536,Hugo Lindqvist,2026-07-26T20:14:43.558Z,Rafael Duarte,2026-07-27T21:14:43.558Z,good
+CF-2026-10548,images/CF-2026-10548.jpg,good,test,Green Gram,IPM-02-3,1920,1280,Anika Sharma,2026-07-31T00:14:03.420Z,Priya Nair,2026-08-02T01:14:03.420Z,normal
+CF-2026-10549,images/CF-2026-10549.jpg,good,train,Sorghum,CSH-16,1600,1200,Hugo Lindqvist,2026-07-17T13:58:51.087Z,Daniel Osei,2026-07-18T00:58:51.087Z,normal
+CF-2026-10550,images/CF-2026-10550.jpg,good,train,Soybean,JS-335,3024,4032,Lucia Fernandez,2026-08-08T17:15:35.121Z,Priya Nair,2026-08-09T11:15:35.121Z,good
+CF-2026-10551,images/CF-2026-10551.jpg,good,train,Millet,HHB-67,1920,1280,Kwame Mensah,2026-07-04T13:56:08.579Z,Priya Nair,2026-07-05T23:56:08.579Z,good
+CF-2026-10553,images/CF-2026-10553.jpg,good,train,Groundnut,TAG-24,2048,1536,Zara Hussain,2026-06-30T09:59:42.824Z,Sofia Marchetti,2026-07-02T07:59:42.824Z,good
+CF-2026-10554,images/CF-2026-10554.jpg,good,val,Tomato,Arka Rakshak,2048,1536,Kwame Mensah,2026-07-23T17:15:03.933Z,Priya Nair,2026-07-24T03:15:03.933Z,good
+CF-2026-10555,images/CF-2026-10555.jpg,good,test,Pigeon Pea,BSMR-736,3024,4032,Anika Sharma,2026-07-05T01:42:30.852Z,Daniel Osei,2026-07-07T03:42:30.852Z,good
+CF-2026-10556,images/CF-2026-10556.jpg,good,train,Soybean,JS-335,1920,1280,Takahiro Sato,2026-06-14T17:19:54.809Z,Mei Ling Chen,2026-06-15T10:19:54.809Z,good
+CF-2026-10558,images/CF-2026-10558.jpg,bad,train,Sugarcane,Co-0238,2048,1536,Ibrahim Al-Sayed,2026-08-10T16:01:54.706Z,Sofia Marchetti,2026-08-13T14:01:54.706Z,bad
+CF-2026-10559,images/CF-2026-10559.jpg,good,train,Watermelon,Sugar Baby,3024,4032,Hugo Lindqvist,2026-06-21T08:01:55.970Z,Mei Ling Chen,2026-06-23T13:01:55.970Z,good
+CF-2026-10560,images/CF-2026-10560.jpg,bad,train,Sugarcane,Co-0238,2560,1440,Kwame Mensah,2026-08-09T03:35:58.789Z,Rafael Duarte,2026-08-09T07:35:58.789Z,bad
+CF-2026-10561,images/CF-2026-10561.jpg,normal,val,Cauliflower,Pusa Snowball,1920,1280,Lucia Fernandez,2026-08-09T18:18:11.417Z,Daniel Osei,2026-08-12T13:18:11.417Z,good
+CF-2026-10562,images/CF-2026-10562.jpg,good,test,Chilli,LCA-334,2048,1536,Takahiro Sato,2026-06-19T01:51:32.696Z,Priya Nair,2026-06-19T18:51:32.696Z,good
+CF-2026-10563,images/CF-2026-10563.jpg,good,train,Maize,Pioneer 3396,4000,3000,Hugo Lindqvist,2026-08-13T08:25:20.020Z,Priya Nair,2026-08-14T10:25:20.020Z,good
+CF-2026-10564,images/CF-2026-10564.jpg,normal,train,Watermelon,Sugar Baby,1600,1200,Nadia Kovac,2026-06-16T00:33:46.361Z,Priya Nair,2026-06-17T08:33:46.361Z,good
+CF-2026-10565,images/CF-2026-10565.jpg,normal,train,Okra,Arka Anamika,2048,1536,Anika Sharma,2026-07-22T08:47:40.909Z,Priya Nair,2026-07-25T01:47:40.909Z,normal
+CF-2026-10566,images/CF-2026-10566.jpg,good,train,Sunflower,KBSH-44,2560,1440,Yuki Tanaka,2026-07-27T19:35:41.302Z,Mei Ling Chen,2026-07-30T12:35:41.302Z,good
+CF-2026-10567,images/CF-2026-10567.jpg,good,train,Cabbage,Golden Acre,1600,1200,Ravi Deshmukh,2026-08-02T08:09:53.758Z,Rafael Duarte,2026-08-04T17:09:53.758Z,good
+CF-2026-10568,images/CF-2026-10568.jpg,good,val,Rice,IR-64,1920,1280,Takahiro Sato,2026-07-02T08:54:18.779Z,Rafael Duarte,2026-07-03T04:54:18.779Z,good
+CF-2026-10569,images/CF-2026-10569.jpg,good,test,Peas,Arkel,3024,4032,Oliver Bennett,2026-08-07T19:14:36.904Z,Mei Ling Chen,2026-08-09T16:14:36.904Z,normal
+CF-2026-10570,images/CF-2026-10570.jpg,good,train,Millet,HHB-67,2560,1440,Fatima Zahra,2026-08-11T12:23:47.105Z,Rafael Duarte,2026-08-13T22:23:47.105Z,good
+CF-2026-10571,images/CF-2026-10571.jpg,good,train,Cabbage,Golden Acre,3024,4032,Ravi Deshmukh,2026-08-03T18:32:45.515Z,Rafael Duarte,2026-08-06T11:32:45.515Z,good
+CF-2026-10572,images/CF-2026-10572.jpg,good,train,Sesame,GT-10,4000,3000,Ibrahim Al-Sayed,2026-06-15T03:48:04.447Z,Mei Ling Chen,2026-06-16T18:48:04.447Z,good
+CF-2026-10573,images/CF-2026-10573.jpg,good,train,Cauliflower,Pusa Snowball,2048,1536,Ana Beatriz Souza,2026-06-11T07:27:59.243Z,Mei Ling Chen,2026-06-11T12:27:59.243Z,normal
+CF-2026-10574,images/CF-2026-10574.jpg,good,train,Potato,Kufri Jyoti,1920,1280,Hugo Lindqvist,2026-08-17T20:50:40.723Z,Sofia Marchetti,2026-08-20T18:50:40.723Z,good
+CF-2026-10575,images/CF-2026-10575.jpg,good,val,Chilli,LCA-334,3024,4032,Ibrahim Al-Sayed,2026-06-29T17:04:11.075Z,Rafael Duarte,2026-07-01T03:04:11.075Z,good
+CF-2026-10576,images/CF-2026-10576.jpg,good,test,Green Gram,IPM-02-3,2048,1536,Hugo Lindqvist,2026-08-13T04:00:34.152Z,Daniel Osei,2026-08-14T23:00:34.152Z,bad
+CF-2026-10577,images/CF-2026-10577.jpg,good,train,Barley,DWRB-123,2560,1440,Sanjay Patel,2026-08-19T07:03:15.624Z,Priya Nair,2026-08-19T15:03:15.624Z,good
+CF-2026-10578,images/CF-2026-10578.jpg,good,train,Sunflower,KBSH-44,1920,1280,Fatima Zahra,2026-07-08T19:56:49.268Z,Daniel Osei,2026-07-10T17:56:49.268Z,good
+CF-2026-10579,images/CF-2026-10579.jpg,good,train,Tomato,Arka Rakshak,4000,3000,Oliver Bennett,2026-08-14T12:40:03.168Z,Priya Nair,2026-08-17T02:40:03.168Z,normal
+CF-2026-10580,images/CF-2026-10580.jpg,normal,train,Pigeon Pea,BSMR-736,3024,4032,Zara Hussain,2026-07-09T04:20:25.703Z,Mei Ling Chen,2026-07-11T01:20:25.703Z,good
+CF-2026-10581,images/CF-2026-10581.jpg,good,train,Rice,IR-64,1600,1200,Elena Rostova,2026-08-31T22:11:54.316Z,Rafael Duarte,2026-09-02T17:30:00.000Z,good
+CF-2026-10582,images/CF-2026-10582.jpg,good,val,Rice,IR-64,4000,3000,Takahiro Sato,2026-07-17T18:44:32.860Z,Sofia Marchetti,2026-07-18T06:44:32.860Z,good
+CF-2026-10584,images/CF-2026-10584.jpg,good,train,Millet,HHB-67,2560,1440,Yuki Tanaka,2026-08-19T20:54:28.498Z,Rafael Duarte,2026-08-22T13:54:28.498Z,good
+CF-2026-10585,images/CF-2026-10585.jpg,good,train,Sorghum,CSH-16,2560,1440,Takahiro Sato,2026-07-07T13:25:17.221Z,Daniel Osei,2026-07-09T00:25:17.221Z,good
+CF-2026-10586,images/CF-2026-10586.jpg,good,train,Cabbage,Golden Acre,1600,1200,Tomas Novak,2026-08-28T03:51:23.508Z,Priya Nair,2026-08-30T22:51:23.508Z,good
+CF-2026-10587,images/CF-2026-10587.jpg,good,train,Okra,Arka Anamika,3024,4032,Ibrahim Al-Sayed,2026-08-22T10:10:30.411Z,Sofia Marchetti,2026-08-22T23:10:30.411Z,good
+CF-2026-10588,images/CF-2026-10588.jpg,good,train,Sunflower,KBSH-44,1600,1200,Grace Wanjiru,2026-08-16T00:11:31.920Z,Daniel Osei,2026-08-16T14:11:31.920Z,normal
+CF-2026-10589,images/CF-2026-10589.jpg,normal,val,Green Gram,IPM-02-3,2560,1440,Hugo Lindqvist,2026-08-06T06:50:45.598Z,Mei Ling Chen,2026-08-07T04:50:45.598Z,good
+CF-2026-10590,images/CF-2026-10590.jpg,good,test,Onion,Bhima Super,1600,1200,Zara Hussain,2026-07-27T17:41:47.940Z,Mei Ling Chen,2026-07-28T07:41:47.940Z,good
+CF-2026-10591,images/CF-2026-10591.jpg,good,train,Wheat,HD-2967,3024,4032,Elena Rostova,2026-08-19T21:40:59.791Z,Mei Ling Chen,2026-08-22T14:40:59.791Z,good
+CF-2026-10592,images/CF-2026-10592.jpg,good,train,Rice,IR-64,2560,1440,Zara Hussain,2026-08-03T23:35:43.200Z,Mei Ling Chen,2026-08-04T11:35:43.200Z,good
+CF-2026-10593,images/CF-2026-10593.jpg,good,train,Okra,Arka Anamika,4000,3000,Anika Sharma,2026-06-08T06:47:07.398Z,Sofia Marchetti,2026-06-09T05:47:07.398Z,good
+CF-2026-10594,images/CF-2026-10594.jpg,normal,train,Tomato,Arka Rakshak,4000,3000,Elena Rostova,2026-08-11T12:12:39.222Z,Rafael Duarte,2026-08-11T14:12:39.222Z,good
+CF-2026-10595,images/CF-2026-10595.jpg,good,train,Bitter Gourd,Pusa Do Mausami,3024,4032,Anika Sharma,2026-06-16T07:29:12.673Z,Rafael Duarte,2026-06-16T09:29:12.673Z,good
+CF-2026-10596,images/CF-2026-10596.jpg,good,val,Maize,Pioneer 3396,1920,1280,Nadia Kovac,2026-08-07T17:53:18.927Z,Sofia Marchetti,2026-08-09T01:53:18.927Z,good
+CF-2026-10598,images/CF-2026-10598.jpg,good,train,Barley,DWRB-123,1920,1280,Takahiro Sato,2026-08-15T16:23:11.295Z,Rafael Duarte,2026-08-16T05:23:11.295Z,good
+CF-2026-10599,images/CF-2026-10599.jpg,good,train,Tomato,Arka Rakshak,3024,4032,Tomas Novak,2026-06-12T06:31:02.958Z,Sofia Marchetti,2026-06-14T08:31:02.958Z,good
+CF-2026-10600,images/CF-2026-10600.jpg,good,train,Maize,Pioneer 3396,4000,3000,Diego Morales,2026-08-14T18:10:54.298Z,Rafael Duarte,2026-08-14T20:10:54.298Z,good
+CF-2026-10601,images/CF-2026-10601.jpg,good,train,Green Gram,IPM-02-3,1920,1280,Oliver Bennett,2026-07-29T04:32:06.550Z,Priya Nair,2026-07-29T16:32:06.550Z,normal
+CF-2026-10602,images/CF-2026-10602.jpg,good,train,Chickpea,JG-11,1920,1280,Grace Wanjiru,2026-08-09T10:07:11.555Z,Daniel Osei,2026-08-09T13:07:11.555Z,good
+CF-2026-10603,images/CF-2026-10603.jpg,good,val,Chickpea,JG-11,4000,3000,Zara Hussain,2026-08-26T19:05:00.803Z,Rafael Duarte,2026-08-28T14:05:00.803Z,good
+CF-2026-10604,images/CF-2026-10604.jpg,good,test,Peas,Arkel,1600,1200,Fatima Zahra,2026-07-08T20:54:27.609Z,Daniel Osei,2026-07-11T04:54:27.609Z,good
+CF-2026-10605,images/CF-2026-10605.jpg,good,train,Millet,HHB-67,1600,1200,Anika Sharma,2026-07-17T14:49:07.564Z,Rafael Duarte,2026-07-18T07:49:07.564Z,good
+CF-2026-10606,images/CF-2026-10606.jpg,good,train,Peas,Arkel,2048,1536,Elena Rostova,2026-07-10T07:49:23.028Z,Priya Nair,2026-07-11T13:49:23.028Z,good
+CF-2026-10607,images/CF-2026-10607.jpg,good,train,Cucumber,Poinsette,4000,3000,Fatima Zahra,2026-07-10T19:18:08.165Z,Mei Ling Chen,2026-07-11T03:18:08.165Z,bad
+CF-2026-10608,images/CF-2026-10608.jpg,good,train,Green Gram,IPM-02-3,4000,3000,Oliver Bennett,2026-06-09T03:08:04.579Z,Rafael Duarte,2026-06-10T19:08:04.579Z,good
+CF-2026-10609,images/CF-2026-10609.jpg,good,train,Bitter Gourd,Pusa Do Mausami,4000,3000,Ibrahim Al-Sayed,2026-06-19T07:34:05.451Z,Rafael Duarte,2026-06-21T22:34:05.451Z,good
+CF-2026-10610,images/CF-2026-10610.jpg,good,val,Barley,DWRB-123,3024,4032,Diego Morales,2026-06-17T01:50:26.637Z,Daniel Osei,2026-06-19T14:50:26.637Z,bad
+CF-2026-10611,images/CF-2026-10611.jpg,good,test,Rice,IR-64,3024,4032,Yuki Tanaka,2026-06-11T15:04:14.453Z,Mei Ling Chen,2026-06-14T01:04:14.453Z,good
+CF-2026-10612,images/CF-2026-10612.jpg,good,train,Peas,Arkel,1600,1200,Kwame Mensah,2026-07-24T07:04:40.675Z,Sofia Marchetti,2026-07-26T00:04:40.675Z,good
+CF-2026-10613,images/CF-2026-10613.jpg,good,train,Brinjal,Pusa Purple Long,4000,3000,Ravi Deshmukh,2026-08-29T15:25:11.052Z,Mei Ling Chen,2026-08-30T19:25:11.052Z,good
+CF-2026-10614,images/CF-2026-10614.jpg,good,train,Onion,Bhima Super,2048,1536,Fatima Zahra,2026-06-25T18:51:25.256Z,Rafael Duarte,2026-06-26T22:51:25.256Z,good
+CF-2026-10615,images/CF-2026-10615.jpg,good,train,Lentil,IPL-316,3024,4032,Ibrahim Al-Sayed,2026-08-28T05:37:22.113Z,Mei Ling Chen,2026-08-28T15:37:22.113Z,good
+CF-2026-10616,images/CF-2026-10616.jpg,good,train,Chilli,LCA-334,2560,1440,Fatima Zahra,2026-07-26T01:38:44.167Z,Priya Nair,2026-07-27T03:38:44.167Z,good
+CF-2026-10617,images/CF-2026-10617.jpg,good,val,Rice,IR-64,1920,1280,Amara Okafor,2026-06-26T07:31:13.894Z,Sofia Marchetti,2026-06-28T18:31:13.894Z,good
+CF-2026-10618,images/CF-2026-10618.jpg,good,test,Okra,Arka Anamika,1920,1280,Ibrahim Al-Sayed,2026-07-24T06:59:37.757Z,Rafael Duarte,2026-07-25T19:59:37.757Z,good
+CF-2026-10619,images/CF-2026-10619.jpg,good,train,Chickpea,JG-11,4000,3000,Nadia Kovac,2026-08-05T19:41:52.991Z,Priya Nair,2026-08-07T00:41:52.991Z,normal
+CF-2026-10620,images/CF-2026-10620.jpg,good,train,Chickpea,JG-11,2560,1440,Takahiro Sato,2026-08-21T20:40:19.480Z,Mei Ling Chen,2026-08-22T03:40:19.480Z,normal
+CF-2026-10621,images/CF-2026-10621.jpg,normal,train,Cucumber,Poinsette,2560,1440,Diego Morales,2026-09-01T13:27:40.403Z,Mei Ling Chen,2026-09-02T17:30:00.000Z,good
+CF-2026-10622,images/CF-2026-10622.jpg,good,train,Maize,Pioneer 3396,3024,4032,Fatima Zahra,2026-07-29T16:49:10.302Z,Rafael Duarte,2026-07-30T20:49:10.302Z,good
+CF-2026-10624,images/CF-2026-10624.jpg,good,val,Pigeon Pea,BSMR-736,4000,3000,Lucia Fernandez,2026-06-30T06:37:03.399Z,Priya Nair,2026-07-02T04:37:03.399Z,normal
+CF-2026-10626,images/CF-2026-10626.jpg,good,train,Onion,Bhima Super,2560,1440,Grace Wanjiru,2026-06-10T07:49:10.093Z,Sofia Marchetti,2026-06-12T02:49:10.093Z,good
+CF-2026-10627,images/CF-2026-10627.jpg,normal,train,Bitter Gourd,Pusa Do Mausami,1920,1280,Elena Rostova,2026-06-24T12:36:01.674Z,Rafael Duarte,2026-06-26T21:36:01.674Z,good
+CF-2026-10630,images/CF-2026-10630.jpg,bad,train,Cabbage,Golden Acre,3024,4032,Grace Wanjiru,2026-06-13T07:47:29.148Z,Sofia Marchetti,2026-06-14T00:47:29.148Z,good
+CF-2026-10631,images/CF-2026-10631.jpg,good,val,Cabbage,Golden Acre,1600,1200,Elena Rostova,2026-07-11T23:01:43.798Z,Priya Nair,2026-07-13T03:01:43.798Z,good
+CF-2026-10632,images/CF-2026-10632.jpg,good,test,Cabbage,Golden Acre,1600,1200,Fatima Zahra,2026-07-10T19:00:13.198Z,Daniel Osei,2026-07-11T09:00:13.198Z,normal
+CF-2026-10633,images/CF-2026-10633.jpg,good,train,Black Gram,T-9,4000,3000,Yuki Tanaka,2026-06-11T18:03:52.745Z,Sofia Marchetti,2026-06-12T11:03:52.745Z,normal
+CF-2026-10634,images/CF-2026-10634.jpg,good,train,Pigeon Pea,BSMR-736,2048,1536,Amara Okafor,2026-08-07T19:03:04.512Z,Daniel Osei,2026-08-08T02:03:04.512Z,good
+CF-2026-10635,images/CF-2026-10635.jpg,good,train,Maize,Pioneer 3396,4000,3000,Lucia Fernandez,2026-08-05T21:45:46.321Z,Daniel Osei,2026-08-07T00:45:46.321Z,good
+CF-2026-10636,images/CF-2026-10636.jpg,bad,train,Green Gram,IPM-02-3,2560,1440,Amara Okafor,2026-07-21T00:46:11.958Z,Mei Ling Chen,2026-07-22T22:46:11.958Z,good
+CF-2026-10637,images/CF-2026-10637.jpg,good,train,Cucumber,Poinsette,2560,1440,Marcus Aurelius,2026-08-25T16:44:04.257Z,Mei Ling Chen,2026-08-26T17:44:04.257Z,good
+CF-2026-10638,images/CF-2026-10638.jpg,good,val,Cauliflower,Pusa Snowball,3024,4032,Takahiro Sato,2026-07-23T20:50:13.123Z,Sofia Marchetti,2026-07-25T23:50:13.123Z,good
+CF-2026-10639,images/CF-2026-10639.jpg,bad,test,Cabbage,Golden Acre,2560,1440,Anika Sharma,2026-06-19T03:12:54.357Z,Rafael Duarte,2026-06-20T18:12:54.357Z,good
+CF-2026-10640,images/CF-2026-10640.jpg,good,train,Tomato,Arka Rakshak,2560,1440,Yuki Tanaka,2026-08-26T19:56:25.263Z,Mei Ling Chen,2026-08-28T14:56:25.263Z,good
+CF-2026-10641,images/CF-2026-10641.jpg,good,train,Chickpea,JG-11,2560,1440,Sanjay Patel,2026-06-14T23:44:34.530Z,Sofia Marchetti,2026-06-16T11:44:34.530Z,good
+CF-2026-10642,images/CF-2026-10642.jpg,good,train,Sugarcane,Co-0238,3024,4032,Nadia Kovac,2026-08-07T04:49:21.594Z,Rafael Duarte,2026-08-09T05:49:21.594Z,normal
+CF-2026-10643,images/CF-2026-10643.jpg,normal,train,Sunflower,KBSH-44,1600,1200,Nadia Kovac,2026-06-14T01:26:05.912Z,Sofia Marchetti,2026-06-16T03:26:05.912Z,good
+CF-2026-10644,images/CF-2026-10644.jpg,good,train,Tomato,Arka Rakshak,4000,3000,Diego Morales,2026-07-19T07:15:44.555Z,Mei Ling Chen,2026-07-19T21:15:44.555Z,good
+CF-2026-10645,images/CF-2026-10645.jpg,good,val,Sugarcane,Co-0238,2048,1536,Sanjay Patel,2026-08-21T23:38:33.877Z,Priya Nair,2026-08-24T17:38:33.877Z,good
+CF-2026-10647,images/CF-2026-10647.jpg,good,train,Onion,Bhima Super,2560,1440,Zara Hussain,2026-06-14T00:09:23.783Z,Mei Ling Chen,2026-06-14T19:09:23.783Z,good
+CF-2026-10648,images/CF-2026-10648.jpg,good,train,Pigeon Pea,BSMR-736,1600,1200,Kwame Mensah,2026-08-04T23:09:13.707Z,Daniel Osei,2026-08-05T15:09:13.707Z,good
+CF-2026-10649,images/CF-2026-10649.jpg,good,train,Sorghum,CSH-16,1920,1280,Anika Sharma,2026-08-11T18:41:55.193Z,Mei Ling Chen,2026-08-12T12:41:55.193Z,good
+CF-2026-10650,images/CF-2026-10650.jpg,normal,train,Sesame,GT-10,2560,1440,Elena Rostova,2026-07-12T04:35:13.950Z,Rafael Duarte,2026-07-14T04:35:13.950Z,good
+CF-2026-10651,images/CF-2026-10651.jpg,bad,train,Potato,Kufri Jyoti,4000,3000,Marcus Aurelius,2026-08-28T16:15:44.808Z,Mei Ling Chen,2026-08-30T21:15:44.808Z,normal
+CF-2026-10652,images/CF-2026-10652.jpg,good,val,Tomato,Arka Rakshak,3024,4032,Nadia Kovac,2026-06-26T20:28:02.915Z,Priya Nair,2026-06-27T08:28:02.915Z,good
+CF-2026-10653,images/CF-2026-10653.jpg,normal,test,Green Gram,IPM-02-3,2048,1536,Ibrahim Al-Sayed,2026-08-06T09:24:42.368Z,Sofia Marchetti,2026-08-07T02:24:42.368Z,good
+CF-2026-10654,images/CF-2026-10654.jpg,good,train,Sugarcane,Co-0238,2560,1440,Ravi Deshmukh,2026-07-10T18:22:28.507Z,Rafael Duarte,2026-07-11T04:22:28.507Z,normal
+CF-2026-10655,images/CF-2026-10655.jpg,good,train,Cucumber,Poinsette,2048,1536,Ravi Deshmukh,2026-07-14T12:38:57.148Z,Sofia Marchetti,2026-07-15T21:38:57.148Z,good
+CF-2026-10656,images/CF-2026-10656.jpg,normal,train,Lentil,IPL-316,1920,1280,Marcus Aurelius,2026-08-15T17:48:53.361Z,Daniel Osei,2026-08-17T14:48:53.361Z,good
+CF-2026-10657,images/CF-2026-10657.jpg,good,train,Black Gram,T-9,1920,1280,Ana Beatriz Souza,2026-06-14T18:20:05.000Z,Rafael Duarte,2026-06-15T12:20:05.000Z,normal
+CF-2026-10658,images/CF-2026-10658.jpg,good,train,Wheat,HD-2967,1920,1280,Ravi Deshmukh,2026-08-19T13:08:10.053Z,Sofia Marchetti,2026-08-20T10:08:10.053Z,good
+CF-2026-10659,images/CF-2026-10659.jpg,good,val,Rice,IR-64,1600,1200,Kwame Mensah,2026-07-23T22:06:22.080Z,Daniel Osei,2026-07-26T03:06:22.080Z,normal
+CF-2026-10660,images/CF-2026-10660.jpg,normal,test,Peas,Arkel,2048,1536,Lucia Fernandez,2026-08-16T15:46:43.507Z,Priya Nair,2026-08-19T07:46:43.507Z,good
+CF-2026-10661,images/CF-2026-10661.jpg,good,train,Sorghum,CSH-16,3024,4032,Sanjay Patel,2026-07-21T23:38:24.254Z,Sofia Marchetti,2026-07-22T14:38:24.254Z,normal
+CF-2026-10662,images/CF-2026-10662.jpg,good,train,Sugarcane,Co-0238,1600,1200,Ibrahim Al-Sayed,2026-07-25T07:27:46.481Z,Mei Ling Chen,2026-07-25T13:27:46.481Z,good
+CF-2026-10663,images/CF-2026-10663.jpg,good,train,Watermelon,Sugar Baby,2048,1536,Ravi Deshmukh,2026-06-10T08:34:30.282Z,Rafael Duarte,2026-06-11T17:34:30.282Z,good
+CF-2026-10664,images/CF-2026-10664.jpg,bad,train,Watermelon,Sugar Baby,4000,3000,Elena Rostova,2026-09-02T01:46:30.385Z,Daniel Osei,2026-09-02T17:30:00.000Z,good
+CF-2026-10665,images/CF-2026-10665.jpg,good,train,Okra,Arka Anamika,1600,1200,Yuki Tanaka,2026-08-20T16:50:19.586Z,Mei Ling Chen,2026-08-20T22:50:19.586Z,good
+CF-2026-10666,images/CF-2026-10666.jpg,good,val,Sugarcane,Co-0238,4000,3000,Amara Okafor,2026-06-10T20:31:28.328Z,Rafael Duarte,2026-06-11T12:31:28.328Z,good
+CF-2026-10668,images/CF-2026-10668.jpg,good,train,Sugarcane,Co-0238,2048,1536,Tomas Novak,2026-06-11T04:32:54.112Z,Priya Nair,2026-06-12T00:32:54.112Z,good
+CF-2026-10669,images/CF-2026-10669.jpg,good,train,Millet,HHB-67,2048,1536,Oliver Bennett,2026-06-18T11:07:27.042Z,Rafael Duarte,2026-06-21T08:07:27.042Z,normal
+CF-2026-10670,images/CF-2026-10670.jpg,good,train,Wheat,HD-2967,1600,1200,Ibrahim Al-Sayed,2026-07-31T14:34:09.955Z,Priya Nair,2026-08-01T07:34:09.955Z,normal
+CF-2026-10671,images/CF-2026-10671.jpg,good,train,Black Gram,T-9,3024,4032,Marcus Aurelius,2026-07-29T14:29:37.685Z,Daniel Osei,2026-07-30T15:29:37.685Z,normal
+CF-2026-10672,images/CF-2026-10672.jpg,good,train,Sugarcane,Co-0238,1600,1200,Amara Okafor,2026-07-09T08:57:48.629Z,Rafael Duarte,2026-07-10T16:57:48.629Z,good
+CF-2026-10674,images/CF-2026-10674.jpg,good,test,Sunflower,KBSH-44,1920,1280,Ibrahim Al-Sayed,2026-08-22T08:34:42.954Z,Priya Nair,2026-08-24T15:34:42.954Z,good
+CF-2026-10676,images/CF-2026-10676.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Fatima Zahra,2026-08-12T15:40:48.129Z,Mei Ling Chen,2026-08-14T17:40:48.129Z,good
+CF-2026-10677,images/CF-2026-10677.jpg,bad,train,Brinjal,Pusa Purple Long,2560,1440,Sanjay Patel,2026-06-06T19:19:36.592Z,Priya Nair,2026-06-07T09:19:36.592Z,normal
+CF-2026-10678,images/CF-2026-10678.jpg,good,train,Pigeon Pea,BSMR-736,3024,4032,Yuki Tanaka,2026-08-02T05:37:10.491Z,Rafael Duarte,2026-08-04T05:37:10.491Z,good
+CF-2026-10679,images/CF-2026-10679.jpg,good,train,Green Gram,IPM-02-3,3024,4032,Amara Okafor,2026-08-25T04:15:19.322Z,Priya Nair,2026-08-27T14:15:19.322Z,good
+CF-2026-10680,images/CF-2026-10680.jpg,normal,val,Cabbage,Golden Acre,2048,1536,Ibrahim Al-Sayed,2026-08-11T00:12:14.349Z,Rafael Duarte,2026-08-12T20:12:14.349Z,good
+CF-2026-10681,images/CF-2026-10681.jpg,good,test,Green Gram,IPM-02-3,4000,3000,Lucia Fernandez,2026-08-05T15:35:13.215Z,Sofia Marchetti,2026-08-06T06:35:13.215Z,good
+CF-2026-10682,images/CF-2026-10682.jpg,good,train,Mustard,Pusa Bold,1920,1280,Sanjay Patel,2026-07-18T04:13:43.465Z,Sofia Marchetti,2026-07-19T12:13:43.465Z,good
+CF-2026-10683,images/CF-2026-10683.jpg,good,train,Potato,Kufri Jyoti,4000,3000,Amara Okafor,2026-07-28T07:15:05.027Z,Priya Nair,2026-07-29T09:15:05.027Z,good
+CF-2026-10684,images/CF-2026-10684.jpg,good,train,Onion,Bhima Super,4000,3000,Lucia Fernandez,2026-08-14T15:28:40.596Z,Sofia Marchetti,2026-08-15T14:28:40.596Z,good
+CF-2026-10685,images/CF-2026-10685.jpg,good,train,Bitter Gourd,Pusa Do Mausami,1920,1280,Yuki Tanaka,2026-08-31T02:29:05.830Z,Daniel Osei,2026-08-31T06:29:05.830Z,good
+CF-2026-10686,images/CF-2026-10686.jpg,good,train,Sugarcane,Co-0238,2048,1536,Oliver Bennett,2026-07-28T11:59:34.881Z,Daniel Osei,2026-07-28T21:59:34.881Z,good
+CF-2026-10687,images/CF-2026-10687.jpg,good,val,Cucumber,Poinsette,1920,1280,Zara Hussain,2026-07-02T03:39:59.987Z,Sofia Marchetti,2026-07-04T04:39:59.987Z,good
+CF-2026-10688,images/CF-2026-10688.jpg,normal,test,Green Gram,IPM-02-3,3024,4032,Zara Hussain,2026-08-31T14:57:04.937Z,Priya Nair,2026-09-01T06:57:04.937Z,good
+CF-2026-10689,images/CF-2026-10689.jpg,good,train,Sugarcane,Co-0238,4000,3000,Ana Beatriz Souza,2026-07-09T15:16:41.243Z,Rafael Duarte,2026-07-11T03:16:41.243Z,good
+CF-2026-10690,images/CF-2026-10690.jpg,good,train,Maize,Pioneer 3396,2048,1536,Oliver Bennett,2026-07-09T19:17:31.026Z,Mei Ling Chen,2026-07-11T01:17:31.026Z,good
+CF-2026-10692,images/CF-2026-10692.jpg,good,train,Millet,HHB-67,1920,1280,Elena Rostova,2026-08-19T16:03:53.818Z,Rafael Duarte,2026-08-20T16:03:53.818Z,good
+CF-2026-10693,images/CF-2026-10693.jpg,good,train,Okra,Arka Anamika,1600,1200,Tomas Novak,2026-07-30T05:43:56.357Z,Daniel Osei,2026-08-01T23:43:56.357Z,good
+CF-2026-10694,images/CF-2026-10694.jpg,good,val,Bitter Gourd,Pusa Do Mausami,2560,1440,Takahiro Sato,2026-07-29T16:57:41.756Z,Mei Ling Chen,2026-07-31T05:57:41.756Z,normal
+CF-2026-10695,images/CF-2026-10695.jpg,good,test,Maize,Pioneer 3396,2048,1536,Ana Beatriz Souza,2026-08-23T21:51:40.425Z,Priya Nair,2026-08-25T21:51:40.425Z,normal
+CF-2026-10696,images/CF-2026-10696.jpg,good,train,Rice,IR-64,1600,1200,Kwame Mensah,2026-08-30T21:07:56.742Z,Priya Nair,2026-09-02T15:07:56.742Z,bad
+CF-2026-10697,images/CF-2026-10697.jpg,good,train,Cauliflower,Pusa Snowball,4000,3000,Sanjay Patel,2026-06-28T03:35:23.615Z,Mei Ling Chen,2026-06-30T11:35:23.615Z,bad
+CF-2026-10699,images/CF-2026-10699.jpg,good,train,Peas,Arkel,1920,1280,Sanjay Patel,2026-08-03T08:29:07.985Z,Priya Nair,2026-08-03T21:29:07.985Z,good
+CF-2026-10700,images/CF-2026-10700.jpg,good,train,Wheat,HD-2967,3024,4032,Grace Wanjiru,2026-08-13T06:44:42.219Z,Daniel Osei,2026-08-15T19:44:42.219Z,good
+CF-2026-10701,images/CF-2026-10701.jpg,normal,val,Green Gram,IPM-02-3,1600,1200,Marcus Aurelius,2026-07-29T16:37:37.902Z,Mei Ling Chen,2026-07-31T20:37:37.902Z,good
+CF-2026-10702,images/CF-2026-10702.jpg,good,test,Black Gram,T-9,1600,1200,Diego Morales,2026-07-09T11:32:17.767Z,Daniel Osei,2026-07-10T02:32:17.767Z,good
+CF-2026-10703,images/CF-2026-10703.jpg,good,train,Chickpea,JG-11,1600,1200,Marcus Aurelius,2026-08-18T14:20:48.815Z,Priya Nair,2026-08-20T23:20:48.815Z,good
+CF-2026-10704,images/CF-2026-10704.jpg,bad,train,Chilli,LCA-334,1920,1280,Nadia Kovac,2026-06-20T12:24:29.588Z,Mei Ling Chen,2026-06-22T07:24:29.588Z,good
+CF-2026-10705,images/CF-2026-10705.jpg,good,train,Watermelon,Sugar Baby,1920,1280,Yuki Tanaka,2026-07-04T15:00:40.384Z,Daniel Osei,2026-07-07T12:00:40.384Z,good
+CF-2026-10706,images/CF-2026-10706.jpg,good,train,Millet,HHB-67,3024,4032,Kwame Mensah,2026-07-11T05:38:25.970Z,Rafael Duarte,2026-07-12T05:38:25.970Z,good
+CF-2026-10707,images/CF-2026-10707.jpg,good,train,Chilli,LCA-334,2560,1440,Grace Wanjiru,2026-06-16T06:42:48.279Z,Daniel Osei,2026-06-18T18:42:48.279Z,bad
+CF-2026-10708,images/CF-2026-10708.jpg,good,val,Cucumber,Poinsette,2560,1440,Grace Wanjiru,2026-06-12T12:04:54.895Z,Daniel Osei,2026-06-14T17:04:54.895Z,good
+CF-2026-10709,images/CF-2026-10709.jpg,good,test,Black Gram,T-9,2560,1440,Marcus Aurelius,2026-08-18T21:54:06.379Z,Priya Nair,2026-08-21T04:54:06.379Z,good
+CF-2026-10711,images/CF-2026-10711.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Fatima Zahra,2026-08-31T16:28:01.912Z,Rafael Duarte,2026-08-31T20:28:01.912Z,good
+CF-2026-10712,images/CF-2026-10712.jpg,good,train,Onion,Bhima Super,2048,1536,Fatima Zahra,2026-08-18T17:54:44.440Z,Rafael Duarte,2026-08-19T21:54:44.440Z,bad
+CF-2026-10713,images/CF-2026-10713.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Oliver Bennett,2026-08-05T08:59:10.751Z,Sofia Marchetti,2026-08-07T00:59:10.751Z,good
+CF-2026-10714,images/CF-2026-10714.jpg,good,train,Peas,Arkel,2048,1536,Grace Wanjiru,2026-08-26T12:40:32.255Z,Rafael Duarte,2026-08-27T02:40:32.255Z,good
+CF-2026-10715,images/CF-2026-10715.jpg,normal,val,Potato,Kufri Jyoti,1600,1200,Grace Wanjiru,2026-07-01T20:01:07.944Z,Mei Ling Chen,2026-07-04T07:01:07.944Z,good
+CF-2026-10716,images/CF-2026-10716.jpg,good,test,Sunflower,KBSH-44,2560,1440,Elena Rostova,2026-08-31T21:14:24.460Z,Daniel Osei,2026-09-01T02:14:24.460Z,good
+CF-2026-10717,images/CF-2026-10717.jpg,good,train,Tomato,Arka Rakshak,3024,4032,Takahiro Sato,2026-08-27T11:29:46.297Z,Daniel Osei,2026-08-29T06:29:46.297Z,good
+CF-2026-10718,images/CF-2026-10718.jpg,good,train,Maize,Pioneer 3396,2048,1536,Marcus Aurelius,2026-07-17T16:23:14.888Z,Mei Ling Chen,2026-07-20T01:23:14.888Z,good
+CF-2026-10719,images/CF-2026-10719.jpg,good,train,Sugarcane,Co-0238,1920,1280,Anika Sharma,2026-06-25T19:55:19.189Z,Priya Nair,2026-06-28T03:55:19.189Z,bad
+CF-2026-10720,images/CF-2026-10720.jpg,good,train,Sorghum,CSH-16,3024,4032,Ana Beatriz Souza,2026-06-29T13:05:29.042Z,Mei Ling Chen,2026-07-02T07:05:29.042Z,good
+CF-2026-10721,images/CF-2026-10721.jpg,good,train,Tomato,Arka Rakshak,2048,1536,Sanjay Patel,2026-08-09T19:49:05.334Z,Rafael Duarte,2026-08-10T20:49:05.334Z,good
+CF-2026-10722,images/CF-2026-10722.jpg,good,val,Sunflower,KBSH-44,1920,1280,Kwame Mensah,2026-06-06T12:19:00.415Z,Mei Ling Chen,2026-06-07T18:19:00.415Z,normal
+CF-2026-10723,images/CF-2026-10723.jpg,good,test,Lentil,IPL-316,3024,4032,Marcus Aurelius,2026-06-22T15:21:35.739Z,Daniel Osei,2026-06-24T07:21:35.739Z,good
+CF-2026-10724,images/CF-2026-10724.jpg,good,train,Barley,DWRB-123,1600,1200,Ravi Deshmukh,2026-08-10T09:00:07.729Z,Daniel Osei,2026-08-12T11:00:07.729Z,good
+CF-2026-10725,images/CF-2026-10725.jpg,good,train,Sugarcane,Co-0238,1920,1280,Kwame Mensah,2026-09-01T08:27:17.391Z,Rafael Duarte,2026-09-02T00:27:17.391Z,normal
+CF-2026-10726,images/CF-2026-10726.jpg,good,train,Black Gram,T-9,4000,3000,Ana Beatriz Souza,2026-07-08T17:10:00.634Z,Mei Ling Chen,2026-07-10T22:10:00.634Z,good
+CF-2026-10727,images/CF-2026-10727.jpg,bad,train,Soybean,JS-335,4000,3000,Kwame Mensah,2026-08-27T05:59:36.561Z,Daniel Osei,2026-08-27T16:59:36.561Z,good
+CF-2026-10728,images/CF-2026-10728.jpg,good,train,Tomato,Arka Rakshak,2560,1440,Grace Wanjiru,2026-08-08T05:01:10.849Z,Mei Ling Chen,2026-08-10T00:01:10.849Z,good
+CF-2026-10729,images/CF-2026-10729.jpg,good,val,Lentil,IPL-316,4000,3000,Oliver Bennett,2026-08-06T10:08:34.544Z,Mei Ling Chen,2026-08-08T12:08:34.544Z,good
+CF-2026-10730,images/CF-2026-10730.jpg,normal,test,Brinjal,Pusa Purple Long,1920,1280,Oliver Bennett,2026-08-29T02:05:32.348Z,Priya Nair,2026-08-31T00:05:32.348Z,good
+CF-2026-10731,images/CF-2026-10731.jpg,good,train,Rice,IR-64,2560,1440,Ibrahim Al-Sayed,2026-06-14T23:47:29.674Z,Mei Ling Chen,2026-06-16T19:47:29.674Z,good
+CF-2026-10732,images/CF-2026-10732.jpg,normal,train,Rice,IR-64,4000,3000,Lucia Fernandez,2026-08-17T05:47:24.579Z,Rafael Duarte,2026-08-17T09:47:24.579Z,good
+CF-2026-10733,images/CF-2026-10733.jpg,good,train,Groundnut,TAG-24,1920,1280,Fatima Zahra,2026-08-21T09:28:47.083Z,Daniel Osei,2026-08-22T23:28:47.083Z,good
+CF-2026-10734,images/CF-2026-10734.jpg,good,train,Millet,HHB-67,1920,1280,Ibrahim Al-Sayed,2026-07-01T07:23:56.277Z,Priya Nair,2026-07-03T09:23:56.277Z,good
+CF-2026-10735,images/CF-2026-10735.jpg,good,train,Pigeon Pea,BSMR-736,4000,3000,Grace Wanjiru,2026-07-31T19:21:00.302Z,Daniel Osei,2026-08-02T03:21:00.302Z,good
+CF-2026-10736,images/CF-2026-10736.jpg,good,val,Sesame,GT-10,2560,1440,Kwame Mensah,2026-06-24T04:36:56.420Z,Mei Ling Chen,2026-06-25T23:36:56.420Z,good
+CF-2026-10737,images/CF-2026-10737.jpg,good,test,Black Gram,T-9,2048,1536,Ibrahim Al-Sayed,2026-08-26T06:06:36.609Z,Sofia Marchetti,2026-08-27T08:06:36.609Z,good
+CF-2026-10738,images/CF-2026-10738.jpg,good,train,Chilli,LCA-334,4000,3000,Grace Wanjiru,2026-06-30T15:04:27.329Z,Daniel Osei,2026-07-03T11:04:27.329Z,bad
+CF-2026-10739,images/CF-2026-10739.jpg,normal,train,Tomato,Arka Rakshak,1600,1200,Ana Beatriz Souza,2026-07-11T11:28:49.110Z,Rafael Duarte,2026-07-11T14:28:49.110Z,bad
+CF-2026-10740,images/CF-2026-10740.jpg,good,train,Chickpea,JG-11,2560,1440,Diego Morales,2026-07-14T11:42:49.582Z,Daniel Osei,2026-07-15T05:42:49.582Z,good
+CF-2026-10741,images/CF-2026-10741.jpg,good,train,Sorghum,CSH-16,2048,1536,Ravi Deshmukh,2026-08-10T06:11:47.153Z,Rafael Duarte,2026-08-10T16:11:47.153Z,good
+CF-2026-10742,images/CF-2026-10742.jpg,good,train,Cabbage,Golden Acre,3024,4032,Sanjay Patel,2026-08-06T23:03:13.075Z,Mei Ling Chen,2026-08-09T02:03:13.075Z,good
+CF-2026-10743,images/CF-2026-10743.jpg,good,val,Groundnut,TAG-24,1920,1280,Lucia Fernandez,2026-08-14T22:38:06.259Z,Rafael Duarte,2026-08-17T08:38:06.259Z,good
+CF-2026-10744,images/CF-2026-10744.jpg,good,test,Sunflower,KBSH-44,2048,1536,Anika Sharma,2026-07-13T06:31:42.245Z,Mei Ling Chen,2026-07-14T12:31:42.245Z,good
+CF-2026-10745,images/CF-2026-10745.jpg,good,train,Lentil,IPL-316,1920,1280,Fatima Zahra,2026-06-29T17:47:17.057Z,Daniel Osei,2026-07-02T00:47:17.057Z,good
+CF-2026-10746,images/CF-2026-10746.jpg,good,train,Green Gram,IPM-02-3,2048,1536,Nadia Kovac,2026-07-07T07:01:13.916Z,Rafael Duarte,2026-07-09T00:01:13.916Z,good
+CF-2026-10747,images/CF-2026-10747.jpg,good,train,Peas,Arkel,2560,1440,Anika Sharma,2026-07-19T13:13:28.067Z,Priya Nair,2026-07-22T04:13:28.067Z,good
+CF-2026-10748,images/CF-2026-10748.jpg,good,train,Onion,Bhima Super,1920,1280,Diego Morales,2026-07-13T17:54:16.670Z,Priya Nair,2026-07-14T10:54:16.670Z,normal
+CF-2026-10749,images/CF-2026-10749.jpg,good,train,Black Gram,T-9,2560,1440,Sanjay Patel,2026-07-26T12:41:20.644Z,Sofia Marchetti,2026-07-28T04:41:20.644Z,good
+CF-2026-10750,images/CF-2026-10750.jpg,normal,val,Chickpea,JG-11,3024,4032,Nadia Kovac,2026-08-07T02:11:35.695Z,Priya Nair,2026-08-07T18:11:35.695Z,normal
+CF-2026-10751,images/CF-2026-10751.jpg,good,test,Sesame,GT-10,1920,1280,Takahiro Sato,2026-07-18T23:43:43.127Z,Rafael Duarte,2026-07-20T16:43:43.127Z,normal
+CF-2026-10753,images/CF-2026-10753.jpg,good,train,Watermelon,Sugar Baby,2560,1440,Amara Okafor,2026-07-06T17:39:23.172Z,Daniel Osei,2026-07-08T22:39:23.172Z,good
+CF-2026-10754,images/CF-2026-10754.jpg,good,train,Tomato,Arka Rakshak,1600,1200,Ibrahim Al-Sayed,2026-06-22T03:34:47.123Z,Rafael Duarte,2026-06-23T19:34:47.123Z,good
+CF-2026-10755,images/CF-2026-10755.jpg,good,train,Watermelon,Sugar Baby,2048,1536,Hugo Lindqvist,2026-08-12T00:35:53.705Z,Priya Nair,2026-08-12T22:35:53.705Z,good
+CF-2026-10756,images/CF-2026-10756.jpg,good,train,Sorghum,CSH-16,1600,1200,Takahiro Sato,2026-07-14T06:59:51.851Z,Priya Nair,2026-07-15T23:59:51.851Z,good
+CF-2026-10758,images/CF-2026-10758.jpg,good,test,Sesame,GT-10,1600,1200,Lucia Fernandez,2026-07-09T04:58:56.776Z,Mei Ling Chen,2026-07-12T01:58:56.776Z,good
+CF-2026-10759,images/CF-2026-10759.jpg,good,train,Green Gram,IPM-02-3,3024,4032,Hugo Lindqvist,2026-06-22T02:06:15.912Z,Sofia Marchetti,2026-06-24T16:06:15.912Z,good
+CF-2026-10760,images/CF-2026-10760.jpg,normal,train,Bitter Gourd,Pusa Do Mausami,3024,4032,Elena Rostova,2026-07-17T07:01:57.069Z,Sofia Marchetti,2026-07-17T18:01:57.069Z,good
+CF-2026-10761,images/CF-2026-10761.jpg,good,train,Potato,Kufri Jyoti,1920,1280,Kwame Mensah,2026-07-04T10:01:04.459Z,Rafael Duarte,2026-07-07T07:01:04.459Z,good
+CF-2026-10762,images/CF-2026-10762.jpg,normal,train,Black Gram,T-9,2048,1536,Marcus Aurelius,2026-08-30T16:40:08.159Z,Sofia Marchetti,2026-09-01T20:40:08.159Z,good
+CF-2026-10763,images/CF-2026-10763.jpg,good,train,Sorghum,CSH-16,3024,4032,Amara Okafor,2026-07-04T00:57:33.771Z,Sofia Marchetti,2026-07-05T09:57:33.771Z,good
+CF-2026-10764,images/CF-2026-10764.jpg,normal,val,Bitter Gourd,Pusa Do Mausami,2560,1440,Marcus Aurelius,2026-06-23T16:53:34.312Z,Rafael Duarte,2026-06-25T19:53:34.312Z,good
+CF-2026-10765,images/CF-2026-10765.jpg,good,test,Tomato,Arka Rakshak,1920,1280,Diego Morales,2026-07-21T21:09:54.346Z,Priya Nair,2026-07-24T09:09:54.346Z,good
+CF-2026-10766,images/CF-2026-10766.jpg,normal,train,Onion,Bhima Super,2560,1440,Elena Rostova,2026-07-31T22:36:29.227Z,Mei Ling Chen,2026-08-02T14:36:29.227Z,good
+CF-2026-10768,images/CF-2026-10768.jpg,bad,train,Watermelon,Sugar Baby,3024,4032,Anika Sharma,2026-08-09T15:32:10.057Z,Priya Nair,2026-08-10T19:32:10.057Z,good
+CF-2026-10769,images/CF-2026-10769.jpg,good,train,Sugarcane,Co-0238,4000,3000,Marcus Aurelius,2026-08-28T05:50:55.509Z,Mei Ling Chen,2026-08-30T15:50:55.509Z,normal
+CF-2026-10770,images/CF-2026-10770.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2560,1440,Anika Sharma,2026-08-07T07:32:35.793Z,Rafael Duarte,2026-08-07T13:32:35.793Z,good
+CF-2026-10771,images/CF-2026-10771.jpg,normal,val,Rice,IR-64,1920,1280,Grace Wanjiru,2026-06-23T04:02:41.719Z,Daniel Osei,2026-06-25T08:02:41.719Z,good
+CF-2026-10772,images/CF-2026-10772.jpg,good,test,Bitter Gourd,Pusa Do Mausami,3024,4032,Grace Wanjiru,2026-08-06T19:35:42.606Z,Sofia Marchetti,2026-08-09T01:35:42.606Z,bad
+CF-2026-10773,images/CF-2026-10773.jpg,bad,train,Rice,IR-64,2560,1440,Grace Wanjiru,2026-06-14T08:44:57.061Z,Daniel Osei,2026-06-16T06:44:57.061Z,good
+CF-2026-10774,images/CF-2026-10774.jpg,good,train,Pigeon Pea,BSMR-736,3024,4032,Fatima Zahra,2026-06-13T22:30:48.743Z,Priya Nair,2026-06-15T10:30:48.743Z,good
+CF-2026-10775,images/CF-2026-10775.jpg,good,train,Wheat,HD-2967,3024,4032,Lucia Fernandez,2026-07-27T06:18:23.895Z,Sofia Marchetti,2026-07-28T07:18:23.895Z,good
+CF-2026-10776,images/CF-2026-10776.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Ravi Deshmukh,2026-08-18T05:15:54.150Z,Mei Ling Chen,2026-08-19T21:15:54.150Z,normal
+CF-2026-10778,images/CF-2026-10778.jpg,good,val,Soybean,JS-335,2048,1536,Fatima Zahra,2026-08-12T01:38:47.582Z,Rafael Duarte,2026-08-13T21:38:47.582Z,bad
+CF-2026-10779,images/CF-2026-10779.jpg,good,test,Mustard,Pusa Bold,3024,4032,Diego Morales,2026-07-09T20:38:39.150Z,Mei Ling Chen,2026-07-12T06:38:39.150Z,normal
+CF-2026-10781,images/CF-2026-10781.jpg,good,train,Barley,DWRB-123,2560,1440,Lucia Fernandez,2026-08-05T06:00:05.131Z,Rafael Duarte,2026-08-08T02:00:05.131Z,good
+CF-2026-10782,images/CF-2026-10782.jpg,good,train,Green Gram,IPM-02-3,2560,1440,Takahiro Sato,2026-08-31T08:09:08.541Z,Priya Nair,2026-08-31T22:09:08.541Z,good
+CF-2026-10784,images/CF-2026-10784.jpg,good,train,Onion,Bhima Super,1920,1280,Lucia Fernandez,2026-08-14T17:16:29.459Z,Rafael Duarte,2026-08-17T01:16:29.459Z,bad
+CF-2026-10785,images/CF-2026-10785.jpg,normal,val,Brinjal,Pusa Purple Long,4000,3000,Ravi Deshmukh,2026-08-01T18:31:38.269Z,Mei Ling Chen,2026-08-04T15:31:38.269Z,good
+CF-2026-10786,images/CF-2026-10786.jpg,bad,test,Brinjal,Pusa Purple Long,1600,1200,Tomas Novak,2026-06-20T16:25:39.233Z,Sofia Marchetti,2026-06-21T06:25:39.233Z,bad
+CF-2026-10787,images/CF-2026-10787.jpg,good,train,Potato,Kufri Jyoti,1600,1200,Tomas Novak,2026-08-03T08:01:16.146Z,Priya Nair,2026-08-06T03:01:16.146Z,good
+CF-2026-10788,images/CF-2026-10788.jpg,bad,train,Soybean,JS-335,2048,1536,Yuki Tanaka,2026-07-15T20:28:53.424Z,Rafael Duarte,2026-07-18T09:28:53.424Z,good
+CF-2026-10789,images/CF-2026-10789.jpg,good,train,Green Gram,IPM-02-3,3024,4032,Amara Okafor,2026-08-28T23:49:52.307Z,Daniel Osei,2026-08-30T09:49:52.307Z,good
+CF-2026-10790,images/CF-2026-10790.jpg,normal,train,Maize,Pioneer 3396,1600,1200,Tomas Novak,2026-07-06T08:07:09.113Z,Sofia Marchetti,2026-07-09T06:07:09.113Z,bad
+CF-2026-10791,images/CF-2026-10791.jpg,good,train,Cabbage,Golden Acre,2048,1536,Nadia Kovac,2026-08-28T02:46:30.669Z,Daniel Osei,2026-08-29T17:46:30.669Z,good
+CF-2026-10792,images/CF-2026-10792.jpg,normal,val,Green Gram,IPM-02-3,4000,3000,Anika Sharma,2026-06-20T01:24:21.477Z,Rafael Duarte,2026-06-22T21:24:21.477Z,good
+CF-2026-10793,images/CF-2026-10793.jpg,good,test,Potato,Kufri Jyoti,1920,1280,Takahiro Sato,2026-08-21T10:29:06.506Z,Priya Nair,2026-08-22T05:29:06.506Z,good
+CF-2026-10794,images/CF-2026-10794.jpg,good,train,Rice,IR-64,3024,4032,Sanjay Patel,2026-08-02T23:31:57.094Z,Priya Nair,2026-08-04T00:31:57.094Z,normal
+CF-2026-10795,images/CF-2026-10795.jpg,good,train,Maize,Pioneer 3396,3024,4032,Yuki Tanaka,2026-08-02T10:49:23.288Z,Daniel Osei,2026-08-03T06:49:23.288Z,good
+CF-2026-10796,images/CF-2026-10796.jpg,good,train,Okra,Arka Anamika,2560,1440,Hugo Lindqvist,2026-08-17T09:04:18.812Z,Sofia Marchetti,2026-08-17T11:04:18.812Z,good
+CF-2026-10797,images/CF-2026-10797.jpg,good,train,Millet,HHB-67,2048,1536,Hugo Lindqvist,2026-07-16T04:19:29.361Z,Priya Nair,2026-07-17T09:19:29.361Z,good
+CF-2026-10798,images/CF-2026-10798.jpg,good,train,Cucumber,Poinsette,3024,4032,Sanjay Patel,2026-08-09T16:36:15.535Z,Mei Ling Chen,2026-08-11T18:36:15.535Z,good
+CF-2026-10799,images/CF-2026-10799.jpg,good,val,Cauliflower,Pusa Snowball,1920,1280,Ibrahim Al-Sayed,2026-06-17T01:01:55.148Z,Priya Nair,2026-06-18T06:01:55.148Z,good
+CF-2026-10800,images/CF-2026-10800.jpg,good,test,Wheat,HD-2967,1920,1280,Takahiro Sato,2026-08-29T08:39:07.214Z,Sofia Marchetti,2026-08-29T15:39:07.214Z,normal
+CF-2026-10801,images/CF-2026-10801.jpg,good,train,Wheat,HD-2967,2560,1440,Ana Beatriz Souza,2026-07-10T16:56:46.692Z,Daniel Osei,2026-07-11T23:56:46.692Z,good
+CF-2026-10802,images/CF-2026-10802.jpg,good,train,Mustard,Pusa Bold,3024,4032,Zara Hussain,2026-07-03T18:27:45.253Z,Daniel Osei,2026-07-06T06:27:45.253Z,good
+CF-2026-10803,images/CF-2026-10803.jpg,good,train,Watermelon,Sugar Baby,4000,3000,Ravi Deshmukh,2026-07-26T08:00:05.644Z,Mei Ling Chen,2026-07-27T14:00:05.644Z,normal
+CF-2026-10804,images/CF-2026-10804.jpg,bad,train,Cucumber,Poinsette,4000,3000,Hugo Lindqvist,2026-07-17T03:33:20.515Z,Sofia Marchetti,2026-07-19T18:33:20.515Z,good
+CF-2026-10805,images/CF-2026-10805.jpg,good,train,Watermelon,Sugar Baby,1920,1280,Grace Wanjiru,2026-07-21T02:32:33.720Z,Daniel Osei,2026-07-23T00:32:33.720Z,good
+CF-2026-10806,images/CF-2026-10806.jpg,normal,val,Black Gram,T-9,2048,1536,Ana Beatriz Souza,2026-07-13T23:12:41.263Z,Daniel Osei,2026-07-15T07:12:41.263Z,good
+CF-2026-10807,images/CF-2026-10807.jpg,bad,test,Sorghum,CSH-16,2560,1440,Ravi Deshmukh,2026-07-24T09:02:24.476Z,Rafael Duarte,2026-07-25T10:02:24.476Z,bad
+CF-2026-10808,images/CF-2026-10808.jpg,good,train,Watermelon,Sugar Baby,2560,1440,Zara Hussain,2026-07-09T21:53:01.433Z,Rafael Duarte,2026-07-11T03:53:01.433Z,good
+CF-2026-10809,images/CF-2026-10809.jpg,good,train,Mustard,Pusa Bold,4000,3000,Kwame Mensah,2026-08-22T02:22:33.286Z,Sofia Marchetti,2026-08-24T15:22:33.286Z,good
+CF-2026-10810,images/CF-2026-10810.jpg,good,train,Cabbage,Golden Acre,3024,4032,Tomas Novak,2026-08-06T16:49:37.204Z,Sofia Marchetti,2026-08-07T12:49:37.204Z,normal
+CF-2026-10811,images/CF-2026-10811.jpg,normal,train,Maize,Pioneer 3396,2048,1536,Kwame Mensah,2026-08-24T23:40:46.189Z,Sofia Marchetti,2026-08-26T16:40:46.189Z,normal
+CF-2026-10813,images/CF-2026-10813.jpg,good,val,Cauliflower,Pusa Snowball,3024,4032,Diego Morales,2026-08-14T17:41:59.965Z,Daniel Osei,2026-08-16T08:41:59.965Z,good
+CF-2026-10814,images/CF-2026-10814.jpg,good,test,Groundnut,TAG-24,3024,4032,Tomas Novak,2026-08-25T05:49:03.159Z,Mei Ling Chen,2026-08-28T02:49:03.159Z,good
+CF-2026-10815,images/CF-2026-10815.jpg,good,train,Sunflower,KBSH-44,2048,1536,Oliver Bennett,2026-08-05T21:19:37.731Z,Daniel Osei,2026-08-08T04:19:37.731Z,good
+CF-2026-10816,images/CF-2026-10816.jpg,good,train,Wheat,HD-2967,1920,1280,Zara Hussain,2026-06-28T07:05:59.987Z,Sofia Marchetti,2026-06-30T04:05:59.987Z,good
+CF-2026-10817,images/CF-2026-10817.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2560,1440,Takahiro Sato,2026-08-09T21:09:17.927Z,Rafael Duarte,2026-08-09T23:09:17.927Z,bad
+CF-2026-10819,images/CF-2026-10819.jpg,good,train,Chilli,LCA-334,4000,3000,Tomas Novak,2026-08-10T22:51:04.578Z,Sofia Marchetti,2026-08-11T06:51:04.578Z,good
+CF-2026-10820,images/CF-2026-10820.jpg,normal,val,Sesame,GT-10,2560,1440,Zara Hussain,2026-08-07T12:33:04.195Z,Mei Ling Chen,2026-08-08T00:33:04.195Z,good
+CF-2026-10821,images/CF-2026-10821.jpg,good,test,Sesame,GT-10,4000,3000,Yuki Tanaka,2026-08-13T02:55:57.355Z,Priya Nair,2026-08-15T21:55:57.355Z,good
+CF-2026-10822,images/CF-2026-10822.jpg,good,train,Sorghum,CSH-16,2048,1536,Amara Okafor,2026-06-07T00:31:15.790Z,Rafael Duarte,2026-06-07T23:31:15.790Z,good
+CF-2026-10823,images/CF-2026-10823.jpg,good,train,Chilli,LCA-334,3024,4032,Nadia Kovac,2026-06-27T22:35:34.931Z,Sofia Marchetti,2026-06-29T00:35:34.931Z,good
+CF-2026-10824,images/CF-2026-10824.jpg,good,train,Millet,HHB-67,2048,1536,Ravi Deshmukh,2026-06-18T02:34:58.181Z,Rafael Duarte,2026-06-19T00:34:58.181Z,good
+CF-2026-10825,images/CF-2026-10825.jpg,good,train,Wheat,HD-2967,1600,1200,Lucia Fernandez,2026-07-06T15:06:15.642Z,Rafael Duarte,2026-07-07T11:06:15.642Z,good
+CF-2026-10826,images/CF-2026-10826.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2560,1440,Nadia Kovac,2026-07-05T21:23:06.019Z,Mei Ling Chen,2026-07-06T10:23:06.019Z,good
+CF-2026-10827,images/CF-2026-10827.jpg,good,val,Sunflower,KBSH-44,2560,1440,Ana Beatriz Souza,2026-06-09T01:42:43.293Z,Priya Nair,2026-06-11T08:42:43.293Z,good
+CF-2026-10828,images/CF-2026-10828.jpg,normal,test,Peas,Arkel,3024,4032,Ana Beatriz Souza,2026-08-09T08:37:22.298Z,Mei Ling Chen,2026-08-11T15:37:22.298Z,good
+CF-2026-10829,images/CF-2026-10829.jpg,good,train,Okra,Arka Anamika,2048,1536,Ibrahim Al-Sayed,2026-06-10T13:35:26.757Z,Daniel Osei,2026-06-13T09:35:26.757Z,good
+CF-2026-10830,images/CF-2026-10830.jpg,good,train,Sorghum,CSH-16,1920,1280,Hugo Lindqvist,2026-06-26T20:05:40.236Z,Rafael Duarte,2026-06-29T03:05:40.236Z,good
+CF-2026-10831,images/CF-2026-10831.jpg,good,train,Sugarcane,Co-0238,2048,1536,Kwame Mensah,2026-07-21T01:51:24.140Z,Daniel Osei,2026-07-21T08:51:24.140Z,normal
+CF-2026-10832,images/CF-2026-10832.jpg,good,train,Millet,HHB-67,1600,1200,Takahiro Sato,2026-08-15T12:17:03.584Z,Mei Ling Chen,2026-08-15T19:17:03.584Z,good
+CF-2026-10833,images/CF-2026-10833.jpg,good,train,Mustard,Pusa Bold,2560,1440,Nadia Kovac,2026-07-29T11:22:35.108Z,Sofia Marchetti,2026-07-30T08:22:35.108Z,normal
+CF-2026-10834,images/CF-2026-10834.jpg,good,val,Sugarcane,Co-0238,2560,1440,Takahiro Sato,2026-07-30T22:23:52.465Z,Priya Nair,2026-08-01T09:23:52.465Z,good
+CF-2026-10835,images/CF-2026-10835.jpg,good,test,Barley,DWRB-123,1920,1280,Elena Rostova,2026-07-15T06:21:06.418Z,Rafael Duarte,2026-07-17T19:21:06.418Z,good
+CF-2026-10836,images/CF-2026-10836.jpg,good,train,Wheat,HD-2967,1600,1200,Yuki Tanaka,2026-06-07T14:41:27.961Z,Sofia Marchetti,2026-06-10T05:41:27.961Z,normal
+CF-2026-10837,images/CF-2026-10837.jpg,good,train,Black Gram,T-9,2560,1440,Elena Rostova,2026-07-16T13:01:24.859Z,Daniel Osei,2026-07-17T04:01:24.859Z,good
+CF-2026-10838,images/CF-2026-10838.jpg,bad,train,Potato,Kufri Jyoti,1920,1280,Ravi Deshmukh,2026-06-24T11:41:55.933Z,Daniel Osei,2026-06-25T08:41:55.933Z,good
+CF-2026-10839,images/CF-2026-10839.jpg,good,train,Sesame,GT-10,4000,3000,Grace Wanjiru,2026-08-30T15:34:53.519Z,Sofia Marchetti,2026-08-31T20:34:53.519Z,good
+CF-2026-10840,images/CF-2026-10840.jpg,good,train,Chilli,LCA-334,2048,1536,Amara Okafor,2026-08-16T14:09:30.876Z,Sofia Marchetti,2026-08-19T07:09:30.876Z,bad
+CF-2026-10841,images/CF-2026-10841.jpg,good,val,Potato,Kufri Jyoti,2560,1440,Amara Okafor,2026-07-19T16:05:09.601Z,Daniel Osei,2026-07-19T20:05:09.601Z,good
+CF-2026-10844,images/CF-2026-10844.jpg,normal,train,Cucumber,Poinsette,1600,1200,Yuki Tanaka,2026-07-13T01:42:55.619Z,Daniel Osei,2026-07-13T20:42:55.619Z,good
+CF-2026-10845,images/CF-2026-10845.jpg,good,train,Chilli,LCA-334,4000,3000,Amara Okafor,2026-07-16T14:48:18.403Z,Daniel Osei,2026-07-19T08:48:18.403Z,good
+CF-2026-10846,images/CF-2026-10846.jpg,good,train,Pigeon Pea,BSMR-736,3024,4032,Zara Hussain,2026-08-08T20:26:54.487Z,Sofia Marchetti,2026-08-10T20:26:54.487Z,bad
+CF-2026-10847,images/CF-2026-10847.jpg,good,train,Soybean,JS-335,2048,1536,Takahiro Sato,2026-08-28T02:22:05.513Z,Rafael Duarte,2026-08-30T04:22:05.513Z,good
+CF-2026-10848,images/CF-2026-10848.jpg,normal,val,Onion,Bhima Super,1920,1280,Kwame Mensah,2026-08-31T00:08:48.830Z,Priya Nair,2026-09-02T00:08:48.830Z,good
+CF-2026-10849,images/CF-2026-10849.jpg,good,test,Chilli,LCA-334,3024,4032,Fatima Zahra,2026-07-01T14:28:11.294Z,Priya Nair,2026-07-03T07:28:11.294Z,good
+CF-2026-10850,images/CF-2026-10850.jpg,good,train,Cabbage,Golden Acre,1920,1280,Yuki Tanaka,2026-07-09T16:47:04.650Z,Mei Ling Chen,2026-07-10T06:47:04.650Z,good
+CF-2026-10851,images/CF-2026-10851.jpg,good,train,Chilli,LCA-334,2048,1536,Takahiro Sato,2026-06-29T19:35:12.922Z,Rafael Duarte,2026-07-01T18:35:12.922Z,good
+CF-2026-10852,images/CF-2026-10852.jpg,good,train,Lentil,IPL-316,2560,1440,Oliver Bennett,2026-06-24T08:14:42.193Z,Mei Ling Chen,2026-06-25T13:14:42.193Z,good
+CF-2026-10853,images/CF-2026-10853.jpg,good,train,Chickpea,JG-11,2048,1536,Lucia Fernandez,2026-06-28T20:23:18.911Z,Daniel Osei,2026-06-30T10:23:18.911Z,good
+CF-2026-10854,images/CF-2026-10854.jpg,good,train,Wheat,HD-2967,1600,1200,Elena Rostova,2026-06-16T10:16:39.760Z,Priya Nair,2026-06-18T11:16:39.760Z,good
+CF-2026-10855,images/CF-2026-10855.jpg,bad,val,Bitter Gourd,Pusa Do Mausami,2560,1440,Anika Sharma,2026-07-08T14:35:34.418Z,Sofia Marchetti,2026-07-10T00:35:34.418Z,good
+CF-2026-10856,images/CF-2026-10856.jpg,good,test,Cabbage,Golden Acre,1600,1200,Amara Okafor,2026-07-10T21:11:01.636Z,Rafael Duarte,2026-07-11T06:11:01.636Z,good
+CF-2026-10857,images/CF-2026-10857.jpg,good,train,Wheat,HD-2967,1600,1200,Grace Wanjiru,2026-07-07T05:26:54.601Z,Mei Ling Chen,2026-07-08T10:26:54.601Z,good
+CF-2026-10859,images/CF-2026-10859.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Ana Beatriz Souza,2026-06-13T05:08:54.066Z,Daniel Osei,2026-06-13T17:08:54.066Z,good
+CF-2026-10860,images/CF-2026-10860.jpg,good,train,Barley,DWRB-123,1920,1280,Tomas Novak,2026-07-19T16:32:59.995Z,Rafael Duarte,2026-07-22T08:32:59.995Z,good
+CF-2026-10861,images/CF-2026-10861.jpg,bad,train,Peas,Arkel,1920,1280,Ibrahim Al-Sayed,2026-06-28T01:10:55.491Z,Mei Ling Chen,2026-06-28T08:10:55.491Z,good
+CF-2026-10862,images/CF-2026-10862.jpg,good,val,Maize,Pioneer 3396,3024,4032,Kwame Mensah,2026-07-10T21:39:54.272Z,Sofia Marchetti,2026-07-12T09:39:54.272Z,good
+CF-2026-10863,images/CF-2026-10863.jpg,good,test,Pigeon Pea,BSMR-736,1920,1280,Sanjay Patel,2026-06-07T06:28:24.611Z,Mei Ling Chen,2026-06-09T09:28:24.611Z,normal
+CF-2026-10864,images/CF-2026-10864.jpg,good,train,Bitter Gourd,Pusa Do Mausami,4000,3000,Elena Rostova,2026-08-13T17:20:09.957Z,Mei Ling Chen,2026-08-15T07:20:09.957Z,normal
+CF-2026-10865,images/CF-2026-10865.jpg,normal,train,Maize,Pioneer 3396,1920,1280,Fatima Zahra,2026-06-25T21:34:58.755Z,Sofia Marchetti,2026-06-28T12:34:58.755Z,good
+CF-2026-10866,images/CF-2026-10866.jpg,normal,train,Chickpea,JG-11,2048,1536,Kwame Mensah,2026-06-30T11:25:42.144Z,Mei Ling Chen,2026-07-02T23:25:42.144Z,good
+CF-2026-10867,images/CF-2026-10867.jpg,good,train,Groundnut,TAG-24,1600,1200,Takahiro Sato,2026-08-03T18:15:30.232Z,Mei Ling Chen,2026-08-05T20:15:30.232Z,good
+CF-2026-10868,images/CF-2026-10868.jpg,good,train,Onion,Bhima Super,4000,3000,Ibrahim Al-Sayed,2026-07-05T06:34:18.161Z,Daniel Osei,2026-07-06T15:34:18.161Z,normal
+CF-2026-10869,images/CF-2026-10869.jpg,good,val,Brinjal,Pusa Purple Long,1920,1280,Amara Okafor,2026-07-09T01:49:32.855Z,Daniel Osei,2026-07-09T19:49:32.855Z,good
+CF-2026-10870,images/CF-2026-10870.jpg,good,test,Sorghum,CSH-16,1920,1280,Takahiro Sato,2026-07-14T10:43:13.042Z,Sofia Marchetti,2026-07-16T04:43:13.042Z,good
+CF-2026-10871,images/CF-2026-10871.jpg,good,train,Cucumber,Poinsette,2560,1440,Yuki Tanaka,2026-07-20T08:53:05.210Z,Priya Nair,2026-07-21T12:53:05.210Z,good
+CF-2026-10872,images/CF-2026-10872.jpg,good,train,Peas,Arkel,2048,1536,Grace Wanjiru,2026-07-08T23:22:51.441Z,Priya Nair,2026-07-10T21:22:51.441Z,good
+CF-2026-10873,images/CF-2026-10873.jpg,good,train,Millet,HHB-67,1920,1280,Sanjay Patel,2026-08-09T14:39:40.949Z,Sofia Marchetti,2026-08-12T09:39:40.949Z,good
+CF-2026-10874,images/CF-2026-10874.jpg,good,train,Mustard,Pusa Bold,1920,1280,Nadia Kovac,2026-06-13T19:17:54.720Z,Daniel Osei,2026-06-16T01:17:54.720Z,normal
+CF-2026-10875,images/CF-2026-10875.jpg,bad,train,Bitter Gourd,Pusa Do Mausami,1920,1280,Hugo Lindqvist,2026-07-28T07:43:24.094Z,Daniel Osei,2026-07-30T01:43:24.094Z,good
+CF-2026-10876,images/CF-2026-10876.jpg,good,val,Pigeon Pea,BSMR-736,2048,1536,Takahiro Sato,2026-07-21T06:01:49.087Z,Rafael Duarte,2026-07-22T05:01:49.087Z,good
+CF-2026-10877,images/CF-2026-10877.jpg,good,test,Groundnut,TAG-24,1600,1200,Anika Sharma,2026-06-06T01:35:34.558Z,Sofia Marchetti,2026-06-07T21:35:34.558Z,good
+CF-2026-10878,images/CF-2026-10878.jpg,normal,train,Black Gram,T-9,3024,4032,Marcus Aurelius,2026-07-16T10:47:28.950Z,Daniel Osei,2026-07-19T02:47:28.950Z,good
+CF-2026-10879,images/CF-2026-10879.jpg,good,train,Chilli,LCA-334,1600,1200,Kwame Mensah,2026-07-28T11:02:48.955Z,Rafael Duarte,2026-07-29T00:02:48.955Z,good
+CF-2026-10880,images/CF-2026-10880.jpg,normal,train,Sesame,GT-10,3024,4032,Kwame Mensah,2026-07-06T12:56:47.792Z,Sofia Marchetti,2026-07-06T20:56:47.792Z,good
+CF-2026-10881,images/CF-2026-10881.jpg,good,train,Pigeon Pea,BSMR-736,2048,1536,Ibrahim Al-Sayed,2026-08-27T09:32:04.700Z,Sofia Marchetti,2026-08-27T11:32:04.700Z,good
+CF-2026-10882,images/CF-2026-10882.jpg,good,train,Maize,Pioneer 3396,1920,1280,Fatima Zahra,2026-08-30T10:07:21.747Z,Daniel Osei,2026-08-30T20:07:21.747Z,good
+CF-2026-10883,images/CF-2026-10883.jpg,good,val,Maize,Pioneer 3396,1600,1200,Yuki Tanaka,2026-08-09T14:44:18.926Z,Priya Nair,2026-08-11T01:44:18.926Z,normal
+CF-2026-10884,images/CF-2026-10884.jpg,good,test,Bitter Gourd,Pusa Do Mausami,1920,1280,Ravi Deshmukh,2026-06-20T13:41:11.151Z,Priya Nair,2026-06-22T22:41:11.151Z,normal
+CF-2026-10885,images/CF-2026-10885.jpg,good,train,Mustard,Pusa Bold,1600,1200,Takahiro Sato,2026-06-29T12:17:36.443Z,Daniel Osei,2026-06-30T09:17:36.443Z,bad
+CF-2026-10886,images/CF-2026-10886.jpg,good,train,Sugarcane,Co-0238,1600,1200,Amara Okafor,2026-08-02T23:10:42.619Z,Priya Nair,2026-08-03T09:10:42.619Z,good
+CF-2026-10887,images/CF-2026-10887.jpg,good,train,Sesame,GT-10,4000,3000,Elena Rostova,2026-06-07T10:34:25.886Z,Mei Ling Chen,2026-06-09T07:34:25.886Z,good
+CF-2026-10888,images/CF-2026-10888.jpg,good,train,Wheat,HD-2967,1920,1280,Oliver Bennett,2026-06-30T17:37:35.845Z,Priya Nair,2026-07-01T09:37:35.845Z,normal
+CF-2026-10889,images/CF-2026-10889.jpg,good,train,Cabbage,Golden Acre,3024,4032,Grace Wanjiru,2026-06-29T05:23:23.589Z,Sofia Marchetti,2026-06-29T21:23:23.589Z,good
+CF-2026-10890,images/CF-2026-10890.jpg,good,val,Mustard,Pusa Bold,2048,1536,Tomas Novak,2026-06-26T13:31:09.164Z,Daniel Osei,2026-06-27T13:31:09.164Z,good
+CF-2026-10891,images/CF-2026-10891.jpg,good,test,Wheat,HD-2967,1600,1200,Hugo Lindqvist,2026-06-28T09:16:46.731Z,Rafael Duarte,2026-06-29T06:16:46.731Z,good
+CF-2026-10892,images/CF-2026-10892.jpg,good,train,Sunflower,KBSH-44,2560,1440,Tomas Novak,2026-07-11T08:37:52.697Z,Priya Nair,2026-07-13T02:37:52.697Z,normal
+CF-2026-10893,images/CF-2026-10893.jpg,good,train,Millet,HHB-67,4000,3000,Zara Hussain,2026-07-04T16:30:50.264Z,Sofia Marchetti,2026-07-05T05:30:50.264Z,bad
+CF-2026-10894,images/CF-2026-10894.jpg,good,train,Onion,Bhima Super,1920,1280,Oliver Bennett,2026-06-20T08:54:09.351Z,Priya Nair,2026-06-21T16:54:09.351Z,bad
+CF-2026-10895,images/CF-2026-10895.jpg,good,train,Watermelon,Sugar Baby,1920,1280,Sanjay Patel,2026-06-09T16:32:55.694Z,Rafael Duarte,2026-06-12T10:32:55.694Z,good
+CF-2026-10896,images/CF-2026-10896.jpg,good,train,Rice,IR-64,1920,1280,Oliver Bennett,2026-06-15T11:57:50.720Z,Rafael Duarte,2026-06-15T19:57:50.720Z,good
+CF-2026-10897,images/CF-2026-10897.jpg,good,val,Brinjal,Pusa Purple Long,2048,1536,Takahiro Sato,2026-06-29T17:03:35.853Z,Sofia Marchetti,2026-06-29T19:03:35.853Z,good
+CF-2026-10898,images/CF-2026-10898.jpg,good,test,Barley,DWRB-123,2048,1536,Grace Wanjiru,2026-07-20T14:22:32.503Z,Rafael Duarte,2026-07-22T02:22:32.503Z,good
+CF-2026-10899,images/CF-2026-10899.jpg,good,train,Bitter Gourd,Pusa Do Mausami,2048,1536,Zara Hussain,2026-06-09T05:33:20.332Z,Rafael Duarte,2026-06-11T02:33:20.332Z,good
+CF-2026-10900,images/CF-2026-10900.jpg,good,train,Cabbage,Golden Acre,3024,4032,Ravi Deshmukh,2026-07-01T12:28:31.609Z,Sofia Marchetti,2026-07-02T16:28:31.609Z,good
+CF-2026-10901,images/CF-2026-10901.jpg,good,train,Barley,DWRB-123,1600,1200,Yuki Tanaka,2026-07-29T15:44:07.837Z,Sofia Marchetti,2026-07-31T23:44:07.837Z,good
+CF-2026-10902,images/CF-2026-10902.jpg,good,train,Sesame,GT-10,1600,1200,Fatima Zahra,2026-08-20T23:55:14.465Z,Priya Nair,2026-08-21T05:55:14.465Z,normal
+CF-2026-10903,images/CF-2026-10903.jpg,good,train,Millet,HHB-67,4000,3000,Grace Wanjiru,2026-06-30T06:14:31.729Z,Mei Ling Chen,2026-07-01T04:14:31.729Z,normal
+CF-2026-10904,images/CF-2026-10904.jpg,good,val,Mustard,Pusa Bold,4000,3000,Yuki Tanaka,2026-08-09T23:35:12.234Z,Daniel Osei,2026-08-11T01:35:12.234Z,good
+CF-2026-10905,images/CF-2026-10905.jpg,good,test,Millet,HHB-67,3024,4032,Amara Okafor,2026-06-22T09:24:26.109Z,Sofia Marchetti,2026-06-24T11:24:26.109Z,good
+CF-2026-10906,images/CF-2026-10906.jpg,bad,train,Mustard,Pusa Bold,1600,1200,Kwame Mensah,2026-06-26T12:52:08.414Z,Mei Ling Chen,2026-06-28T20:52:08.414Z,good
+CF-2026-10907,images/CF-2026-10907.jpg,good,train,Soybean,JS-335,2048,1536,Ana Beatriz Souza,2026-08-23T17:43:49.473Z,Sofia Marchetti,2026-08-24T07:43:49.473Z,good
+CF-2026-10908,images/CF-2026-10908.jpg,good,train,Peas,Arkel,2048,1536,Oliver Bennett,2026-08-30T17:32:07.462Z,Daniel Osei,2026-08-31T10:32:07.462Z,good
+CF-2026-10910,images/CF-2026-10910.jpg,good,train,Pigeon Pea,BSMR-736,1600,1200,Tomas Novak,2026-08-02T11:48:05.969Z,Sofia Marchetti,2026-08-03T23:48:05.969Z,good
+CF-2026-10911,images/CF-2026-10911.jpg,good,val,Onion,Bhima Super,2048,1536,Anika Sharma,2026-07-26T02:09:01.162Z,Priya Nair,2026-07-28T23:09:01.162Z,good
+CF-2026-10912,images/CF-2026-10912.jpg,normal,test,Sesame,GT-10,2560,1440,Hugo Lindqvist,2026-08-04T09:55:25.257Z,Mei Ling Chen,2026-08-04T11:55:25.257Z,normal
+CF-2026-10913,images/CF-2026-10913.jpg,good,train,Chilli,LCA-334,1920,1280,Tomas Novak,2026-08-02T22:27:49.199Z,Rafael Duarte,2026-08-03T21:27:49.199Z,good
+CF-2026-10914,images/CF-2026-10914.jpg,good,train,Sorghum,CSH-16,4000,3000,Fatima Zahra,2026-06-07T06:57:26.121Z,Priya Nair,2026-06-07T10:57:26.121Z,good
+CF-2026-10915,images/CF-2026-10915.jpg,good,train,Rice,IR-64,4000,3000,Lucia Fernandez,2026-07-23T16:07:02.613Z,Daniel Osei,2026-07-24T01:07:02.613Z,good
+CF-2026-10916,images/CF-2026-10916.jpg,good,train,Soybean,JS-335,1920,1280,Ravi Deshmukh,2026-08-13T05:22:04.784Z,Rafael Duarte,2026-08-13T22:22:04.784Z,good
+CF-2026-10917,images/CF-2026-10917.jpg,good,train,Pigeon Pea,BSMR-736,2048,1536,Ibrahim Al-Sayed,2026-07-31T04:46:39.853Z,Priya Nair,2026-07-31T14:46:39.853Z,good
+CF-2026-10918,images/CF-2026-10918.jpg,good,val,Rice,IR-64,3024,4032,Ibrahim Al-Sayed,2026-07-30T04:13:36.959Z,Sofia Marchetti,2026-07-31T20:13:36.959Z,good
+CF-2026-10919,images/CF-2026-10919.jpg,good,test,Cabbage,Golden Acre,2048,1536,Diego Morales,2026-08-22T02:38:43.182Z,Sofia Marchetti,2026-08-23T17:38:43.182Z,good
+CF-2026-10920,images/CF-2026-10920.jpg,good,train,Cucumber,Poinsette,3024,4032,Amara Okafor,2026-08-21T23:01:42.132Z,Rafael Duarte,2026-08-24T20:01:42.132Z,good
+CF-2026-10921,images/CF-2026-10921.jpg,good,train,Onion,Bhima Super,1920,1280,Anika Sharma,2026-08-28T15:02:49.758Z,Mei Ling Chen,2026-08-30T04:02:49.758Z,bad
+CF-2026-10922,images/CF-2026-10922.jpg,normal,train,Barley,DWRB-123,1600,1200,Takahiro Sato,2026-08-18T17:16:01.636Z,Priya Nair,2026-08-20T16:16:01.636Z,good
+CF-2026-10924,images/CF-2026-10924.jpg,good,train,Chickpea,JG-11,2560,1440,Anika Sharma,2026-07-24T21:56:57.950Z,Priya Nair,2026-07-27T19:56:57.950Z,good
+CF-2026-10925,images/CF-2026-10925.jpg,good,val,Chickpea,JG-11,4000,3000,Elena Rostova,2026-07-27T18:57:24.269Z,Rafael Duarte,2026-07-29T15:57:24.269Z,good
+CF-2026-10926,images/CF-2026-10926.jpg,normal,test,Chickpea,JG-11,2560,1440,Takahiro Sato,2026-08-20T03:24:03.407Z,Rafael Duarte,2026-08-22T19:24:03.407Z,good
+CF-2026-10927,images/CF-2026-10927.jpg,good,train,Sesame,GT-10,2048,1536,Yuki Tanaka,2026-07-04T06:35:39.888Z,Priya Nair,2026-07-06T07:35:39.888Z,good
+CF-2026-10928,images/CF-2026-10928.jpg,good,train,Soybean,JS-335,1920,1280,Lucia Fernandez,2026-08-16T00:41:40.519Z,Priya Nair,2026-08-18T04:41:40.519Z,normal
+CF-2026-10929,images/CF-2026-10929.jpg,good,train,Brinjal,Pusa Purple Long,4000,3000,Ravi Deshmukh,2026-06-29T17:17:27.186Z,Mei Ling Chen,2026-07-01T16:17:27.186Z,good
+CF-2026-10930,images/CF-2026-10930.jpg,good,train,Mustard,Pusa Bold,1600,1200,Lucia Fernandez,2026-06-25T19:27:42.384Z,Daniel Osei,2026-06-28T15:27:42.384Z,good
+CF-2026-10931,images/CF-2026-10931.jpg,good,train,Sorghum,CSH-16,1600,1200,Yuki Tanaka,2026-06-27T19:09:51.406Z,Priya Nair,2026-06-28T11:09:51.406Z,bad
+CF-2026-10933,images/CF-2026-10933.jpg,good,test,Rice,IR-64,4000,3000,Anika Sharma,2026-08-17T15:30:31.858Z,Priya Nair,2026-08-18T01:30:31.858Z,normal
+CF-2026-10934,images/CF-2026-10934.jpg,good,train,Maize,Pioneer 3396,2560,1440,Ibrahim Al-Sayed,2026-08-27T10:39:05.074Z,Mei Ling Chen,2026-08-29T22:39:05.074Z,good
+CF-2026-10935,images/CF-2026-10935.jpg,normal,train,Onion,Bhima Super,2048,1536,Kwame Mensah,2026-07-01T04:19:51.299Z,Priya Nair,2026-07-03T08:19:51.299Z,good
+CF-2026-10936,images/CF-2026-10936.jpg,good,train,Rice,IR-64,1920,1280,Ana Beatriz Souza,2026-08-18T04:12:16.421Z,Mei Ling Chen,2026-08-20T22:12:16.421Z,good
+CF-2026-10937,images/CF-2026-10937.jpg,good,train,Cucumber,Poinsette,2048,1536,Ana Beatriz Souza,2026-06-07T12:57:51.780Z,Daniel Osei,2026-06-08T19:57:51.780Z,good
+CF-2026-10938,images/CF-2026-10938.jpg,bad,train,Cabbage,Golden Acre,3024,4032,Yuki Tanaka,2026-07-01T13:31:53.226Z,Sofia Marchetti,2026-07-01T17:31:53.226Z,good
+CF-2026-10939,images/CF-2026-10939.jpg,normal,val,Chilli,LCA-334,4000,3000,Diego Morales,2026-08-16T14:07:04.908Z,Priya Nair,2026-08-16T20:07:04.908Z,bad
+CF-2026-10940,images/CF-2026-10940.jpg,good,test,Rice,IR-64,2560,1440,Tomas Novak,2026-08-15T20:54:01.091Z,Sofia Marchetti,2026-08-17T08:54:01.091Z,good
+CF-2026-10941,images/CF-2026-10941.jpg,good,train,Chilli,LCA-334,1600,1200,Fatima Zahra,2026-07-17T10:31:19.129Z,Priya Nair,2026-07-19T02:31:19.129Z,good
+CF-2026-10942,images/CF-2026-10942.jpg,good,train,Tomato,Arka Rakshak,2560,1440,Amara Okafor,2026-07-19T00:23:22.952Z,Daniel Osei,2026-07-19T12:23:22.952Z,good
+CF-2026-10943,images/CF-2026-10943.jpg,good,train,Groundnut,TAG-24,3024,4032,Marcus Aurelius,2026-08-13T12:57:13.742Z,Mei Ling Chen,2026-08-15T15:57:13.742Z,good
+CF-2026-10944,images/CF-2026-10944.jpg,good,train,Chilli,LCA-334,1600,1200,Ravi Deshmukh,2026-07-09T06:40:49.722Z,Mei Ling Chen,2026-07-11T13:40:49.722Z,good
+CF-2026-10945,images/CF-2026-10945.jpg,good,train,Okra,Arka Anamika,2048,1536,Lucia Fernandez,2026-08-20T12:19:44.572Z,Mei Ling Chen,2026-08-22T11:19:44.572Z,good
+CF-2026-10946,images/CF-2026-10946.jpg,good,val,Lentil,IPL-316,3024,4032,Tomas Novak,2026-07-01T04:28:31.401Z,Sofia Marchetti,2026-07-03T01:28:31.401Z,good
+CF-2026-10947,images/CF-2026-10947.jpg,good,test,Lentil,IPL-316,1600,1200,Anika Sharma,2026-08-16T06:00:11.679Z,Priya Nair,2026-08-17T04:00:11.679Z,normal
+CF-2026-10948,images/CF-2026-10948.jpg,good,train,Tomato,Arka Rakshak,3024,4032,Tomas Novak,2026-06-29T19:12:45.192Z,Mei Ling Chen,2026-07-01T18:12:45.192Z,bad
+CF-2026-10950,images/CF-2026-10950.jpg,good,train,Watermelon,Sugar Baby,4000,3000,Sanjay Patel,2026-08-01T03:03:42.641Z,Rafael Duarte,2026-08-03T09:03:42.641Z,good
+CF-2026-10951,images/CF-2026-10951.jpg,normal,train,Brinjal,Pusa Purple Long,1920,1280,Yuki Tanaka,2026-07-19T12:46:19.651Z,Mei Ling Chen,2026-07-21T16:46:19.651Z,good
+CF-2026-10952,images/CF-2026-10952.jpg,good,train,Sugarcane,Co-0238,1920,1280,Hugo Lindqvist,2026-07-16T01:39:08.714Z,Rafael Duarte,2026-07-16T16:39:08.714Z,good
+CF-2026-10953,images/CF-2026-10953.jpg,good,val,Chilli,LCA-334,1600,1200,Ana Beatriz Souza,2026-07-26T03:29:55.196Z,Mei Ling Chen,2026-07-28T09:29:55.196Z,good
+CF-2026-10955,images/CF-2026-10955.jpg,good,train,Brinjal,Pusa Purple Long,2560,1440,Grace Wanjiru,2026-07-23T12:25:13.033Z,Rafael Duarte,2026-07-25T20:25:13.033Z,good
+CF-2026-10956,images/CF-2026-10956.jpg,normal,train,Rice,IR-64,2560,1440,Yuki Tanaka,2026-06-20T16:32:09.825Z,Mei Ling Chen,2026-06-22T08:32:09.825Z,good
+CF-2026-10957,images/CF-2026-10957.jpg,good,train,Watermelon,Sugar Baby,1920,1280,Ravi Deshmukh,2026-08-06T18:01:56.245Z,Rafael Duarte,2026-08-09T00:01:56.245Z,good
+CF-2026-10958,images/CF-2026-10958.jpg,normal,train,Onion,Bhima Super,1600,1200,Elena Rostova,2026-08-11T12:46:54.947Z,Daniel Osei,2026-08-13T17:46:54.947Z,good
+CF-2026-10959,images/CF-2026-10959.jpg,normal,train,Pigeon Pea,BSMR-736,1600,1200,Elena Rostova,2026-06-25T00:13:12.013Z,Daniel Osei,2026-06-27T13:13:12.013Z,good
+CF-2026-10960,images/CF-2026-10960.jpg,good,val,Onion,Bhima Super,2048,1536,Nadia Kovac,2026-07-05T19:03:29.233Z,Mei Ling Chen,2026-07-06T01:03:29.233Z,good
+CF-2026-10961,images/CF-2026-10961.jpg,good,test,Green Gram,IPM-02-3,1920,1280,Ravi Deshmukh,2026-07-15T23:45:21.429Z,Priya Nair,2026-07-16T16:45:21.429Z,good
+CF-2026-10962,images/CF-2026-10962.jpg,good,train,Mustard,Pusa Bold,4000,3000,Fatima Zahra,2026-08-23T00:59:51.291Z,Rafael Duarte,2026-08-25T10:59:51.291Z,good
+CF-2026-10963,images/CF-2026-10963.jpg,good,train,Potato,Kufri Jyoti,1920,1280,Elena Rostova,2026-06-19T01:37:53.806Z,Rafael Duarte,2026-06-20T10:37:53.806Z,good
+CF-2026-10964,images/CF-2026-10964.jpg,good,train,Barley,DWRB-123,4000,3000,Zara Hussain,2026-06-20T19:42:07.085Z,Rafael Duarte,2026-06-23T16:42:07.085Z,good
+CF-2026-10965,images/CF-2026-10965.jpg,good,train,Soybean,JS-335,3024,4032,Kwame Mensah,2026-08-20T12:59:38.851Z,Daniel Osei,2026-08-21T05:59:38.851Z,good
+CF-2026-10966,images/CF-2026-10966.jpg,good,train,Bitter Gourd,Pusa Do Mausami,1920,1280,Anika Sharma,2026-08-22T11:53:22.205Z,Sofia Marchetti,2026-08-24T11:53:22.205Z,good
+CF-2026-10967,images/CF-2026-10967.jpg,good,val,Cabbage,Golden Acre,1600,1200,Takahiro Sato,2026-08-07T15:12:03.090Z,Daniel Osei,2026-08-07T17:12:03.090Z,good
+CF-2026-10968,images/CF-2026-10968.jpg,good,test,Soybean,JS-335,2048,1536,Kwame Mensah,2026-07-06T13:50:40.707Z,Daniel Osei,2026-07-07T10:50:40.707Z,good
+CF-2026-10969,images/CF-2026-10969.jpg,good,train,Cauliflower,Pusa Snowball,1600,1200,Sanjay Patel,2026-07-18T21:50:09.517Z,Rafael Duarte,2026-07-20T02:50:09.517Z,good
+CF-2026-10970,images/CF-2026-10970.jpg,good,train,Onion,Bhima Super,4000,3000,Ravi Deshmukh,2026-07-09T10:30:48.772Z,Sofia Marchetti,2026-07-10T06:30:48.772Z,good
+CF-2026-10971,images/CF-2026-10971.jpg,good,train,Cucumber,Poinsette,2560,1440,Oliver Bennett,2026-07-26T02:35:14.323Z,Priya Nair,2026-07-26T14:35:14.323Z,good
+CF-2026-10972,images/CF-2026-10972.jpg,good,train,Sesame,GT-10,2560,1440,Nadia Kovac,2026-07-08T08:09:06.874Z,Mei Ling Chen,2026-07-09T10:09:06.874Z,good
+CF-2026-10973,images/CF-2026-10973.jpg,normal,train,Onion,Bhima Super,1600,1200,Elena Rostova,2026-08-27T23:31:25.101Z,Daniel Osei,2026-08-30T18:31:25.101Z,good
+CF-2026-10974,images/CF-2026-10974.jpg,good,val,Maize,Pioneer 3396,2048,1536,Zara Hussain,2026-06-06T08:32:22.919Z,Priya Nair,2026-06-07T12:32:22.919Z,good
+CF-2026-10975,images/CF-2026-10975.jpg,normal,test,Cucumber,Poinsette,2560,1440,Fatima Zahra,2026-06-10T22:38:40.726Z,Priya Nair,2026-06-11T14:38:40.726Z,bad
+CF-2026-10976,images/CF-2026-10976.jpg,good,train,Maize,Pioneer 3396,2048,1536,Tomas Novak,2026-06-14T19:06:39.245Z,Mei Ling Chen,2026-06-16T18:06:39.245Z,good
+CF-2026-10977,images/CF-2026-10977.jpg,normal,train,Rice,IR-64,2048,1536,Lucia Fernandez,2026-06-25T02:21:24.118Z,Sofia Marchetti,2026-06-26T22:21:24.118Z,good
+CF-2026-10978,images/CF-2026-10978.jpg,good,train,Watermelon,Sugar Baby,1600,1200,Diego Morales,2026-06-14T11:47:04.003Z,Sofia Marchetti,2026-06-16T17:47:04.003Z,normal
+CF-2026-10979,images/CF-2026-10979.jpg,good,train,Wheat,HD-2967,2048,1536,Takahiro Sato,2026-07-05T13:04:39.077Z,Priya Nair,2026-07-06T23:04:39.077Z,good
+CF-2026-10980,images/CF-2026-10980.jpg,good,train,Chilli,LCA-334,1920,1280,Amara Okafor,2026-06-26T07:09:23.042Z,Mei Ling Chen,2026-06-29T00:09:23.042Z,good
+CF-2026-10981,images/CF-2026-10981.jpg,good,val,Tomato,Arka Rakshak,2560,1440,Grace Wanjiru,2026-07-10T21:00:17.403Z,Rafael Duarte,2026-07-12T22:00:17.403Z,good
+CF-2026-10982,images/CF-2026-10982.jpg,good,test,Potato,Kufri Jyoti,1600,1200,Elena Rostova,2026-06-30T09:30:24.827Z,Priya Nair,2026-07-01T10:30:24.827Z,good
+CF-2026-10983,images/CF-2026-10983.jpg,good,train,Cauliflower,Pusa Snowball,2560,1440,Takahiro Sato,2026-08-26T20:33:20.986Z,Rafael Duarte,2026-08-28T11:33:20.986Z,good
+CF-2026-10984,images/CF-2026-10984.jpg,good,train,Mustard,Pusa Bold,2048,1536,Sanjay Patel,2026-07-04T19:37:06.246Z,Mei Ling Chen,2026-07-06T23:37:06.246Z,good
+CF-2026-10985,images/CF-2026-10985.jpg,good,train,Soybean,JS-335,2560,1440,Sanjay Patel,2026-07-03T21:40:37.833Z,Daniel Osei,2026-07-05T16:40:37.833Z,bad

@@ -9,10 +9,10 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const { db, httpError, UPLOAD_DIR } = require('../db');
-const { requireSession } = require('../auth');
+const { requireImageSession } = require('../auth');
 
 const router = express.Router();
-router.use(requireSession);
+router.use(requireImageSession);
 
 const TYPES = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.webp': 'image/webp', '.gif': 'image/gif' };
 
@@ -25,7 +25,11 @@ router.get('/:id', (req, res, next) => {
   if (!fs.existsSync(file)) return next(httpError(404, 'No stored photo for that image.'));
 
   res.setHeader('Content-Type', TYPES[path.extname(file).toLowerCase()] || 'application/octet-stream');
-  res.setHeader('Cache-Control', 'private, max-age=86400');   // image bytes never change for an id
+  /* The bytes for an id never change, but a photo can be deleted — and
+     "removes photos for good" must not leave it in a viewer's cache for a
+     day. `no-cache` still lets the browser reuse the file, it just has to
+     revalidate first, and this route is cheap. */
+  res.setHeader('Cache-Control', 'private, no-cache');
   fs.createReadStream(file).pipe(res);
 });
 

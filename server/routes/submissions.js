@@ -13,7 +13,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const {
-  db, pagedQuery, httpError, bumpVariety,
+  db, pagedQuery, httpError, bumpVariety, writeTxn,
   SUBMISSION_SELECT, shapeSubmission, UPLOAD_DIR
 } = require('../db');
 const { requireSession, requireRole } = require('../auth');
@@ -28,15 +28,39 @@ function loadTrail(id) {
 }
 
 /* ---------------------------------------------------- queue
-   Oldest first, and never paginated: the labelling screen holds the whole
-   working set so one keypress can advance to the next image with no fetch. */
+   Oldest first, and not paginated: the labelling screen holds a working set
+   so one keypress can advance to the next image with no fetch.
+
+   It is capped, though. "Not paginated" and "send every pending row" are
+   different things — there are hundreds of thousands of pending images in
+   production, and serialising them all would take the server down. The cap
+   is a working set; `total` still reports the true figure. */
+const QUEUE_LIMIT = 500;
+
 router.get('/queue', (req, res) => {
   const w = ["s.status = 'pending_verification'"], p = {};
   if (req.query.seedTypeId) { w.push('v.seed_type_id = @st'); p.st = req.query.seedTypeId; }
   if (req.query.farmerId) { w.push('s.farmer_id = @fid'); p.fid = req.query.farmerId; }
   const where = ' WHERE ' + w.join(' AND ');
-  const rows = db.prepare(SUBMISSION_SELECT + where + ' ORDER BY s.uploaded_at ASC').all(p);
-  res.json({ rows: rows.map(shapeSubmission), total: rows.length, fetchedAt: Date.now() });
+
+  const total = db.prepare(`
+    SELECT COUNT(*) AS n FROM submissions s
+    JOIN varieties v ON v.id = s.variety_id` + where).get(p).n;
+
+  /* Deferred images sort by when they were deferred, everything else by when
+     it was uploaded — so "decide later" moves an image to the back without
+     touching its upload time. */
+  const rows = db.prepare(SUBMISSION_SELECT + where +
+    ' ORDER BY COALESCE(s.deferred_at, s.uploaded_at) ASC LIMIT @__limit')
+    .all({ ...p, __limit: QUEUE_LIMIT });
+
+  res.json({
+    rows: rows.map(shapeSubmission),
+    total,
+    returned: rows.length,
+    truncated: total > rows.length,
+    fetchedAt: Date.now()
+  });
 });
 
 /* ---------------------------------------------------- search */
@@ -95,32 +119,53 @@ router.post('/:id/review', requireRole('verifier', 'admin'), (req, res, next) =>
   const at = Date.now();
   const me = req.user;
 
-  db.transaction(() => {
+  /* The status check above is only a fast path — between it and the write,
+     another labeller could have claimed the same image. The UPDATE carries
+     the status in its WHERE clause and we act on the row count, so the
+     counters can never be moved twice for one decision. */
+  const applied = writeTxn(() => {
+    const claim = action === 'approve'
+      ? db.prepare(`UPDATE submissions SET status = 'approved', final_label = @label,
+                      verifier_id = @me, reviewed_at = @at, deferred_at = NULL
+                    WHERE id = @id AND status = 'pending_verification'`)
+        .run({ label, me: me.id, at, id: row.id })
+      : db.prepare(`UPDATE submissions SET status = 'rejected', reject_reason = @reason,
+                      verifier_id = @me, reviewed_at = @at, deferred_at = NULL
+                    WHERE id = @id AND status = 'pending_verification'`)
+        .run({ reason: 'Rejected during verification', me: me.id, at, id: row.id });
+
+    if (claim.changes === 0) return false;      // someone else got there first
+
     if (action === 'approve') {
-      db.prepare(`UPDATE submissions SET status = 'approved', final_label = ?, verifier_id = ?, reviewed_at = ?
-                  WHERE id = ?`).run(label, me.id, at, row.id);
       db.prepare(`INSERT INTO trail (submission_id, at, kind, title, note) VALUES (?, ?, 'approve', ?, ?)`)
         .run(row.id, at, 'Approved by ' + me.name, `Final label recorded as "${label}"`);
       bumpVariety(row.variety_id, { pending: -1, approved: 1, [label.toLowerCase()]: 1 });
     } else {
-      const reason = 'Rejected during verification';
-      db.prepare(`UPDATE submissions SET status = 'rejected', reject_reason = ?, verifier_id = ?, reviewed_at = ?
-                  WHERE id = ?`).run(reason, me.id, at, row.id);
       db.prepare(`INSERT INTO trail (submission_id, at, kind, title, note) VALUES (?, ?, 'reject', ?, ?)`)
-        .run(row.id, at, 'Rejected by ' + me.name, reason);
+        .run(row.id, at, 'Rejected by ' + me.name, 'Rejected during verification');
       bumpVariety(row.variety_id, { pending: -1, rejected: 1 });
     }
+    return true;
   })();
+
+  if (!applied) return next(httpError(409, 'This submission has already been reviewed.'));
 
   const fresh = db.prepare(SUBMISSION_SELECT + ' WHERE s.id = @id').get({ id: row.id });
   res.json({ ...shapeSubmission(fresh), trail: loadTrail(row.id) });
 });
 
-/* Leaves the item pending and drops it to the back of the queue. */
+/* Leaves the item pending and drops it to the back of the queue.
+   Stamps deferred_at rather than rewriting uploaded_at: the upload time is
+   provenance — it ships in the export manifest and drives the farmer's
+   activity chart — so deferring an image must not falsify when it was taken. */
 router.post('/:id/skip', requireRole('verifier', 'admin'), (req, res, next) => {
   const row = db.prepare('SELECT id, status FROM submissions WHERE id = ?').get(req.params.id);
   if (!row) return next(httpError(404, 'Submission not found.'));
-  db.prepare('UPDATE submissions SET uploaded_at = ? WHERE id = ?').run(Date.now(), row.id);
+  if (row.status !== 'pending_verification') {
+    return next(httpError(409, 'This submission has already been reviewed.'));
+  }
+  db.prepare('UPDATE submissions SET deferred_at = ? WHERE id = ? AND status = ?')
+    .run(Date.now(), row.id, 'pending_verification');
   const fresh = db.prepare(SUBMISSION_SELECT + ' WHERE s.id = @id').get({ id: row.id });
   res.json(shapeSubmission(fresh));
 });
@@ -129,7 +174,11 @@ router.post('/:id/skip', requireRole('verifier', 'admin'), (req, res, next) => {
    Removes photos for good: from the farmer's uploads, the queue and every
    export. Admins only. The stored file goes with the row. */
 router.delete('/', requireRole('admin'), (req, res, next) => {
-  const ids = Array.isArray(req.body.ids) ? req.body.ids : [];
+  const raw = Array.isArray(req.body.ids) ? req.body.ids : [];
+  /* De-duplicate and drop non-strings: the same id twice would decrement a
+     variety's counters twice for one photo. Capped so one request cannot
+     build a statement with a hundred thousand placeholders. */
+  const ids = [...new Set(raw.filter((x) => typeof x === 'string' && x))].slice(0, 500);
   if (!ids.length) return next(httpError(422, 'No photos selected.'));
 
   const placeholders = ids.map(() => '?').join(',');
@@ -137,7 +186,7 @@ router.delete('/', requireRole('admin'), (req, res, next) => {
                            FROM submissions WHERE id IN (${placeholders})`).all(...ids);
   if (!rows.length) return next(httpError(404, 'Those photos no longer exist.'));
 
-  db.transaction(() => {
+  writeTxn(() => {
     for (const s of rows) {
       if (s.status === 'pending_verification') bumpVariety(s.variety_id, { pending: -1 });
       else if (s.status === 'rejected') bumpVariety(s.variety_id, { rejected: -1 });

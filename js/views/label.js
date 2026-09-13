@@ -169,7 +169,7 @@
     }).join('');
     return '<div class="card">' +
       '<div class="rq-toolbar">' +
-        '<b class="rq-count">' + num(state.rows.length) + ' images waiting</b>' +
+        '<b class="rq-count">' + num(state.waiting) + ' images waiting</b>' +
         '<div class="filter-spacer"></div>' +
         '<button class="btn" type="button" id="toggle-view">' + icon('image') + 'Label one by one</button>' +
       '</div>' +
@@ -191,7 +191,7 @@
     view.innerHTML =
       '<div class="page-head"><div class="page-head-text">' +
         '<h1>Label images</h1>' +
-        '<p>' + num(state.rows.length) + ' images are waiting. Oldest first — each one you label joins the training set.</p>' +
+        '<p>' + num(state.waiting) + ' images are waiting. Oldest first — each one you label joins the training set.</p>' +
       '</div></div>' +
       filterBar() +
       statsRow() +
@@ -245,6 +245,7 @@
 
     var at = state.index;
     state.rows.splice(at, 1);
+    if (action !== 'skip') state.waiting = Math.max(0, state.waiting - 1);
     if (state.index >= state.rows.length) state.index = Math.max(0, state.rows.length - 1);
     if (isLabel) state.done++;
     state.inFlight++;
@@ -278,6 +279,7 @@
       state.inFlight--;
       if (isLabel) state.done--;
       state.rows.splice(Math.min(at, state.rows.length), 0, s);   // put it back
+      if (action !== 'skip') state.waiting++;
       paint(view, ctx);
       UI.toast('Could not save ' + s.id + ' — it is back in the queue.', 'err');
       if (err && err.status === 401) ctx.handleError(err);
@@ -352,6 +354,7 @@
     ]).then(function (res) {
       if (!state) return;            // the view was left while this was in flight
       state.rows = res[0].rows;
+      state.waiting = res[0].total;
       state.stats = res[1];
       if (state.focusId) {
         var at = state.rows.map(function (r) { return r.id; }).indexOf(state.focusId);
@@ -370,6 +373,9 @@
     view.innerHTML = skeleton();
     state = {
       rows: [], index: 0, done: 0,
+      /* The queue is capped server-side, so the number waiting is not the
+         number loaded. rows drives navigation; waiting drives the copy. */
+      waiting: 0,
       stats: { pending: 0, approvedToday: 0, rejectedToday: 0 },
       filters: { seedTypeId: params.seed || null },
       mode: 'single', inFlight: 0,

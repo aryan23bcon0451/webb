@@ -11,7 +11,7 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const {
-  db, paginate, httpError, bumpVariety, nextSeq,
+  db, paginate, httpError, bumpVariety, nextSeq, writeTxn,
   SUBMISSION_SELECT, shapeSubmission, UPLOAD_DIR
 } = require('../db');
 const { requireSession, requireRole } = require('../auth');
@@ -73,14 +73,38 @@ function profiles() {
   });
 }
 
+const thumb = (s) => {
+  const shaped = shapeSubmission(s);
+  return { id: shaped.id, seq: shaped.seq, seedTypeName: shaped.seedTypeName, imageUrl: shaped.imageUrl };
+};
+
 /** The four most recent photos, used as thumbnails on the directory card. */
 function recentFor(farmerId, n = 4) {
   return db.prepare(SUBMISSION_SELECT + ' WHERE s.farmer_id = @id ORDER BY s.uploaded_at DESC LIMIT @n')
-    .all({ id: farmerId, n })
-    .map((s) => {
-      const shaped = shapeSubmission(s);
-      return { id: shaped.id, seq: shaped.seq, seedTypeName: shaped.seedTypeName, imageUrl: shaped.imageUrl };
-    });
+    .all({ id: farmerId, n }).map(thumb);
+}
+
+/** Thumbnails for a whole page of farmers in one query instead of one query
+    per row. ROW_NUMBER() ranks each farmer's photos independently, so the
+    top four per farmer come back together. */
+function recentForMany(farmerIds, n = 4) {
+  const byFarmer = new Map(farmerIds.map((id) => [id, []]));
+  if (!farmerIds.length) return byFarmer;
+  const placeholders = farmerIds.map(() => '?').join(',');
+  const rows = db.prepare(`
+    SELECT * FROM (
+      SELECT s.id, s.seq, s.farmer_id AS farmerId, st.name AS seedTypeName, s.image_key AS imageKey,
+             ROW_NUMBER() OVER (PARTITION BY s.farmer_id ORDER BY s.uploaded_at DESC) AS rn
+      FROM submissions s
+      JOIN varieties v ON v.id = s.variety_id
+      JOIN seed_types st ON st.id = v.seed_type_id
+      WHERE s.farmer_id IN (${placeholders})
+    ) WHERE rn <= ?`).all(...farmerIds, n);
+  for (const r of rows) {
+    const list = byFarmer.get(r.farmerId);
+    if (list) list.push(thumb(r));
+  }
+  return byFarmer;
 }
 
 const SORTS = {
@@ -107,10 +131,13 @@ router.get('/', (req, res) => {
   }
   rows = rows.slice().sort(SORTS[q.sort] || SORTS.uploads);
 
-  const limit = Number(q.limit) || 12;
-  const page = paginate([], rows.length, q.page, limit);
-  page.rows = rows.slice((page.page - 1) * limit, page.page * limit)
-    .map((f) => ({ ...f, recent: recentFor(f.id) }));   // thumbnails only for the page shown
+  const page = paginate([], rows.length, q.page, q.limit || 12);
+  const limit = page.limit;
+  const shown = rows.slice((page.page - 1) * limit, page.page * limit);
+  /* Thumbnails only for the page shown, and in one query rather than one
+     per farmer. */
+  const thumbs = recentForMany(shown.map((f) => f.id));
+  page.rows = shown.map((f) => ({ ...f, recent: thumbs.get(f.id) || [] }));
 
   let approved = 0, reviewed = 0, uploaded = 0;
   const regions = new Set();
@@ -197,36 +224,51 @@ router.post('/:id/submissions', requireRole('admin', 'verifier'), (req, res, nex
 
   const at = Date.now();
   const created = [];
+  const written = [];
 
-  db.transaction(() => {
-    images.forEach((im, i) => {
-      const [, mime, b64] = im.dataUrl.match(DATA_URL);
-      const seq = nextSeq();
-      const id = 'CF-2026-' + seq;
-      const key = id + '.' + (EXT[mime] || 'jpg');
-      const uploadedAt = at - i;                     // the first photo picked lists first
+  /* Hoisted out of the loop: db.prepare() compiles a new statement every
+     call, and this runs up to 100 times per request. */
+  const addSub = db.prepare(`
+    INSERT INTO submissions (id, seq, status, variety_id, company_id, farmer_id,
+                             label_by_user, width, height, uploaded_at, image_key)
+    VALUES (?, ?, 'pending_verification', ?, ?, ?, ?, ?, ?, ?, ?)`);
+  const addTrail = db.prepare(
+    'INSERT INTO trail (submission_id, at, kind, title, note) VALUES (?, ?, ?, ?, ?)');
 
-      /* Write the file before the row: a stray file is harmless, a row
-         pointing at nothing is a broken thumbnail. */
-      fs.writeFileSync(path.join(UPLOAD_DIR, key), Buffer.from(b64, 'base64'));
+  try {
+    writeTxn(() => {
+      images.forEach((im, i) => {
+        const [, mime, b64] = im.dataUrl.match(DATA_URL);
+        const seq = nextSeq();
+        const id = 'CF-2026-' + seq;
+        const key = id + '.' + (EXT[mime] || 'jpg');
+        const uploadedAt = at - i;                   // the first photo picked lists first
 
-      db.prepare(`
-        INSERT INTO submissions (id, seq, status, variety_id, company_id, farmer_id,
-                                 label_by_user, width, height, uploaded_at, image_key)
-        VALUES (?, ?, 'pending_verification', ?, ?, ?, ?, ?, ?, ?, ?)`)
-        .run(id, seq, variety.id, company.id, farmer.id, body.label,
+        /* Write the file before the row: a stray file is harmless, a row
+           pointing at nothing is a broken thumbnail. */
+        fs.writeFileSync(path.join(UPLOAD_DIR, key), Buffer.from(b64, 'base64'));
+        written.push(key);
+
+        addSub.run(id, seq, variety.id, company.id, farmer.id, body.label,
           Math.round(im.width) || 0, Math.round(im.height) || 0, uploadedAt, key);
 
-      const note = (im.from ? 'Frame from ' + String(im.from).slice(0, 160) : 'Uploaded from the dashboard') +
-        ` · labelled "${body.label}" on the farmer's behalf`;
-      const addTrail = db.prepare(`INSERT INTO trail (submission_id, at, kind, title, note) VALUES (?, ?, ?, ?, ?)`);
-      addTrail.run(id, uploadedAt, 'upload', `Added by ${me.name} for ${farmer.name}`, note);
-      addTrail.run(id, uploadedAt, 'queue', 'Awaiting verification', 'Queued as pending_verification');
+        const note = (im.from ? 'Frame from ' + String(im.from).slice(0, 160) : 'Uploaded from the dashboard') +
+          ` · labelled "${body.label}" on the farmer's behalf`;
+        addTrail.run(id, uploadedAt, 'upload', `Added by ${me.name} for ${farmer.name}`, note);
+        addTrail.run(id, uploadedAt, 'queue', 'Awaiting verification', 'Queued as pending_verification');
 
-      bumpVariety(variety.id, { pending: 1 });
-      created.push(id);
-    });
-  })();
+        bumpVariety(variety.id, { pending: 1 });
+        created.push(id);
+      });
+    })();
+  } catch (err) {
+    /* The transaction rolled back, so the rows are gone — but the files were
+       written outside it. Remove them rather than leaving orphans on disk. */
+    for (const key of written) {
+      try { fs.unlinkSync(path.join(UPLOAD_DIR, key)); } catch (e) { /* nothing to undo */ }
+    }
+    return next(err);
+  }
 
   const placeholders = created.map(() => '?').join(',');
   const rows = db.prepare(SUBMISSION_SELECT + ` WHERE s.id IN (${placeholders}) ORDER BY s.uploaded_at DESC`)

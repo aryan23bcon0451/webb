@@ -13,7 +13,7 @@
 'use strict';
 
 const express = require('express');
-const { db, pagedQuery, httpError } = require('../db');
+const { db, pagedQuery, httpError, writeTxn } = require('../db');
 const { requireSession, requireRole } = require('../auth');
 
 const router = express.Router();
@@ -66,7 +66,7 @@ router.patch('/seed-types/:id', requireRole('admin'), (req, res, next) => {
   const active = req.body.active ? 1 : 0;
   /* Hiding a seed type hides its varieties too — this list is what the
      capture app shows people, so the two must not disagree. */
-  db.transaction(() => {
+  writeTxn(() => {
     db.prepare('UPDATE seed_types SET active = ? WHERE id = ?').run(active, row.id);
     db.prepare('UPDATE varieties SET active = ? WHERE seed_type_id = ?').run(active, row.id);
   })();
@@ -148,7 +148,7 @@ router.post('/varieties', requireRole('admin'), (req, res, next) => {
     return next(httpError(409, `"${name}" already exists under ${st.name}.`));
   }
   const id = 'var_' + (db.prepare('SELECT COALESCE(MAX(CAST(SUBSTR(id, 5) AS INTEGER)), 0) AS m FROM varieties').get().m + 1);
-  db.transaction(() => {
+  writeTxn(() => {
     db.prepare(`INSERT INTO varieties (id, name, seed_type_id, target, active, created_at)
                 VALUES (?, ?, ?, 150000, ?, ?)`).run(id, name, seedTypeId, st.active, now());
     db.prepare('INSERT INTO variety_stats (variety_id) VALUES (?)').run(id);

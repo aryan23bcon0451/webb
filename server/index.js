@@ -16,9 +16,19 @@ const ROOT = path.join(__dirname, '..');
 
 migrate();
 
+app.disable('x-powered-by');
+
 /* Photos arrive as base64 data URLs from the farmer upload panel, up to
    100 at a time — the default 100kb body limit would reject the first one. */
 app.use(express.json({ limit: process.env.BODY_LIMIT || '150mb' }));
+
+/* Express 5 leaves req.body undefined when a request carries no body (v4
+   set it to {}). Routes read req.body.x directly, so without this a
+   body-less POST is a TypeError and a 500 instead of a clean 422. */
+app.use((req, res, next) => {
+  if (req.body === undefined || req.body === null) req.body = {};
+  next();
+});
 
 /* ---------------------------------------------------- API */
 const api = express.Router();
@@ -51,6 +61,17 @@ app.use((err, req, res, next) => {
   if (err instanceof HttpError) return res.status(err.status).json({ message: err.message });
   if (err && err.type === 'entity.too.large') {
     return res.status(413).json({ message: 'Those photos are too large to upload in one go. Add fewer at a time.' });
+  }
+  /* Malformed JSON is the caller's mistake, not a server fault — a 400 with
+     a readable message, and no stack trace in the log. */
+  if (err && (err.type === 'entity.parse.failed' || err instanceof SyntaxError)) {
+    return res.status(400).json({ message: 'That request body was not valid JSON.' });
+  }
+  /* A UNIQUE collision on seq means two uploads raced for the same id.
+     Surface it as a retryable conflict rather than a generic failure. */
+  if (err && typeof err.code === 'string' && err.code.startsWith('SQLITE_CONSTRAINT')) {
+    console.error(err);
+    return res.status(409).json({ message: 'That change clashed with another one. Try again.' });
   }
   console.error(err);
   res.status(500).json({ message: 'Something went wrong on the server.' });

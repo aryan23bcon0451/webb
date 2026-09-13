@@ -79,12 +79,21 @@ CREATE TABLE IF NOT EXISTS submissions (
   adjudicated   INTEGER NOT NULL DEFAULT 0,
   width         INTEGER,
   height        INTEGER,
+  /* When the photo was actually taken/uploaded. Never rewritten — it is
+     provenance, and it ships in the export manifest. */
   uploaded_at   INTEGER NOT NULL,
+  /* Set when a labeller defers an image ("decide later"). The queue orders
+     by COALESCE(deferred_at, uploaded_at) so a deferred image moves to the
+     back without its upload time being falsified. */
+  deferred_at   INTEGER,
   /* Relative path under UPLOAD_DIR. NULL means no stored file: the browser
      falls back to the procedural image in js/photos.js. */
   image_key     TEXT
 );
 CREATE INDEX IF NOT EXISTS ix_sub_status  ON submissions(status, uploaded_at);
+/* ix_sub_queue covers deferred_at and is created by migrate() in db.js —
+   on a database that predates that column, this file runs before the
+   ALTER TABLE that adds it. */
 CREATE INDEX IF NOT EXISTS ix_sub_farmer  ON submissions(farmer_id, uploaded_at DESC);
 CREATE INDEX IF NOT EXISTS ix_sub_variety ON submissions(variety_id, status);
 CREATE INDEX IF NOT EXISTS ix_sub_review  ON submissions(reviewed_at);

@@ -72,14 +72,31 @@ function verify(token) {
   catch (e) { return null; }
 }
 
-/** Message text matches what js/api.js used — the views toast it verbatim. */
-function requireSession(req, res, next) {
+function bearer(req) {
   const header = req.headers.authorization || '';
-  const token = header.startsWith('Bearer ') ? header.slice(7) : readCookie(req, IMG_COOKIE);
+  return header.startsWith('Bearer ') ? header.slice(7) : null;
+}
+
+function accept(req, token, next, ok) {
   const claims = token && verify(token);
   if (!claims) return next(httpError(401, 'Session expired. Sign in again.'));
   req.user = { id: claims.sub, name: claims.name, role: claims.role };
-  next();
+  ok();
+}
+
+/** Bearer token only. The cookie is deliberately NOT accepted here: a
+    cookie is attached by the browser automatically, so honouring it on
+    state-changing routes would make them forgeable from another site.
+    Message text matches what js/api.js used — the views toast it verbatim. */
+function requireSession(req, res, next) {
+  accept(req, bearer(req), next, next);
+}
+
+/** Images only. <img src> cannot set an Authorization header, so this one
+    route also honours the httpOnly cookie — it is a read of a single photo
+    by id, scoped to Path=/api/images and SameSite=Strict. */
+function requireImageSession(req, res, next) {
+  accept(req, bearer(req) || readCookie(req, IMG_COOKIE), next, next);
 }
 
 const requireRole = (...roles) => (req, res, next) =>
@@ -87,4 +104,7 @@ const requireRole = (...roles) => (req, res, next) =>
     ? next()
     : next(httpError(403, 'Your role cannot perform this action.'));
 
-module.exports = { issue, requireSession, requireRole, imageCookie, clearImageCookie, TTL_SECONDS };
+module.exports = {
+  issue, requireSession, requireImageSession, requireRole,
+  imageCookie, clearImageCookie, TTL_SECONDS
+};

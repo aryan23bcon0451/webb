@@ -36,6 +36,11 @@ The seed script sets every password to `cafe1234`.
 `npm run seed -- --force` wipes and rebuilds. `JWT_SECRET` must be set in any
 real deployment; locally the server generates one into `server/.jwt-secret`.
 
+With the server running, `npm run audit` checks the invariants that would
+quietly corrupt the dataset if they broke — that an image never changes split,
+that the counters agree, that roles are enforced. It is read-only, so it is
+safe to point at a real deployment.
+
 ## How the pieces fit
 
 | Layer | Where |

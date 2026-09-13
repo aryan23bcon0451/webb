@@ -14,7 +14,7 @@
 const fs = require('fs');
 const path = require('path');
 const bcrypt = require('bcryptjs');
-const { db, migrate } = require('./db');
+const { db, migrate, DB_PATH } = require('./db');
 
 const DEV_PASSWORD = process.env.SEED_PASSWORD || 'cafe1234';
 
@@ -35,7 +35,7 @@ migrate();
 const force = process.argv.includes('--force');
 const existing = db.prepare('SELECT COUNT(*) AS n FROM submissions').get().n;
 if (existing && !force) {
-  console.error(`cafe.db already holds ${existing} submissions. Re-run with --force to wipe and re-seed.`);
+  console.error(`${DB_PATH} already holds ${existing} submissions. Re-run with --force to wipe and re-seed.`);
   process.exit(1);
 }
 
@@ -139,7 +139,7 @@ const insert = db.transaction(() => {
 insert();
 
 const count = (t) => db.prepare(`SELECT COUNT(*) AS n FROM ${t}`).get().n;
-console.log('Seeded cafe.db');
+console.log('Seeded ' + DB_PATH);
 console.log(`  users        ${count('users')}   (${DATA.users.length} staff, ${DATA.farmers.length} farmers)`);
 console.log(`  seed_types   ${count('seed_types')}`);
 console.log(`  varieties    ${count('varieties')}`);

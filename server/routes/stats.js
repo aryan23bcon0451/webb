@@ -9,59 +9,61 @@
 'use strict';
 
 const express = require('express');
-const { db, pagedQuery, startOfToday } = require('../db');
+const { q, one, pagedQuery, startOfToday } = require('../db');
 const { requireSession } = require('../auth');
 
 const router = express.Router();
 router.use(requireSession);
 
 const fmt = (n) => (n == null ? 0 : Math.round(n)).toLocaleString('en-US');
-const totalsRow = () => db.prepare('SELECT * FROM totals WHERE id = 1').get() || {};
+const totalsRow = async () => (await one('SELECT * FROM totals WHERE id = 1')) || {};
+
+const countOf = async (sql, params) => (await one(sql, params)).n;
 
 /* ---------------------------------------------------- dashboard */
-router.get('/stats/dashboard', (req, res) => {
-  const t = totalsRow();
+router.get('/stats/dashboard', async (req, res) => {
+  const t = await totalsRow();
   const today = startOfToday();
   res.json({
     totalPhotos: t.total_photos,
     photosWeekDelta: t.photos_week_delta,
-    totalSeedTypes: db.prepare('SELECT COUNT(*) AS n FROM seed_types WHERE active = 1').get().n,
-    allSeedTypes: db.prepare('SELECT COUNT(*) AS n FROM seed_types').get().n,
-    pendingReview: db.prepare("SELECT COUNT(*) AS n FROM submissions WHERE status = 'pending_verification'").get().n,
-    approvedToday: db.prepare("SELECT COUNT(*) AS n FROM submissions WHERE status = 'approved' AND reviewed_at >= ?").get(today).n,
-    rejectedToday: db.prepare("SELECT COUNT(*) AS n FROM submissions WHERE status = 'rejected' AND reviewed_at >= ?").get(today).n
+    totalSeedTypes: await countOf('SELECT COUNT(*)::int AS n FROM seed_types WHERE active = TRUE'),
+    allSeedTypes: await countOf('SELECT COUNT(*)::int AS n FROM seed_types'),
+    pendingReview: await countOf("SELECT COUNT(*)::int AS n FROM submissions WHERE status = 'pending_verification'"),
+    approvedToday: await countOf("SELECT COUNT(*)::int AS n FROM submissions WHERE status = 'approved' AND reviewed_at >= @t", { t: today }),
+    rejectedToday: await countOf("SELECT COUNT(*)::int AS n FROM submissions WHERE status = 'rejected' AND reviewed_at >= @t", { t: today })
   });
 });
 
-router.get('/stats/review-queue', (req, res) => {
+router.get('/stats/review-queue', async (req, res) => {
   const today = startOfToday();
   res.json({
-    pending: db.prepare("SELECT COUNT(*) AS n FROM submissions WHERE status = 'pending_verification'").get().n,
-    approvedToday: db.prepare("SELECT COUNT(*) AS n FROM submissions WHERE status = 'approved' AND reviewed_at >= ?").get(today).n,
-    rejectedToday: db.prepare("SELECT COUNT(*) AS n FROM submissions WHERE status = 'rejected' AND reviewed_at >= ?").get(today).n
+    pending: await countOf("SELECT COUNT(*)::int AS n FROM submissions WHERE status = 'pending_verification'"),
+    approvedToday: await countOf("SELECT COUNT(*)::int AS n FROM submissions WHERE status = 'approved' AND reviewed_at >= @t", { t: today }),
+    rejectedToday: await countOf("SELECT COUNT(*)::int AS n FROM submissions WHERE status = 'rejected' AND reviewed_at >= @t", { t: today })
   });
 });
 
 /* ---------------------------------------------------- dataset health
    The training-readiness summary. Thresholds are product decisions carried
-   over unchanged from the mock: 10,000 images, balance ratio <= 4,
-   80% label agreement, every variety past 60% of target. */
-router.get('/stats/dataset-health', (req, res) => {
+   over unchanged: 10,000 images, balance ratio <= 4, 80% label agreement,
+   every variety past 60% of target. */
+router.get('/stats/dataset-health', async (req, res) => {
   const seedTypeId = req.query.seedTypeId || null;
 
   /* Class counts: warehouse totals dataset-wide, per-variety counters when
      the screen is scoped to one crop. */
   let counts;
   if (!seedTypeId) {
-    const t = totalsRow();
+    const t = await totalsRow();
     counts = { good: t.good || 0, normal: t.normal || 0, bad: t.bad || 0 };
   } else {
-    counts = db.prepare(`
-      SELECT COALESCE(SUM(vs.good), 0) AS good,
-             COALESCE(SUM(vs.normal), 0) AS normal,
-             COALESCE(SUM(vs.bad), 0) AS bad
+    counts = await one(`
+      SELECT COALESCE(SUM(vs.good), 0)::int   AS good,
+             COALESCE(SUM(vs.normal), 0)::int AS normal,
+             COALESCE(SUM(vs.bad), 0)::int    AS bad
       FROM varieties v JOIN variety_stats vs ON vs.variety_id = v.id
-      WHERE v.seed_type_id = ?`).get(seedTypeId);
+      WHERE v.seed_type_id = @st`, { st: seedTypeId });
   }
   const labelled = counts.good + counts.normal + counts.bad;
 
@@ -78,34 +80,36 @@ router.get('/stats/dataset-health', (req, res) => {
   /* Label agreement is measured on the reviewed rows we actually hold, not
      on the warehouse totals — a low figure means the capture instructions
      are being read two ways. */
-  const agreeWhere = seedTypeId ? 'AND v.seed_type_id = @st' : '';
-  const agree = db.prepare(`
-    SELECT COUNT(*) AS total,
-           SUM(CASE WHEN s.final_label = s.label_by_user THEN 1 ELSE 0 END) AS matched
+  const agree = await one(`
+    SELECT COUNT(*)::int AS total,
+           COALESCE(SUM(CASE WHEN s.final_label = s.label_by_user THEN 1 ELSE 0 END), 0)::int AS matched
     FROM submissions s JOIN varieties v ON v.id = s.variety_id
-    WHERE s.final_label IS NOT NULL ${agreeWhere}`).get(seedTypeId ? { st: seedTypeId } : {});
+    WHERE s.final_label IS NOT NULL ${seedTypeId ? 'AND v.seed_type_id = @st' : ''}`,
+    seedTypeId ? { st: seedTypeId } : {});
   const reviewedTotal = agree.total || 0;
   const matched = agree.matched || 0;
 
   /* Variety coverage, from the same derived progress the tables show. */
-  const varietyWhere = seedTypeId ? 'AND v.seed_type_id = @st' : '';
-  const vs = db.prepare(`
+  const vs = await q(`
     SELECT COALESCE(vs.approved, 0) AS approved, v.target, COALESCE(vs.pending, 0) AS pending
     FROM varieties v LEFT JOIN variety_stats vs ON vs.variety_id = v.id
-    WHERE v.active = 1 ${varietyWhere}`).all(seedTypeId ? { st: seedTypeId } : {});
+    WHERE v.active = TRUE ${seedTypeId ? 'AND v.seed_type_id = @st' : ''}`,
+    seedTypeId ? { st: seedTypeId } : {});
 
   const progressOf = (v) => (v.target ? Math.round(v.approved / v.target * 100) : 0);
   const atTarget = vs.filter((v) => progressOf(v) >= 100).length;
   const thin = vs.filter((v) => progressOf(v) < 60).length;
 
+  const totals = await totalsRow();
   const pending = seedTypeId
     ? vs.reduce((n, v) => n + v.pending, 0)
-    : (totalsRow().pending || 0);
+    : (totals.pending || 0);
 
   const discarded = seedTypeId
-    ? db.prepare(`SELECT COALESCE(SUM(vs.rejected), 0) AS n FROM varieties v
-                  JOIN variety_stats vs ON vs.variety_id = v.id WHERE v.seed_type_id = ?`).get(seedTypeId).n
-    : (totalsRow().rejected || 0);
+    ? (await one(`SELECT COALESCE(SUM(vs.rejected), 0)::int AS n FROM varieties v
+                  JOIN variety_stats vs ON vs.variety_id = v.id WHERE v.seed_type_id = @st`,
+      { st: seedTypeId })).n
+    : (totals.rejected || 0);
 
   /* Split sizes follow the same 5 / 1 / 1 cycle the export manifest uses. */
   const splits = {
@@ -160,34 +164,33 @@ router.get('/stats/dataset-health', (req, res) => {
 });
 
 /* ---------------------------------------------------- people */
-router.get('/users', (req, res) => {
+router.get('/users', async (req, res) => {
   const w = [], p = {};
   if (req.query.role) { w.push('u.role = @role'); p.role = req.query.role; }
   if (req.query.search) {
-    w.push('(LOWER(u.name) LIKE @q OR LOWER(COALESCE(u.email, \'\')) LIKE @q)');
+    w.push("(LOWER(u.name) LIKE @q OR LOWER(COALESCE(u.email, '')) LIKE @q)");
     p.q = '%' + String(req.query.search).trim().toLowerCase() + '%';
   }
   const where = w.length ? ' WHERE ' + w.join(' AND ') : '';
 
-  const page = pagedQuery(`
+  res.json(await pagedQuery(`
     SELECT u.id, u.name, u.role, u.email, u.region,
-           (SELECT COUNT(*) FROM submissions s WHERE s.verifier_id = u.id) AS reviewed,
-           (SELECT COUNT(*) FROM submissions s WHERE s.farmer_id  = u.id) AS uploaded
+           (SELECT COUNT(*)::int FROM submissions s WHERE s.verifier_id = u.id) AS reviewed,
+           (SELECT COUNT(*)::int FROM submissions s WHERE s.farmer_id  = u.id) AS uploaded
     FROM users u${where}
     ORDER BY CASE u.role WHEN 'admin' THEN 0 WHEN 'verifier' THEN 1 ELSE 2 END, u.name`,
-    'SELECT COUNT(*) AS n FROM users u' + where,
+    'SELECT COUNT(*)::int AS n FROM users u' + where,
     p, req.query.page, req.query.limit || 8
-  );
-  res.json(page);
+  ));
 });
 
 /** Uploaders that actually appear in the queue — powers the User filter. */
-router.get('/uploaders', (req, res) => {
-  res.json(db.prepare(`
+router.get('/uploaders', async (req, res) => {
+  res.json(await q(`
     SELECT u.id, u.name, u.role, u.region
     FROM users u
     WHERE u.role = 'farmer' AND EXISTS (SELECT 1 FROM submissions s WHERE s.farmer_id = u.id)
-    ORDER BY u.name`).all());
+    ORDER BY u.name`));
 });
 
 module.exports = router;

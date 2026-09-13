@@ -1,0 +1,53 @@
+# ============================================================
+# AWS Amplify Hosting — frontend only.
+#
+# Amplify serves the static dashboard. The API is a Lambda behind API
+# Gateway (server/infra/template.yaml); Amplify forwards /api/* to it with
+# a rewrite rule, so the browser only ever talks to one origin and there is
+# no CORS to configure and no cross-site cookie to weaken.
+#
+# Add the rewrite in the Amplify console under Hosting > Rewrites and
+# redirects, ABOVE the SPA catch-all:
+#
+#   Source        /api/<*>
+#   Target        https://<api-id>.execute-api.<region>.amazonaws.com/api/<*>
+#   Type          200 (Rewrite)
+#
+#   Source        /<*>
+#   Target        /index.html
+#   Type          200 (Rewrite)
+#
+# Order matters. With only the SPA rule, /api/auth/login is answered with
+# index.html and a 200 — which is exactly the failure this file exists to
+# prevent.
+#
+# If you would rather call API Gateway directly, set the API_BASE
+# environment variable in the Amplify console to its full URL. The build
+# below writes it into js/config.js, and you must then add that Amplify
+# domain to CORS_ORIGINS on the Lambda.
+# ============================================================
+version: 1
+frontend:
+  phases:
+    build:
+      commands:
+        # No bundler: the dashboard is plain ES5 and loads its own scripts.
+        # The only build step is writing the runtime config.
+        - |
+          if [ -n "$API_BASE" ]; then
+            echo "window.CAFE_CONFIG = { apiBase: '$API_BASE' };" > js/config.js
+            echo "Built against API_BASE=$API_BASE"
+          else
+            echo "window.CAFE_CONFIG = { apiBase: '/api' };" > js/config.js
+            echo "Built same-origin: /api must be rewritten to API Gateway."
+          fi
+  artifacts:
+    # The repo root is the site root. server/ is deliberately not excluded
+    # here because Amplify only publishes what `files` matches.
+    baseDirectory: /
+    files:
+      - index.html
+      - js/**/*
+      - assets/**/*
+  cache:
+    paths: []

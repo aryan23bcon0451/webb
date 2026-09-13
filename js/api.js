@@ -39,13 +39,28 @@
 (function (global) {
   'use strict';
 
-  var BASE = '/api';                 // same origin — the server hosts this page too
+  /* Same origin by default: either the local server hosts this page too, or
+     Amplify proxies /api/* through to API Gateway, and neither needs CORS.
+     Set window.CAFE_CONFIG.apiBase (js/config.js, written at build time) to
+     point the dashboard at an API on a different origin instead. */
+  var BASE = (global.CAFE_CONFIG && global.CAFE_CONFIG.apiBase) || '/api';
   var TOKEN_KEY = 'cafe.token';
 
   /* ---------------------------------------------------- token */
+  /** A session is only usable if it actually carries a token and a user.
+      Anything else — including the `{}` an earlier build could store when
+      the API was unreachable — is discarded, so the app falls back to the
+      sign-in screen instead of rendering an empty shell. */
+  function validSession(s) {
+    return !!(s && typeof s.token === 'string' && s.token && s.user && s.user.id);
+  }
+
   function readToken() {
-    try { return JSON.parse(localStorage.getItem(TOKEN_KEY) || 'null'); }
-    catch (e) { return null; }
+    try {
+      var s = JSON.parse(localStorage.getItem(TOKEN_KEY) || 'null');
+      if (!validSession(s)) { localStorage.removeItem(TOKEN_KEY); return null; }
+      return s;
+    } catch (e) { return null; }
   }
   function writeToken(t) {
     try {
@@ -83,9 +98,22 @@
     return fetch(BASE + path, opts).then(function (res) {
       if (res.status === 204) return null;
       return res.text().then(function (text) {
-        var data;
+        var data, parsed = true;
         try { data = text ? JSON.parse(text) : {}; }
-        catch (e) { data = {}; }
+        catch (e) { data = {}; parsed = false; }
+
+        /* A reply that is not JSON did not come from this API. The usual
+           cause is the page being hosted without its server behind it — a
+           static host answers /api/... with a 200 and its own index.html.
+           Treating that as an empty success would sign the user in with no
+           session at all, so it has to be an error. */
+        if (!parsed) {
+          var e2 = new Error(res.ok
+            ? 'The API did not respond. The dashboard is running without its server.'
+            : 'The server returned an unexpected response.');
+          e2.status = res.ok ? 502 : res.status;
+          throw e2;
+        }
 
         if (res.ok) return data;
 
@@ -114,7 +142,14 @@
     /** POST /auth/login */
     login: function (identifier, password) {
       return request('POST', '/auth/login', { identifier: identifier, password: password })
-        .then(function (s) { session = s; writeToken(s); return s; });
+        .then(function (s) {
+          if (!validSession(s)) {
+            var e = new Error('The server did not return a valid session.');
+            e.status = 502;
+            throw e;
+          }
+          session = s; writeToken(s); return s;
+        });
     },
 
     logout: function () {

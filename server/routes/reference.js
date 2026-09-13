@@ -13,7 +13,7 @@
 'use strict';
 
 const express = require('express');
-const { db, pagedQuery, httpError, writeTxn } = require('../db');
+const { q, one, tx, pagedQuery, httpError } = require('../db');
 const { requireSession, requireRole } = require('../auth');
 
 const router = express.Router();
@@ -26,58 +26,64 @@ const like = (s) => '%' + String(s).trim().toLowerCase() + '%';
 
 const SEED_TYPE_SELECT = `
   SELECT st.id, st.name, st.glyph, st.category, st.active,
-         st.created_at AS createdAt,
-         (SELECT COUNT(*) FROM varieties v WHERE v.seed_type_id = st.id) AS varietyCount
+         st.created_at AS "createdAt",
+         (SELECT COUNT(*)::int FROM varieties v WHERE v.seed_type_id = st.id) AS "varietyCount"
   FROM seed_types st`;
 
-const shapeSeedType = (r) => ({ ...r, active: !!r.active });
-
-router.get('/seed-types', (req, res) => {
+router.get('/seed-types', async (req, res) => {
   const w = [], p = {};
-  if (req.query.active === 'true') w.push('st.active = 1');
+  if (req.query.active === 'true') w.push('st.active = TRUE');
   if (req.query.search) { w.push('(LOWER(st.name) LIKE @q OR LOWER(st.category) LIKE @q)'); p.q = like(req.query.search); }
   const where = w.length ? ' WHERE ' + w.join(' AND ') : '';
 
-  const page = pagedQuery(
+  res.json(await pagedQuery(
     SEED_TYPE_SELECT + where + ' ORDER BY st.created_at DESC',
-    'SELECT COUNT(*) AS n FROM seed_types st' + where,
+    'SELECT COUNT(*)::int AS n FROM seed_types st' + where,
     p, req.query.page, req.query.limit || 5
-  );
-  page.rows = page.rows.map(shapeSeedType);
-  res.json(page);
+  ));
 });
 
-router.post('/seed-types', requireRole('admin'), (req, res, next) => {
+/* Ids are st_<n> / var_<n> / co_<n>. Deriving the next one from MAX is
+   racy, so each derivation happens inside the same transaction as the
+   insert, and a UNIQUE collision surfaces as a 409. */
+const nextId = async (tq, prefix, table) => prefix +
+  ((await tq(`SELECT COALESCE(MAX(NULLIF(regexp_replace(id, '^${prefix}', ''), '')::int), 0) + 1 AS m FROM ${table}`))[0].m);
+
+router.post('/seed-types', requireRole('admin'), async (req, res) => {
   const name = String(req.body.name || '').trim();
   const category = String(req.body.category || '').trim() || 'Uncategorised';
-  if (!name) return next(httpError(422, 'Enter a crop category name.'));
-  if (db.prepare('SELECT 1 FROM seed_types WHERE LOWER(name) = ?').get(name.toLowerCase())) {
-    return next(httpError(409, `"${name}" already exists.`));
+  if (!name) throw httpError(422, 'Enter a crop category name.');
+  if (await one('SELECT 1 FROM seed_types WHERE LOWER(name) = @n', { n: name.toLowerCase() })) {
+    throw httpError(409, `"${name}" already exists.`);
   }
-  const id = 'st_' + (db.prepare('SELECT COALESCE(MAX(CAST(SUBSTR(id, 4) AS INTEGER)), 0) AS m FROM seed_types').get().m + 1);
-  db.prepare(`INSERT INTO seed_types (id, name, glyph, category, active, created_at)
-              VALUES (?, ?, '🌱', ?, 1, ?)`).run(id, name, category, now());
-  res.status(201).json(shapeSeedType(db.prepare(SEED_TYPE_SELECT + ' WHERE st.id = ?').get(id)));
+  const id = await tx(async (tq) => {
+    const newId = await nextId(tq, 'st_', 'seed_types');
+    await tq(`INSERT INTO seed_types (id, name, glyph, category, active, created_at)
+              VALUES (@id, @name, '🌱', @category, TRUE, @at)`,
+      { id: newId, name, category, at: now() });
+    return newId;
+  });
+  res.status(201).json(await one(SEED_TYPE_SELECT + ' WHERE st.id = @id', { id }));
 });
 
-router.patch('/seed-types/:id', requireRole('admin'), (req, res, next) => {
-  const row = db.prepare('SELECT id FROM seed_types WHERE id = ?').get(req.params.id);
-  if (!row) return next(httpError(404, 'Seed type not found.'));
-  const active = req.body.active ? 1 : 0;
+router.patch('/seed-types/:id', requireRole('admin'), async (req, res) => {
+  const row = await one('SELECT id FROM seed_types WHERE id = @id', { id: req.params.id });
+  if (!row) throw httpError(404, 'Seed type not found.');
+  const active = !!req.body.active;
   /* Hiding a seed type hides its varieties too — this list is what the
      capture app shows people, so the two must not disagree. */
-  writeTxn(() => {
-    db.prepare('UPDATE seed_types SET active = ? WHERE id = ?').run(active, row.id);
-    db.prepare('UPDATE varieties SET active = ? WHERE seed_type_id = ?').run(active, row.id);
-  })();
-  res.json(shapeSeedType(db.prepare(SEED_TYPE_SELECT + ' WHERE st.id = ?').get(row.id)));
+  await tx(async (tq) => {
+    await tq('UPDATE seed_types SET active = @a WHERE id = @id', { a: active, id: row.id });
+    await tq('UPDATE varieties SET active = @a WHERE seed_type_id = @id', { a: active, id: row.id });
+  });
+  res.json(await one(SEED_TYPE_SELECT + ' WHERE st.id = @id', { id: row.id }));
 });
 
 /* ---------------------------------------------------- varieties */
 
 const VARIETY_SELECT = `
-  SELECT v.id, v.name, v.seed_type_id AS seedTypeId, st.name AS seedTypeName,
-         st.glyph AS glyph, v.target, v.active, v.created_at AS createdAt,
+  SELECT v.id, v.name, v.seed_type_id AS "seedTypeId", st.name AS "seedTypeName",
+         st.glyph AS glyph, v.target, v.active, v.created_at AS "createdAt",
          COALESCE(vs.approved, 0) AS approved,
          COALESCE(vs.pending, 0)  AS pending,
          COALESCE(vs.rejected, 0) AS rejected,
@@ -88,13 +94,12 @@ const VARIETY_SELECT = `
   JOIN seed_types st ON st.id = v.seed_type_id
   LEFT JOIN variety_stats vs ON vs.variety_id = v.id`;
 
-/** Progress is derived from the counters, not stored — one fewer thing
-    that can drift out of step with the images actually collected. */
+/** Progress is derived from the counters, not stored — one fewer thing that
+    can drift out of step with the images actually collected. */
 function shapeVariety(r) {
   const { good, normal, bad, ...rest } = r;
   return {
     ...rest,
-    active: !!r.active,
     labels: { good, normal, bad },
     progress: r.target ? Math.round(r.approved / r.target * 100) : 0
   };
@@ -107,11 +112,12 @@ function varietyFilters(query) {
   return { where: w.length ? ' WHERE ' + w.join(' AND ') : '', p };
 }
 
-const COUNT_VARIETIES = `SELECT COUNT(*) AS n FROM varieties v JOIN seed_types st ON st.id = v.seed_type_id`;
+const COUNT_VARIETIES =
+  'SELECT COUNT(*)::int AS n FROM varieties v JOIN seed_types st ON st.id = v.seed_type_id';
 
-router.get('/varieties', (req, res) => {
+router.get('/varieties', async (req, res) => {
   const { where, p } = varietyFilters(req.query);
-  const page = pagedQuery(
+  const page = await pagedQuery(
     VARIETY_SELECT + where + ' ORDER BY v.created_at DESC',
     COUNT_VARIETIES + where, p, req.query.page, req.query.limit || 5
   );
@@ -122,15 +128,15 @@ router.get('/varieties', (req, res) => {
 /* One row per variety for the Dataset progress table, ordered by whichever
    column the screen is asking about. Whitelisted — never interpolated. */
 const PROGRESS_ORDER = {
-  approved: 'vs.approved DESC',
-  pending_verification: 'vs.pending DESC',
-  rejected: 'vs.rejected DESC'
+  approved: 'vs.approved DESC NULLS LAST',
+  pending_verification: 'vs.pending DESC NULLS LAST',
+  rejected: 'vs.rejected DESC NULLS LAST'
 };
 
-router.get('/varieties/progress', (req, res) => {
+router.get('/varieties/progress', async (req, res) => {
   const { where, p } = varietyFilters(req.query);
-  const order = PROGRESS_ORDER[req.query.status] || 'vs.approved DESC';
-  const page = pagedQuery(
+  const order = PROGRESS_ORDER[req.query.status] || PROGRESS_ORDER.approved;
+  const page = await pagedQuery(
     VARIETY_SELECT + where + ' ORDER BY ' + order,
     COUNT_VARIETIES + where, p, req.query.page, req.query.limit || 5
   );
@@ -138,59 +144,63 @@ router.get('/varieties/progress', (req, res) => {
   res.json(page);
 });
 
-router.post('/varieties', requireRole('admin'), (req, res, next) => {
+router.post('/varieties', requireRole('admin'), async (req, res) => {
   const name = String(req.body.name || '').trim();
   const seedTypeId = req.body.seedTypeId;
-  if (!name) return next(httpError(422, 'Enter a variety name.'));
-  const st = db.prepare('SELECT * FROM seed_types WHERE id = ?').get(seedTypeId);
-  if (!st) return next(httpError(422, 'Pick the seed type this variety belongs to.'));
-  if (db.prepare('SELECT 1 FROM varieties WHERE LOWER(name) = ? AND seed_type_id = ?').get(name.toLowerCase(), seedTypeId)) {
-    return next(httpError(409, `"${name}" already exists under ${st.name}.`));
+  if (!name) throw httpError(422, 'Enter a variety name.');
+  const st = await one('SELECT * FROM seed_types WHERE id = @id', { id: seedTypeId });
+  if (!st) throw httpError(422, 'Pick the seed type this variety belongs to.');
+  if (await one('SELECT 1 FROM varieties WHERE LOWER(name) = @n AND seed_type_id = @st',
+    { n: name.toLowerCase(), st: seedTypeId })) {
+    throw httpError(409, `"${name}" already exists under ${st.name}.`);
   }
-  const id = 'var_' + (db.prepare('SELECT COALESCE(MAX(CAST(SUBSTR(id, 5) AS INTEGER)), 0) AS m FROM varieties').get().m + 1);
-  writeTxn(() => {
-    db.prepare(`INSERT INTO varieties (id, name, seed_type_id, target, active, created_at)
-                VALUES (?, ?, ?, 150000, ?, ?)`).run(id, name, seedTypeId, st.active, now());
-    db.prepare('INSERT INTO variety_stats (variety_id) VALUES (?)').run(id);
-  })();
-  res.status(201).json(shapeVariety(db.prepare(VARIETY_SELECT + ' WHERE v.id = ?').get(id)));
+  const id = await tx(async (tq) => {
+    const newId = await nextId(tq, 'var_', 'varieties');
+    await tq(`INSERT INTO varieties (id, name, seed_type_id, target, active, created_at)
+              VALUES (@id, @name, @st, 150000, @active, @at)`,
+      { id: newId, name, st: seedTypeId, active: st.active, at: now() });
+    await tq('INSERT INTO variety_stats (variety_id) VALUES (@id)', { id: newId });
+    return newId;
+  });
+  res.status(201).json(shapeVariety(await one(VARIETY_SELECT + ' WHERE v.id = @id', { id })));
 });
 
 /* ---------------------------------------------------- companies */
 
 const COMPANY_SELECT = `
-  SELECT c.id, c.name, c.location, c.active, c.created_at AS createdAt,
-         (SELECT COUNT(DISTINCT s.variety_id) FROM submissions s WHERE s.company_id = c.id) AS varietyCount
+  SELECT c.id, c.name, c.location, c.active, c.created_at AS "createdAt",
+         (SELECT COUNT(DISTINCT s.variety_id)::int FROM submissions s WHERE s.company_id = c.id) AS "varietyCount"
   FROM companies c`;
 
-const shapeCompany = (r) => ({ ...r, active: !!r.active });
-
-router.get('/companies', (req, res) => {
+router.get('/companies', async (req, res) => {
   const w = [], p = {};
-  if (req.query.search) { w.push('(LOWER(c.name) LIKE @q OR LOWER(COALESCE(c.location, \'\')) LIKE @q)'); p.q = like(req.query.search); }
+  if (req.query.search) {
+    w.push("(LOWER(c.name) LIKE @q OR LOWER(COALESCE(c.location, '')) LIKE @q)");
+    p.q = like(req.query.search);
+  }
   const where = w.length ? ' WHERE ' + w.join(' AND ') : '';
-  const page = pagedQuery(
+  res.json(await pagedQuery(
     COMPANY_SELECT + where + ' ORDER BY c.created_at DESC',
-    'SELECT COUNT(*) AS n FROM companies c' + where,
+    'SELECT COUNT(*)::int AS n FROM companies c' + where,
     p, req.query.page, req.query.limit || 5
-  );
-  page.rows = page.rows.map(shapeCompany);
-  res.json(page);
+  ));
 });
 
-router.post('/companies', requireRole('admin'), (req, res, next) => {
+router.post('/companies', requireRole('admin'), async (req, res) => {
   const name = String(req.body.name || '').trim();
   const location = String(req.body.location || '').trim() || null;
-  if (!name) return next(httpError(422, 'Enter a company name.'));
-  if (db.prepare('SELECT 1 FROM companies WHERE LOWER(name) = ?').get(name.toLowerCase())) {
-    return next(httpError(409, `"${name}" already exists.`));
+  if (!name) throw httpError(422, 'Enter a company name.');
+  if (await one('SELECT 1 FROM companies WHERE LOWER(name) = @n', { n: name.toLowerCase() })) {
+    throw httpError(409, `"${name}" already exists.`);
   }
-  const id = 'co_' + (db.prepare('SELECT COALESCE(MAX(CAST(SUBSTR(id, 4) AS INTEGER)), 0) AS m FROM companies').get().m + 1);
-  db.prepare(`INSERT INTO companies (id, name, location, active, created_at)
-              VALUES (?, ?, ?, 1, ?)`).run(id, name, location, now());
-  res.status(201).json(shapeCompany(db.prepare(COMPANY_SELECT + ' WHERE c.id = ?').get(id)));
+  const id = await tx(async (tq) => {
+    const newId = await nextId(tq, 'co_', 'companies');
+    await tq(`INSERT INTO companies (id, name, location, active, created_at)
+              VALUES (@id, @name, @loc, TRUE, @at)`,
+      { id: newId, name, loc: location, at: now() });
+    return newId;
+  });
+  res.status(201).json(await one(COMPANY_SELECT + ' WHERE c.id = @id', { id }));
 });
 
 module.exports = router;
-module.exports.VARIETY_SELECT = VARIETY_SELECT;
-module.exports.shapeVariety = shapeVariety;

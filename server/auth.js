@@ -30,7 +30,24 @@ function devSecret() {
   return fs.readFileSync(file, 'utf8').trim();
 }
 
-const SECRET = process.env.JWT_SECRET || devSecret();
+/* Lambda's filesystem is read-only outside /tmp, and a secret regenerated
+   per cold start would invalidate every session already issued. There the
+   variable is required — supply it from Secrets Manager or SSM. */
+const IN_LAMBDA = !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+
+function resolveSecret() {
+  if (process.env.JWT_SECRET) return process.env.JWT_SECRET;
+  if (IN_LAMBDA) {
+    throw new Error(
+      'JWT_SECRET is not set. A Lambda cannot generate one: the filesystem is ' +
+      'read-only and a per-cold-start secret would sign out every user. ' +
+      'Set it from Secrets Manager or SSM.'
+    );
+  }
+  return devSecret();
+}
+
+const SECRET = resolveSecret();
 
 const TTL_SECONDS = 8 * 3600;
 const IMG_COOKIE = 'cafe_img';

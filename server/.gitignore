@@ -1,6 +1,9 @@
 node_modules/
 uploads/
+pgdata/
+.jwt-secret
+.aws-sam/
+# the SQLite database this project used before Postgres
 cafe.db
 cafe.db-wal
 cafe.db-shm
-.jwt-secret

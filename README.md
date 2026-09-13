@@ -9,7 +9,8 @@ serves the middle step, or tells you whether the set is ready for the last one.
 
 ## Running it
 
-The dashboard is served by its own API. Both live in `server/`.
+The dashboard is a static page; the API is an Express app in `server/`.
+Locally one process serves both.
 
 ```bash
 cd server && npm install
@@ -27,19 +28,27 @@ Then start it:
 npm start
 ```
 
-Visit http://localhost:4321. The API and the page come from the same origin,
-so there is no CORS to configure and one process to run.
+Visit http://localhost:4321. Sign in as `alex.rivera@cafe.ag` (admin) or
+`priya.nair@cafe.ag` (labeller); the seed script sets every password to
+`cafe1234`.
 
-Sign in as `alex.rivera@cafe.ag` (admin) or `priya.nair@cafe.ag` (labeller).
-The seed script sets every password to `cafe1234`.
+There is no database to install. With `DATABASE_URL` unset the server runs
+[PGlite](https://pglite.dev) — Postgres compiled to WebAssembly — against a
+folder in `server/pgdata`. Set `DATABASE_URL` and the same code talks to
+RDS instead, so local and deployed run identical SQL.
 
-`npm run seed -- --force` wipes and rebuilds. `JWT_SECRET` must be set in any
-real deployment; locally the server generates one into `server/.jwt-secret`.
+`npm run seed -- --force` wipes and rebuilds.
 
-With the server running, `npm run audit` checks the invariants that would
-quietly corrupt the dataset if they broke — that an image never changes split,
-that the counters agree, that roles are enforced. It is read-only, so it is
-safe to point at a real deployment.
+## Checking it
+
+```bash
+npm run audit
+```
+
+Thirty-two read-only checks against a running server: that an image never
+changes train/val/test split, that the counters agree with each other, that
+roles are enforced, that internal fields stay server-side. Safe to point at
+a real deployment.
 
 ## How the pieces fit
 
@@ -47,13 +56,70 @@ safe to point at a real deployment.
 | --- | --- |
 | Page, styles, views | `index.html`, `assets/`, `js/views/` |
 | API client — one `fetch` per method | `js/api.js` |
+| API origin (build-time) | `js/config.js` |
+| Express app, shared by both entry points | `server/app.js` |
+| Local entry point | `server/index.js` |
+| Lambda entry point | `server/lambda.js` |
 | HTTP routes | `server/routes/` |
-| Schema, pagination, split assignment | `server/schema.sql`, `server/db.js` |
+| Postgres access, RDS or PGlite | `server/db/pool.js` |
+| Schema, pagination, split assignment | `server/db/schema.pg.sql`, `server/db/index.js` |
+| Photos, S3 or local disk | `server/storage.js` |
 | JWT auth, roles | `server/auth.js` |
-| Database, stored photos | `server/cafe.db`, `server/uploads/` |
+| Infrastructure | `server/infra/template.yaml`, `amplify.yml` |
 
-Every screen calls `API.*` and nothing else. The in-browser mock that predated
-the server is kept at `js/api.mock.js` for reference; it is not loaded.
+Every screen calls `API.*` and nothing else. The in-browser mock that
+predated the server is kept at `js/api.mock.js` for reference; it is not
+loaded.
+
+## Deploying
+
+The frontend goes to Amplify Hosting; the API goes to Lambda behind an HTTP
+API, with Postgres on RDS and photos in S3.
+
+**1. The API.** `server/infra/template.yaml` is a SAM template covering the
+function, the API, the bucket, the database, the secrets and the VPC
+endpoints. It takes an existing VPC and two private subnets as parameters.
+
+```bash
+cd server && npm run deploy:build && npm run deploy
+```
+
+**2. Seed the database.** RDS is not public, so run the seed from inside the
+VPC — an EC2 instance, CloudShell with VPC access, or a one-off task:
+
+```bash
+DATABASE_URL='postgresql://...' npm run seed
+```
+
+**3. The frontend.** Point Amplify at this repo; `amplify.yml` is picked up
+automatically. Then add a rewrite in the Amplify console, **above** the SPA
+catch-all:
+
+| Source | Target | Type |
+| --- | --- | --- |
+| `/api/<*>` | the stack's `RewriteTarget` output | 200 (Rewrite) |
+| `/<*>` | `/index.html` | 200 (Rewrite) |
+
+Order matters. With only the SPA rule, `/api/auth/login` is answered with
+`index.html` and a 200 — the browser then has a page where an API response
+should be, and the dashboard renders an empty shell. The rewrite keeps the
+page and the API on one origin, so there is no CORS and no cross-site
+cookie.
+
+### Things to know before you rely on it
+
+* **RDS bills 24/7.** The compute scales to zero; the database does not.
+* **API Gateway caps a request at 10 MB.** The upload panel posts photos as
+  base64, so a batch of large images has to be split — the server accepts up
+  to 100 at a time, but the request must stay under the gateway's limit.
+* **A VPC Lambda has no route to the internet.** The template adds S3 and
+  Secrets Manager endpoints instead of a NAT gateway, which would cost more
+  per month than the rest of the stack.
+* **`JWT_SECRET` must be set in Lambda.** The function refuses to start
+  without it rather than generating one, because a secret regenerated per
+  cold start would sign every user out.
+* **Connection count.** `PG_POOL_MAX` is 1 — one socket per container. Put
+  RDS Proxy in front before raising Lambda concurrency far.
 
 ## The five screens
 

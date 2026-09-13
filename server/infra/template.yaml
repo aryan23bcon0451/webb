@@ -1,0 +1,228 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  CAFE seed image dataset API — Express on Lambda behind an HTTP API,
+  Postgres on RDS, photos in S3.
+
+  The Lambda runs inside the VPC because RDS is not public. That has two
+  consequences worth knowing before you deploy:
+    * a VPC Lambda reaches S3 and Secrets Manager only through VPC
+      endpoints (created below) or a NAT gateway. The endpoints are used
+      here because a NAT gateway costs more per month than everything else
+      in this template combined.
+    * RDS bills 24/7 regardless of traffic, so this stack does not scale to
+      zero even though the compute does.
+
+  Deploy:
+    sam build
+    sam deploy --guided
+
+Parameters:
+  VpcId:
+    Type: AWS::EC2::VPC::Id
+    Description: VPC to place the database and function in.
+  PrivateSubnetIds:
+    Type: List<AWS::EC2::Subnet::Id>
+    Description: Two or more subnets in different AZs. RDS requires at least two.
+  RouteTableIds:
+    Type: CommaDelimitedList
+    Description: Route tables for those subnets, for the S3 gateway endpoint.
+  DbUsername:
+    Type: String
+    Default: cafe_admin
+    NoEcho: true
+  DbInstanceClass:
+    Type: String
+    Default: db.t4g.micro
+    Description: Smallest current-generation instance. Raise for real traffic.
+  CorsOrigins:
+    Type: String
+    Default: ''
+    Description: >
+      Leave empty when Amplify rewrites /api/* to this API (same origin, no
+      CORS). Set to the Amplify domain only if the browser calls this URL
+      directly.
+
+Globals:
+  Function:
+    Runtime: nodejs22.x
+    Timeout: 29            # API Gateway HTTP API caps at 29s; match it
+    MemorySize: 1024       # CPU scales with memory; below ~768MB cold starts drag
+    Architectures: [arm64] # ~20% cheaper per GB-second than x86
+
+Resources:
+
+  # ---------------------------------------------------------- secrets
+  # The database password is generated here and never appears in the
+  # template, in git, or in the console's plaintext.
+  DbSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: CAFE RDS credentials
+      GenerateSecretString:
+        SecretStringTemplate: !Sub '{"username":"${DbUsername}"}'
+        GenerateStringKey: password
+        PasswordLength: 32
+        ExcludeCharacters: '"@/\'
+
+  JwtSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: CAFE JWT signing key
+      GenerateSecretString:
+        PasswordLength: 64
+        ExcludePunctuation: true
+
+  # ---------------------------------------------------------- network
+  LambdaSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: CAFE Lambda
+      VpcId: !Ref VpcId
+      SecurityGroupEgress:
+        - IpProtocol: -1
+          CidrIp: 0.0.0.0/0
+          Description: Outbound to RDS and the VPC endpoints
+
+  DbSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: CAFE Postgres — reachable only from the function
+      VpcId: !Ref VpcId
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 5432
+          ToPort: 5432
+          SourceSecurityGroupId: !Ref LambdaSecurityGroup
+          Description: Postgres from the Lambda security group only
+
+  # A VPC Lambda has no route to the public internet. These endpoints give
+  # it S3 and Secrets Manager without a NAT gateway.
+  S3Endpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref VpcId
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
+      VpcEndpointType: Gateway
+      RouteTableIds: !Ref RouteTableIds
+
+  SecretsEndpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      VpcId: !Ref VpcId
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.secretsmanager'
+      VpcEndpointType: Interface
+      PrivateDnsEnabled: true
+      SubnetIds: !Ref PrivateSubnetIds
+      SecurityGroupIds: [!Ref LambdaSecurityGroup]
+
+  # ---------------------------------------------------------- database
+  DbSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: CAFE Postgres
+      SubnetIds: !Ref PrivateSubnetIds
+
+  Database:
+    Type: AWS::RDS::DBInstance
+    DeletionPolicy: Snapshot
+    UpdateReplacePolicy: Snapshot
+    Properties:
+      Engine: postgres
+      EngineVersion: '16.4'
+      DBInstanceClass: !Ref DbInstanceClass
+      AllocatedStorage: '20'
+      MaxAllocatedStorage: 100        # storage autoscaling
+      StorageType: gp3
+      StorageEncrypted: true
+      DBName: cafe
+      MasterUsername: !Sub '{{resolve:secretsmanager:${DbSecret}:SecretString:username}}'
+      MasterUserPassword: !Sub '{{resolve:secretsmanager:${DbSecret}:SecretString:password}}'
+      DBSubnetGroupName: !Ref DbSubnetGroup
+      VPCSecurityGroups: [!Ref DbSecurityGroup]
+      PubliclyAccessible: false
+      BackupRetentionPeriod: 7
+      DeletionProtection: true
+      EnablePerformanceInsights: false
+
+  # ---------------------------------------------------------- photos
+  PhotoBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      # Private. Reads go out as short-lived presigned URLs, so the bytes
+      # never pass through the function and nothing is world-readable.
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled
+
+  # ---------------------------------------------------------- function
+  Api:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: $default
+      # CORS is deliberately not configured here. With Amplify rewriting
+      # /api/* to this API the browser sees one origin; if you call it
+      # directly instead, the app's own CORS_ORIGINS handles it.
+
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../
+      Handler: lambda.handler
+      Description: CAFE dashboard API
+      VpcConfig:
+        SecurityGroupIds: [!Ref LambdaSecurityGroup]
+        SubnetIds: !Ref PrivateSubnetIds
+      Environment:
+        Variables:
+          NODE_ENV: production
+          DATABASE_URL: !Sub
+            - 'postgresql://${User}:${Pass}@${Host}:${Port}/cafe'
+            - User: !Sub '{{resolve:secretsmanager:${DbSecret}:SecretString:username}}'
+              Pass: !Sub '{{resolve:secretsmanager:${DbSecret}:SecretString:password}}'
+              Host: !GetAtt Database.Endpoint.Address
+              Port: !GetAtt Database.Endpoint.Port
+          JWT_SECRET: !Sub '{{resolve:secretsmanager:${JwtSecret}:SecretString}}'
+          S3_BUCKET: !Ref PhotoBucket
+          S3_PREFIX: submissions/
+          CORS_ORIGINS: !Ref CorsOrigins
+          SERVE_STATIC: 'false'       # Amplify serves the page
+          PG_POOL_MAX: '1'            # one socket per container; see db/pool.js
+          RUN_MIGRATIONS: 'true'
+      Policies:
+        - S3CrudPolicy:
+            BucketName: !Ref PhotoBucket
+      Events:
+        ProxyApi:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Api
+            Path: /{proxy+}
+            Method: ANY
+    Metadata:
+      BuildMethod: nodejs22.x
+
+Outputs:
+  ApiUrl:
+    Description: Put this behind the Amplify /api/<*> rewrite.
+    Value: !Sub 'https://${Api}.execute-api.${AWS::Region}.amazonaws.com'
+  RewriteTarget:
+    Description: The exact Target to paste into Amplify's rewrite rule.
+    Value: !Sub 'https://${Api}.execute-api.${AWS::Region}.amazonaws.com/api/<*>'
+  DbEndpoint:
+    Value: !GetAtt Database.Endpoint.Address
+  DbSecretArn:
+    Description: Read this to get the password for seeding.
+    Value: !Ref DbSecret
+  BucketName:
+    Value: !Ref PhotoBucket

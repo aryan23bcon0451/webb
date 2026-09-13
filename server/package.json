@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node index.js",
     "seed": "node seed.js",
-    "audit": "node audit.js"
+    "audit": "node audit.js",
+    "deploy:build": "sam build -t infra/template.yaml",
+    "deploy": "sam deploy -t infra/template.yaml --guided"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +16,18 @@
   "type": "commonjs",
   "private": true,
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1131.0",
+    "@aws-sdk/s3-request-presigner": "^3.1131.0",
+    "@codegenie/serverless-express": "^5.0.0",
     "bcryptjs": "^3.0.3",
-    "better-sqlite3": "^13.0.3",
     "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3"
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8"
   }
 }

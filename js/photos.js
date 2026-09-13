@@ -143,5 +143,9 @@
     return cache[key];
   }
 
-  global.Photos = { url: url };
+  /** The photo for a submission: the file someone uploaded when there is
+      one, otherwise its generated stand-in. */
+  function of(s) { return s.imageUrl || url(s.seq, s.seedTypeName); }
+
+  global.Photos = { url: url, of: of };
 })(window);

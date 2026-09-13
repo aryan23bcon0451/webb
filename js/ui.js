@@ -32,7 +32,7 @@
   }
   function ago(ts) {
     if (!ts) return '—';
-    var s = Math.max(0, Math.round((DB.now - ts) / 1000));
+    var s = Math.max(0, Math.round((Date.now() - ts) / 1000));
     if (s < 60) return 'just now';
     var m = Math.round(s / 60); if (m < 60) return m + 'm ago';
     var h = Math.round(m / 60); if (h < 24) return h + 'h ago';

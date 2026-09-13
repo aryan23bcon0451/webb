@@ -61,7 +61,7 @@
       var idx = start + i;
       return '<button class="thumb ' + (idx === state.index ? 'on' : '') + '" type="button" data-jump="' + idx + '" ' +
         'title="' + esc(s.seedTypeName) + ' from ' + esc(s.farmerName) + '">' +
-        '<img src="' + Photos.url(s.seq, s.seedTypeName) + '" alt="" loading="lazy"></button>';
+        '<img src="' + Photos.of(s) + '" alt="" loading="lazy"></button>';
     }).join('');
     return '<div class="filmstrip">' +
       '<div class="strip">' + thumbs +
@@ -144,7 +144,7 @@
         '<button class="btn" type="button" id="toggle-view">' + icon('grid') + 'See them all</button>' +
       '</div>' +
       '<div class="stage">' +
-        '<img src="' + Photos.url(s.seq, s.seedTypeName) + '" alt="' + esc(s.seedTypeName) + ' seed image taken by ' + esc(s.farmerName) + '">' +
+        '<img src="' + Photos.of(s) + '" alt="' + esc(s.seedTypeName) + ' seed image taken by ' + esc(s.farmerName) + '">' +
         '<div class="stage-tag"><span class="badge badge-gray">' + esc(s.glyph) + ' ' + esc(s.seedTypeName) + '</span></div>' +
       '</div>' +
       filmstrip() +
@@ -159,7 +159,7 @@
     var tiles = state.rows.slice(0, 48).map(function (s, i) {
       return '<button class="photo-card" type="button" data-jump="' + i + '">' +
         '<div class="photo-thumb">' +
-          '<img src="' + Photos.url(s.seq, s.seedTypeName) + '" alt="" loading="lazy">' +
+          '<img src="' + Photos.of(s) + '" alt="" loading="lazy">' +
           '<span class="photo-open">' + icon('chevron-right') + '</span>' +
         '</div>' +
         '<div class="photo-meta">' +
@@ -213,7 +213,7 @@
     for (var i = state.index + 1; i <= state.index + 3 && i < state.rows.length; i++) {
       var s = state.rows[i];
       var img = new Image();
-      img.src = Photos.url(s.seq, s.seedTypeName);
+      img.src = Photos.of(s);
     }
   }
 

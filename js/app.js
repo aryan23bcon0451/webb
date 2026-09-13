@@ -7,8 +7,9 @@
 
   var ROUTES = [
     { path: '/dashboard', label: 'Home', icon: 'grid', view: 'DashboardView' },
-    { path: '/label', label: 'Label images', icon: 'spark', view: 'LabelView', badge: true },
+    { path: '/label', label: 'Label images', icon: 'spark', view: 'LabelView', badge: 'review' },
     { path: '/dataset', label: 'Dataset', icon: 'database', view: 'DatasetView' },
+    { path: '/farmers', label: 'Farmers directory', icon: 'users', view: 'FarmersView', badge: 'farmers' },
     { path: '/seeds', label: 'Seed catalogue', icon: 'sprout', view: 'SeedManagementView' },
     { path: '/settings', label: 'Settings', icon: 'gear', view: 'SettingsView' }
   ];
@@ -67,27 +68,45 @@
   /* ---------------------------------------------------- chrome */
   function renderNav(activePath) {
     nav.innerHTML = ROUTES.map(function (r) {
+      /* Only the queue count changes under you, so only it is announced. */
+      var live = r.badge === 'review' ? ' role="status" aria-atomic="true"' : '';
       return '<button class="nav-item ' + (r.path === activePath ? 'active' : '') + '" type="button" data-path="' + r.path + '">' +
         icon(r.icon) + '<span>' + esc(r.label) + '</span>' +
         (r.badge
-          ? '<span class="nav-badge" id="badge-review" aria-hidden="true">—</span>' +
-            '<span class="sr-only" id="badge-review-text" role="status" aria-atomic="true"></span>'
+          ? '<span class="nav-badge" id="badge-' + r.badge + '" aria-hidden="true">—</span>' +
+            '<span class="sr-only" id="badge-' + r.badge + '-text"' + live + '></span>'
           : '') +
       '</button>';
     }).join('');
   }
 
+  /* Each badge fetches its own count. The number alone reads as "323"
+     out of nowhere after each save, so the hidden text carries the
+     sentence instead. */
+  var BADGES = {
+    review: function () {
+      return API.getQueueStats().then(function (s) {
+        return { count: s.pending, said: UI.num(s.pending) + ' images waiting to be labelled' };
+      });
+    },
+    farmers: function () {
+      return API.getFarmers({ limit: 1 }).then(function (res) {
+        return { count: res.summary.farmers, said: UI.num(res.summary.farmers) + ' farmers in the directory' };
+      });
+    }
+  };
+
   function refreshBadges() {
-    var el = document.getElementById('badge-review');
-    if (!el || !API.session()) return;
-    API.getQueueStats().then(function (s) {
-      var again = document.getElementById('badge-review');
-      if (again) again.textContent = UI.num(s.pending);
-      /* The number alone reads as "323" out of nowhere after each save.
-         The status region carries the sentence instead. */
-      var said = document.getElementById('badge-review-text');
-      if (said) said.textContent = UI.num(s.pending) + ' images waiting to be labelled';
-    }).catch(function () { /* the badge is a convenience, not the source of truth */ });
+    if (!API.session()) return;
+    Object.keys(BADGES).forEach(function (key) {
+      if (!document.getElementById('badge-' + key)) return;
+      BADGES[key]().then(function (b) {
+        var el = document.getElementById('badge-' + key);
+        if (el) el.textContent = UI.num(b.count);
+        var said = document.getElementById('badge-' + key + '-text');
+        if (said) said.textContent = b.said;
+      }).catch(function () { /* the badge is a convenience, not the source of truth */ });
+    });
   }
 
   function renderProfile() {
@@ -108,6 +127,19 @@
     var label = route ? route.label : 'Dashboard';
     document.getElementById('topbar-title').innerHTML = '<b>' + esc(label) + '</b>';
     document.title = label + ' · CAFE';
+  }
+
+  /* The topbar button is a straight flip: it shows where you would
+     land, not where you are. The three-way choice, including
+     "follow the system", lives on the Settings screen. */
+  function paintThemeButton() {
+    var btn = document.getElementById('theme-btn');
+    if (!btn) return;
+    var goingDark = Theme.resolved() !== 'dark';
+    var label = goingDark ? 'Switch to dark theme' : 'Switch to light theme';
+    btn.innerHTML = icon(goingDark ? 'moon' : 'sun');
+    btn.setAttribute('aria-label', label);
+    btn.title = label;
   }
 
   function closeNav() {
@@ -194,6 +226,13 @@
     });
 
     document.getElementById('sidebar-user').addEventListener('click', function () { navigate('#/settings'); });
+
+    paintThemeButton();
+    Theme.onChange(paintThemeButton);
+    document.getElementById('theme-btn').addEventListener('click', function () {
+      Theme.toggle();
+      UI.announce('Theme: ' + Theme.resolved());
+    });
 
     document.getElementById('refresh-btn').addEventListener('click', function () {
       var btn = this;

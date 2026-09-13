@@ -23,6 +23,34 @@
       ' aria-label="' + esc(title) + '"><i></i></label></div>';
   }
 
+  /* Three states, all visible: "System" is a real choice, not the
+     absence of one, so it gets a button like the other two. */
+  function appearanceCard() {
+    var mode = Theme.get();
+    var opts = [
+      { id: 'system', name: 'System', icon: 'monitor' },
+      { id: 'light', name: 'Light', icon: 'sun' },
+      { id: 'dark', name: 'Dark', icon: 'moon' }
+    ];
+    var seg = opts.map(function (o) {
+      return '<button type="button" data-theme-set="' + o.id + '" aria-pressed="' + (o.id === mode) + '">' +
+        icon(o.icon) + esc(o.name) + '</button>';
+    }).join('');
+
+    return '<div class="card">' +
+      '<div class="card-head"><div class="card-head-text"><h2>Appearance</h2>' +
+        '<p>Applies to this browser only.</p></div></div>' +
+      '<div class="card-body">' +
+        '<div class="toggle-row" style="padding-top:0">' +
+          '<div class="tr-text"><strong>Theme</strong>' +
+            '<small>Long labelling sessions are easier on a dark screen. ' +
+            'System follows your operating system as it changes.</small></div>' +
+        '</div>' +
+        '<div class="seg" role="group" aria-label="Theme">' + seg + '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
   function teamCard(rows) {
     var body = rows.map(function (u) {
       return '<tr>' +
@@ -91,6 +119,8 @@
             '</div>' +
           '</div>' +
 
+          appearanceCard() +
+
           teamCard(team) +
 
         '</div>';
@@ -103,6 +133,18 @@
       view.querySelector('#set-page').addEventListener('change', function () {
         prefs.pageSize = this.value; writePrefs(prefs); UI.toast('Saved', 'ok');
       });
+      function syncTheme() {
+        var mode = Theme.get();
+        view.querySelectorAll('[data-theme-set]').forEach(function (b) {
+          b.setAttribute('aria-pressed', String(b.getAttribute('data-theme-set') === mode));
+        });
+      }
+      UI.on(view, 'click', '[data-theme-set]', function (e, el) {
+        Theme.set(el.getAttribute('data-theme-set'));
+        UI.announce('Theme: ' + Theme.resolved());
+      });
+      /* The topbar can change the theme while this screen is open. */
+      ctx.onLeave(Theme.onChange(syncTheme));
       view.querySelector('#set-logout').addEventListener('click', function () { ctx.logout(); });
     }
 

@@ -38,7 +38,7 @@
           '<div class="field">' +
             '<label for="li-pw">Password</label>' +
             '<input class="input" id="li-pw" name="password" type="password" autocomplete="current-password" ' +
-              'placeholder="••••••••" value="demo1234">' +
+              'placeholder="••••••••" value="cafe1234">' +
           '</div>' +
           '<button class="btn btn-primary btn-lg btn-block" type="submit" id="li-submit">' +
             icon('lock') + '<span>Sign in</span></button>' +
@@ -46,7 +46,7 @@
             '<strong>Demo accounts</strong><br>' +
             'Admin — <code>alex.rivera@cafe.ag</code><br>' +
             'Labeller — <code>priya.nair@cafe.ag</code><br>' +
-            'Any password of four characters or more.' +
+            'Password <code>cafe1234</code> — set by the seed script.' +
           '</div>' +
         '</form>' +
       '</section>';

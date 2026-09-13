@@ -66,7 +66,7 @@
       var tiles = featured.map(function (sub) {
         return '<button class="photo-card" type="button" data-open="' + esc(sub.id) + '">' +
           '<div class="photo-thumb">' +
-            '<img src="' + Photos.url(sub.seq, sub.seedTypeName) + '" alt="' + esc(sub.seedTypeName) + ' seed image taken by ' + esc(sub.farmerName) + '" loading="lazy">' +
+            '<img src="' + Photos.of(sub) + '" alt="' + esc(sub.seedTypeName) + ' seed image taken by ' + esc(sub.farmerName) + '" loading="lazy">' +
             '<span class="photo-open">' + icon('chevron-right') + '</span>' +
           '</div>' +
           '<div class="photo-meta">' +

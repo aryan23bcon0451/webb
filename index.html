@@ -8,6 +8,16 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/styles.css">
+<script>
+/* Apply the stored theme before first paint — otherwise a dark-theme
+   user sees a white flash while the rest of the scripts load. */
+(function () {
+  try {
+    var m = localStorage.getItem('cafe.theme');
+    if (m === 'light' || m === 'dark') document.documentElement.setAttribute('data-theme', m);
+  } catch (e) { /* private mode: fall back to the system preference */ }
+})();
+</script>
 </head>
 <body>
 
@@ -40,6 +50,7 @@
       <button class="icon-btn only-mobile" id="menu-toggle" type="button" aria-label="Toggle navigation" data-icon="menu"></button>
       <div class="topbar-title" id="topbar-title"></div>
       <div class="topbar-actions">
+        <button class="icon-btn" id="theme-btn" type="button" aria-label="Switch to dark theme" title="Switch to dark theme"></button>
         <button class="icon-btn" id="refresh-btn" type="button" aria-label="Refresh data" data-icon="refresh"></button>
         <div class="profile-wrap">
           <button class="profile-btn" id="profile-btn" type="button" aria-haspopup="menu" aria-expanded="false">
@@ -57,15 +68,16 @@
 <div class="toasts" id="toasts"></div>
 <div class="sr-only" id="live-region" role="status" aria-atomic="true"></div>
 
+<script src="js/theme.js"></script>
 <script src="js/icons.js"></script>
 <script src="js/photos.js"></script>
-<script src="js/data.js"></script>
 <script src="js/api.js"></script>
 <script src="js/ui.js"></script>
 <script src="js/views/login.js"></script>
 <script src="js/views/dashboard.js"></script>
 <script src="js/views/label.js"></script>
 <script src="js/views/dataset.js"></script>
+<script src="js/views/farmers.js"></script>
 <script src="js/views/seed-management.js"></script>
 <script src="js/views/settings.js"></script>
 <script src="js/app.js"></script>

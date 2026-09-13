@@ -1,0 +1,6 @@
+node_modules/
+uploads/
+cafe.db
+cafe.db-wal
+cafe.db-shm
+.jwt-secret
